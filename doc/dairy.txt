@@ -36,4 +36,6 @@ Presentation of results: X2a 28.09.15, X2r 01.10.15
 	10 points for documents, 5 points for presentation
 	
 25.09.2015: Kick off / Task 1&2
-01.10.2015: Presentation of first analysis and SE process 
+01.10.2015: Presentation of first analysis and SE process
+08.10.2015: Define Interview Partner, Create Interview, 
+09.10.2015: Define Use Cases 
