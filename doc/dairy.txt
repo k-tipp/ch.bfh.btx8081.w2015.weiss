@@ -69,9 +69,21 @@ Documentation
 	- explain/justify your decisions
 	- 20 points for your documented results
 	
+CS1 Task 6: External Perspective
+
+
+1. Design a context model showing the boundary of your application and other external systems needed to implement your system requirements.
+
+2. Design a high level activity diagram showing the interaction and thereby the interfaces with external systems. Use the notation of activity partitions to depict the responsibility of your system and external systems.
+Submission of results: 29.10.15, 23:59
+
+▶ 5 points for diagrams
+▶ no presentation required
+▶ but diagrams should be self-explaining
 	
 25.09.2015: Kick off / Task 1&2
 01.10.2015: Presentation of first analysis and SE process
 08.10.2015: Research, Define Interview Partner, Create Interview, 
 09.10.2015: Define Use Cases, Scoping, Prototyping, Validate
-15.10.2015  Presentation of the Design Thinking
+15.10.2015: Presentation of the Design Thinking
+22.10.2015: Diagram
