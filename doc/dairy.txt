@@ -71,19 +71,43 @@ Documentation
 	
 CS1 Task 6: External Perspective
 
-
 1. Design a context model showing the boundary of your application and other external systems needed to implement your system requirements.
 
 2. Design a high level activity diagram showing the interaction and thereby the interfaces with external systems. Use the notation of activity partitions to depict the responsibility of your system and external systems.
 Submission of results: 29.10.15, 23:59
 
-▶ 5 points for diagrams
-▶ no presentation required
-▶ but diagrams should be self-explaining
+- 5 points for diagrams
+- no presentation required
+- but diagrams should be self-explaining
+
+CS1 Task 7: Domain Model and Sequence Diagram
+
+For your application, design:
+
+1. a UML domain model (i.e. class diagrams) covering the main classes
+- incl. association, inheritance, and aggregation relations
+- observe the general modeling guidelines and make use of Responsibility
+Driven Design (RDD) and use CRC-Cards as a tool.
+
+2. based on your domain classes, create two UML sequence diagrams, one each for the following situations
+
+- when the user updates some specific information
+- when the system alerts the user about some specific event
+
+3. if necessary, refine your UML domain model to include the attributes and
+operations needed for your sequence diagrams.
+Presentation of results (10 min per team): 09.11.15 (class a), 12.11.15 (class r)
+
+10 points for documents 5 points for presentation
+
 	
 25.09.2015: Kick off / Task 1&2
 01.10.2015: Presentation of first analysis and SE process
 08.10.2015: Research, Define Interview Partner, Create Interview, 
 09.10.2015: Define Use Cases, Scoping, Prototyping, Validate
-15.10.2015: Presentation of the Design Thinking
-22.10.2015: Diagram
+15.10.2015: Presentation of the Design Thinking Task 3
+22.10.2015: Define Context Model / Activity Diagram
+28.10.2015: CRC-Cards
+05.10.2015: Create UML Class Diagrams
+10.10.2015: Create UML Sequence Diagrams
+12.10.2015: Presentation of Task 7
