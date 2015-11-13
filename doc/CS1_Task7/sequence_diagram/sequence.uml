@@ -1,0 +1,25 @@
+@startuml
+scale 1500x1500
+actor doctor
+participant ui
+participant model
+participant db
+
+activate doctor
+doctor -> ui: change data
+activate ui
+doctor -> ui: click save
+ui -> model: save data to model
+activate model
+model -> model: verify data
+model -> ui: feedback (nok)
+ui -> doctor: feedback (nok)
+activate db
+model -> db: save (ok)
+db -> model: saved
+model -> ui: feedback (ok)
+deactivate model
+deactivate db
+ui -> doctor: feedback (ok)
+deactivate ui
+@enduml
