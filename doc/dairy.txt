@@ -125,3 +125,5 @@ Presentation of Results: (X2a) 23.11., (X2r) 26.11., 10 min per team
 10.11.2015: Create UML Sequence Diagrams
 12.11.2015: Presentation of Task 7
 20.11.2015: Install IDE
+25.11.2015: Define the architecture
+26.11.2015: Presentation Task 9 - Software Architecture
