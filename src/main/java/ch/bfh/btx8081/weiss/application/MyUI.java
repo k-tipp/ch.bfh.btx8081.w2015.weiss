@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.weiss.Shrinkie;
+package ch.bfh.btx8081.weiss.application;
 
 import javax.servlet.annotation.WebServlet;
 
