@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:true,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:7,&quot;GRID_TYPE&quot;:&quot;RegularGrid,20&quot;,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout spacing="true" size-full="true" margin="true"> 
+   <vaadin-horizontal-layout width-full="true"> 
+    <vaadin-button description="zurück zur Übersicht" plain-text="" :middle="">
+      zurück 
+    </vaadin-button> 
+    <vaadin-label visible="false" plain-text="" :center="">
+      Patient View 
+    </vaadin-label> 
+    <vaadin-button visible="false" plain-text="" :middle="" :right="">
+      nächster Patient 
+    </vaadin-button> 
+   </vaadin-horizontal-layout> 
+   <vaadin-horizontal-layout spacing="true" width-full="true" margin="true"> 
+    <vaadin-image description="patientPicture" source="http://www.clker.com/cliparts/4/a/O/n/k/e/business-person-blue.svg" width="200px" height="100px" _id="patientPicture"></vaadin-image> 
+    <vaadin-vertical-layout :middle=""> 
+     <vaadin-label width="50px" height="20px" plain-text="">
+       Name 
+     </vaadin-label> 
+     <vaadin-label width="50px" height="20px" plain-text="">
+       Alter 
+     </vaadin-label> 
+     <vaadin-label width="50px" height="20px" plain-text="">
+       Geschlecht: 
+     </vaadin-label> 
+     <vaadin-label width="50px" height="20px" plain-text="">
+       Termin: 
+     </vaadin-label> 
+    </vaadin-vertical-layout> 
+    <vaadin-vertical-layout> 
+     <vaadin-label width="50px" height="20px" plain-text="">
+       Name 
+     </vaadin-label> 
+     <vaadin-label width="50px" height="20px" plain-text="">
+       Alter 
+     </vaadin-label> 
+     <vaadin-label width="50px" height="20px" plain-text="">
+       Geschlecht 
+     </vaadin-label> 
+     <vaadin-date-field></vaadin-date-field> 
+    </vaadin-vertical-layout> 
+   </vaadin-horizontal-layout> 
+   <vaadin-vertical-layout size-auto="true"></vaadin-vertical-layout> 
+   <vaadin-horizontal-layout spacing="true" width-full="true" margin="true"> 
+    <vaadin-label plain-text="" :expand="">
+      Allgemeine Informationen: 
+    </vaadin-label> 
+    <vaadin-label width="500px" height="100px" plain-text="">
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+    </vaadin-label> 
+   </vaadin-horizontal-layout> 
+   <vaadin-vertical-layout size-auto="true"></vaadin-vertical-layout> 
+   <vaadin-horizontal-layout spacing="true" width-full="true" margin="true"> 
+    <vaadin-label responsive="true" size-auto="true" plain-text="">
+      Selbstgefährdung: 
+    </vaadin-label> 
+    <vaadin-button description="keine Gefahr" width-full="true" plain-text="" :expand="">
+      0 
+    </vaadin-button> 
+    <vaadin-label responsive="true" size-auto="true" plain-text="">
+      Fremdgefährdung: 
+    </vaadin-label> 
+    <vaadin-button description="Gefahr für andere" width-full="true" plain-text="" :expand="">
+      2 
+    </vaadin-button> 
+   </vaadin-horizontal-layout> 
+   <vaadin-vertical-layout size-auto="true"></vaadin-vertical-layout> 
+   <vaadin-button width-full="true" plain-text="">
+     Problemliste / Verlauf 
+   </vaadin-button> 
+   <vaadin-button width-full="true" plain-text="">
+     Medikation 
+   </vaadin-button> 
+   <vaadin-button width-full="true" plain-text="">
+     Therapieplan 
+   </vaadin-button> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>
