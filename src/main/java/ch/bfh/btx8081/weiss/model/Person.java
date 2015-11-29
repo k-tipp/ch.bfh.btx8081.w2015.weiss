@@ -28,7 +28,6 @@ public class Person {
 	private String city = null;
 	private String ssn = null;
 	private LocalDateTime birthday = null;
-	
 
 	public Person() {
 
