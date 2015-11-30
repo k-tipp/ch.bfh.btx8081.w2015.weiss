@@ -11,5 +11,7 @@ public class DangerToOthers {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int dangerID = 0;
 	private String status = null;
-	
+
+	public DangerToOthers() {
+	}
 }

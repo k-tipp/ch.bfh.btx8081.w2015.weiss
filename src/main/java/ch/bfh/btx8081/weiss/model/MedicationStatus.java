@@ -12,4 +12,6 @@ public class MedicationStatus {
 	private int medicationStatusID = 0;
 	private String status = null;
 
+	public MedicationStatus() {
+	}
 }

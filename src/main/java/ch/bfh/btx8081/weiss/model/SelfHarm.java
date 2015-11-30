@@ -10,5 +10,10 @@ public class SelfHarm {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int harmID = 0;
+
 	private String Status = null;
+
+	public SelfHarm() {
+	}
+
 }

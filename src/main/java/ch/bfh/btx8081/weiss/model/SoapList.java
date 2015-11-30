@@ -10,5 +10,10 @@ public class SoapList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int patientID = 0;
+
 	private int SoapId;
+
+	public SoapList() {
+	}
+
 }

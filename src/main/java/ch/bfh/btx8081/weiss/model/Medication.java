@@ -21,4 +21,7 @@ public class Medication {
 	private String unit = null;
 	private int statusID = 0;
 
+	public Medication() {
+	}
+
 }

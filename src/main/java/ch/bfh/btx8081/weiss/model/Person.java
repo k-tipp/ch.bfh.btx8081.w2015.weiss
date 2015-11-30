@@ -7,17 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int personId = 0;
-	/*
-	 * @OneToMany(mappedBy = "Person") private ArrayList<Prescription>
-	 * prescriptions = null;
-	 */
+
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	public Patient patient;
 
 	private String firstName = null;
 	private String lastName = null;

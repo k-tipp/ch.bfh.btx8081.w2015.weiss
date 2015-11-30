@@ -7,11 +7,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Soap {
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	// @Id
+	// @GeneratedValue(strategy = GenerationType.TABLE)
 	private String s = null;
 	private String o = null;
 	private String a = null;
 	private String p = null;
+
+	public Soap() {
+	}
 
 }
