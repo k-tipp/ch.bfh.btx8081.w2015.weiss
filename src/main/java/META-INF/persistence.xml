@@ -19,13 +19,11 @@
 	
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="net.sourceforge.jtds.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url"
-				value="jdbc:jtds:sqlserver://corpus.bfh.ch:55783;DatabaseName=SWE_White" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:jtds:sqlserver://corpus.bfh.ch:55783;DatabaseName=SWE_White" />
 			<property name="javax.persistence.jdbc.user" value="scott" />
 			<property name="javax.persistence.jdbc.password" value="tiger" />
 			<property name="eclipselink.ddl-generation" value="create-tables" />
-			<property name="eclipselink.ddl-generation.output-mode"
-				value="both" />
+			<property name="eclipselink.ddl-generation.output-mode"value="both" />
 		</properties>
 	</persistence-unit>
 </persistence>

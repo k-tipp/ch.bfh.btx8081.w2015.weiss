@@ -25,7 +25,6 @@ public class Person {
 	@OneToOne
 	@PrimaryKeyJoinColumn
 	public Appointment appointment;
-
 	private String firstName = null;
 	private String lastName = null;
 	private String eMail = null;
