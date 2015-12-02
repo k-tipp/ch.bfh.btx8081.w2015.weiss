@@ -17,18 +17,32 @@ public class PatientViewImpl extends PatientView implements View {
 	
 	public PatientViewImpl(final Navigator navigator) {
 		super();
-		this.btn_patient.addClickListener(new Button.ClickListener() {
-	
-			@Override
-			public void buttonClick(ClickEvent event) {
-				PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
-				patient_name.setValue(psi.getPatientById(1).getFirstName()+" "+psi.getPatientById(1).getLastName());
-			}
-		});
+//		this.btn_patient.addClickListener(new Button.ClickListener() {
+//	
+//			@Override
+//			public void buttonClick(ClickEvent event) {
+//				PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
+//				patient_name.setValue(psi.getPatientById(1).getFirstName()+" "+psi.getPatientById(1).getLastName());
+//			}
+//		});
+		
+		btn_patient.addClickListener(event->{PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
+	patient_name.setValue(psi.getPatientById(1).getFirstName()+" "+psi.getPatientById(1).getLastName());});
 	}
 
 	public PatientViewImpl() {
-		// TODO Auto-generated constructor stub
+		super();
+//		this.btn_patient.addClickListener(new Button.ClickListener() {
+//	
+//			@Override
+//			public void buttonClick(ClickEvent event) {
+//				PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
+//				patient_name.setValue(psi.getPatientById(1).getFirstName()+" "+psi.getPatientById(1).getLastName());
+//			}
+//		});
+		
+		btn_patient.addClickListener(event->{PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
+	patient_name.setValue(psi.getPatientById(1).getFirstName()+" "+psi.getPatientById(1).getLastName());});
 	}
 
 	@Override
