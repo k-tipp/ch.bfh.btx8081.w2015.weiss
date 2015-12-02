@@ -21,29 +21,42 @@ import ch.bfh.btx8081.weiss.model.PatientModel;
 @Theme("mytheme")
 @Widgetset("ch.bfh.btx8081.weiss.Shrinkie.MyAppWidgetset")
 public class MyUI extends UI {
+	PatientModel pm = null;
 
-    @Override
-    protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
-        layout.setMargin(true);
-        setContent(layout);
-        
-        Button button = new Button("Click Me");
-        button.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(ClickEvent event) {
-                layout.addComponent(new Label("Fuck off if this doesn't work!"));
-                PatientModel pm = new PatientModel();
-                layout.addComponent(new Label(pm.toString()));
-                
-            }
-        });
-        layout.addComponent(button);
+	@Override
+	protected void init(VaadinRequest vaadinRequest) {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(true);
+		setContent(layout);
 
-    }
+		Button button = new Button("Create Patientmodel");
+		button.addClickListener(new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				// layout.addComponent(new Label("Fuck off if this doesn't
+				// work!"));
+				pm = new PatientModel();
 
-    @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
-    public static class MyUIServlet extends VaadinServlet {
-    }
+			}
+		});
+		Button secondButton = new Button("get House!");
+		secondButton.addClickListener(new Button.ClickListener() {
+			@Override
+			public void buttonClick(ClickEvent event) {
+				// layout.addComponent(new Label("Fuck off if this doesn't
+				// work!"));
+
+				layout.addComponent(new Label(pm.getPatients().toString()));
+
+			}
+		});
+
+		layout.addComponent(button);
+		layout.addComponent(secondButton);
+	}
+
+	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
+	@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
+	public static class MyUIServlet extends VaadinServlet {
+	}
 }

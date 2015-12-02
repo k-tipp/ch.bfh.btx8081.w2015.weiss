@@ -1,6 +1,6 @@
 package ch.bfh.btx8081.weiss.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,14 +18,6 @@ public class Patient {
 	@OneToMany(mappedBy = "patient")
 	private final List<Appointment> appointments = null;
 
-	public String getPicture() {
-		return picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
-
 	private String picture = null;  //base64
 	private String firstName = null;
 	private String lastName = null;
@@ -35,7 +27,7 @@ public class Patient {
 	private String zip = null;
 	private String city = null;
 	private String ssn = null;
-	private LocalDateTime birthday = null;
+	private LocalDate birthday = null;
 	private int harmID = 0;
 
 	public Patient() {
@@ -83,13 +75,18 @@ public class Patient {
 		return ssn;
 	}
 
-	public LocalDateTime getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
 	public int getHarmID() {
 		return harmID;
 	}
+	
+	public String getPicture() {
+		return picture;
+	}
+
 
 	public void setPatientID(int patientID) {
 		this.patientID = patientID;
@@ -127,12 +124,16 @@ public class Patient {
 		this.ssn = ssn;
 	}
 
-	public void setBirthday(LocalDateTime birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 
 	public void setHarmID(int harmID) {
 		this.harmID = harmID;
+	}
+	
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 }
