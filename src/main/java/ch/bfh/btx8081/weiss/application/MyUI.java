@@ -5,11 +5,14 @@ import javax.servlet.annotation.WebServlet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 
+import ch.bfh.btx8081.weiss.view.PatientOverviewImpl;
 import ch.bfh.btx8081.weiss.view.PatientViewImpl;
 
 /**
@@ -25,7 +28,17 @@ public class MyUI extends UI {
         setLocale(vaadinRequest.getLocale());
         getPage().setTitle("Home");
         
-        setContent(new PatientViewImpl());
+        CssLayout viewContainer = new CssLayout();
+        viewContainer.addStyleName("valo-content");
+        viewContainer.setSizeFull();
+
+        final Navigator navigator = new Navigator(MyUI.this, viewContainer);
+        navigator.setErrorView(ErrorView.class);
+        navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator));
+        navigator.addView(PatientOverviewImpl.VIEW_NAME, new PatientOverviewImpl(navigator));
+        
+        setContent(viewContainer);
+        navigator.navigateTo(PatientViewImpl.VIEW_NAME);
         
     }
 
