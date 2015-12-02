@@ -29,7 +29,7 @@ public class Appointment {
 		return patient;
 	}
 
-	public LocalDate getNextVisit() {
+	public LocalDate getDate() {
 		return appointment;
 	}
 
@@ -41,8 +41,8 @@ public class Appointment {
 		this.patient = patient;
 	}
 
-	public void setNextVisit(LocalDate nextVisit) {
-		this.appointment = nextVisit;
+	public void setDate(LocalDate appointment) {
+		this.appointment = appointment;
 	}
 
 }
