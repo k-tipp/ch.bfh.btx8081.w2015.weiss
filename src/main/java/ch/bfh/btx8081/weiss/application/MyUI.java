@@ -46,7 +46,7 @@ public class MyUI extends UI {
 				// layout.addComponent(new Label("Fuck off if this doesn't
 				// work!"));
 
-				layout.addComponent(new Label(pm.getPatients().toString()));
+				layout.addComponent(new Label(pm.getPatient().getFirstName()));
 
 			}
 		});

@@ -26,9 +26,9 @@ public class PatientModel extends Observable {
 	private void loadPatients(){
 		EntityTransaction t = em.getTransaction();
 		t.begin();
-		//TypedQuery<Patient> q = em.createQuery("from Patient p where p.patientID = :id", Patient.class);
-		//q.setParameter("id", 1); // ToDo: Replace ID with currently logged in PatientId
-		TypedQuery<Patient> q = em.createQuery("from Patient p", Patient.class);
+		TypedQuery<Patient> q = em.createQuery("Select p from Patient p where p.firstName = :name", Patient.class);
+		q.setParameter("id", 1); // ToDo: Replace ID with currently logged in PatientId
+		//TypedQuery<Patient> q = em.createQuery("from Patient p", Patient.class);
 		patients = q.getResultList();
 		t.commit();
 	}
