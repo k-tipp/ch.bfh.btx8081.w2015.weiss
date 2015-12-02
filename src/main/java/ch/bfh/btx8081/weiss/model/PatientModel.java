@@ -19,11 +19,11 @@ public class PatientModel extends Observable {
 		em = MssqlEntityManager.createEntityManager();
 	}
 	public void loadData(){
-		loadMedications();
+		loadPatients();
 		setChanged();
 		notifyObservers(null);
 	}
-	private void loadMedications(){
+	private void loadPatients(){
 		EntityTransaction t = em.getTransaction();
 		t.begin();
 		TypedQuery<Patient> q = em.createQuery("from Patient p where p.patientID = :id", Patient.class);
