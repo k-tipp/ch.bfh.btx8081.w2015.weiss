@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+	http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+	<persistence-unit name="MobilePatMgmtSys-TestPersistence"
+		transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>ch.bfh.btx8081.weiss.model.Appointment</class>
+		<class>ch.bfh.btx8081.weiss.model.Patient</class>
+		<class>ch.bfh.btx8081.weiss.model.Person</class>
+		<class>ch.bfh.btx8081.weiss.model.SelfHarm</class>
+		<class>ch.bfh.btx8081.weiss.model.DangerToOthers</class>
+		<class>ch.bfh.btx8081.weiss.model.Medication</class>
+		<class>ch.bfh.btx8081.weiss.model.MedicationStatus</class>
+		<class>ch.bfh.btx8081.weiss.model.Soap</class>
+		<class>ch.bfh.btx8081.weiss.model.SoapList</class>
+		<properties>
+			<property name="eclipselink.logging.level" value="FINE" />
+			<property name="eclipselink.target-database" value="DERBY" />
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:derby:memory:MobilePatMgmtSysDB;create=true" />
+			<property name="javax.persistence.jdbc.user" value="" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="eclipselink.logging.level" value="INFO" />
+		</properties>
+	</persistence-unit>
+</persistence>
