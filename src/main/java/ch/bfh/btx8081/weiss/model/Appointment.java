@@ -16,7 +16,7 @@ public class Appointment {
 	@ManyToOne
 	private Patient patient;
 
-	private LocalDate nextVisit = null;
+	private LocalDate appointment = null;
 
 	public Appointment() {
 	}
@@ -30,7 +30,7 @@ public class Appointment {
 	}
 
 	public LocalDate getNextVisit() {
-		return nextVisit;
+		return appointment;
 	}
 
 	public void setAppointmentID(int appointmentID) {
@@ -42,7 +42,7 @@ public class Appointment {
 	}
 
 	public void setNextVisit(LocalDate nextVisit) {
-		this.nextVisit = nextVisit;
+		this.appointment = nextVisit;
 	}
 
 }
