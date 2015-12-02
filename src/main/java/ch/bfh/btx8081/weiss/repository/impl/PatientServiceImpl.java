@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.weiss.repository.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,7 +8,7 @@ import javax.persistence.Query;
 
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.PatientService;
-import sun.util.calendar.LocalGregorianCalendar.Date;
+
 
 public class PatientServiceImpl implements PatientService {
 

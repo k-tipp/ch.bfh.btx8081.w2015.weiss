@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.weiss.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import sun.util.calendar.LocalGregorianCalendar.Date;
+
 
 @Entity
 public class Patient {
