@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.weiss.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import sun.util.calendar.LocalGregorianCalendar.Date;
 
 @Entity
 public class Patient {
@@ -27,7 +28,7 @@ public class Patient {
 	private String zip = null;
 	private String city = null;
 	private String ssn = null;
-	private LocalDate birthday = null;
+	private Date birthday = null;
 	private int harmID = 0;
 
 	public Patient() {
@@ -80,7 +81,7 @@ public class Patient {
 		return ssn;
 	}
 
-	public LocalDate getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
@@ -129,7 +130,7 @@ public class Patient {
 		this.ssn = ssn;
 	}
 
-	public void setBirthday(LocalDate birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 

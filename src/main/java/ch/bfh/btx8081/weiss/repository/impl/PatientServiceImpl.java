@@ -1,12 +1,13 @@
 package ch.bfh.btx8081.weiss.repository.impl;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.PatientService;
+import sun.util.calendar.LocalGregorianCalendar.Date;
 
 public class PatientServiceImpl implements PatientService {
 
@@ -22,7 +23,7 @@ public class PatientServiceImpl implements PatientService {
 		return emp;
 	}
 	
-	public Patient create(int id, String firstName, String lastName, String gender, String street, String ssn, LocalDate birthday, String city, String zip, String eMail, String picture, int harmID) {
+	public Patient create(int id, String firstName, String lastName, String gender, String street, String ssn, Date birthday, String city, String zip, String eMail, String picture, int harmID) {
 		// TODO Auto-generated method stub
 		Patient emp = new Patient(id);
 		emp.setBirthday(birthday);
@@ -45,20 +46,21 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public Patient update(Patient patient) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.merge(patient);
 	}
 
 	@Override
-	public Patient delete(Patient patient) {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(Patient patient) {
+	    Patient emp = getPatientById(patient.getPatientID());
+	    if (emp != null) {
+	      em.remove(emp);
+	    }
 	}
 
 	@Override
 	public List<Patient> getAllPatients() {
-		// TODO Auto-generated method stub
-		return null;
+	    Query query = em.createQuery("SELECT p FROM Patient p");
+	    return (List<Patient>) query.getResultList();
 	}
 
 	@Override
