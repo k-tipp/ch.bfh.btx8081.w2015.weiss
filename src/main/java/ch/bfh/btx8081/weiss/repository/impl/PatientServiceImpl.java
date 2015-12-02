@@ -3,7 +3,6 @@ package ch.bfh.btx8081.weiss.repository.impl;
 import java.util.List;
 
 import ch.bfh.btx8081.weiss.model.Patient;
-import ch.bfh.btx8081.weiss.repository.Int;
 import ch.bfh.btx8081.weiss.repository.PatientService;
 
 public class PatientServiceImpl implements PatientService {

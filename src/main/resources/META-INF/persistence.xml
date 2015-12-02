@@ -8,13 +8,13 @@
 	<persistence-unit name="Shrinkie" transaction-type="RESOURCE_LOCAL">
 		<class>ch.bfh.btx8081.weiss.model.Appointment</class>
 		<class>ch.bfh.btx8081.weiss.model.Patient</class>
-		<class>ch.bfh.btx8081.weiss.model.Person</class>
+		<!--
 		<class>ch.bfh.btx8081.weiss.model.SelfHarm</class>
 		<class>ch.bfh.btx8081.weiss.model.DangerToOthers</class>
 		<class>ch.bfh.btx8081.weiss.model.Medication</class>
 		<class>ch.bfh.btx8081.weiss.model.MedicationStatus</class>
 		<class>ch.bfh.btx8081.weiss.model.Soap</class>
-		<class>ch.bfh.btx8081.weiss.model.SoapList</class>
+		<class>ch.bfh.btx8081.weiss.model.SoapList</class>-->
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="net.sourceforge.jtds.jdbc.Driver" />

@@ -13,6 +13,8 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import ch.bfh.btx8081.weiss.model.PatientModel;
+
 /**
  *
  */
@@ -25,12 +27,15 @@ public class MyUI extends UI {
         final VerticalLayout layout = new VerticalLayout();
         layout.setMargin(true);
         setContent(layout);
-
+        
         Button button = new Button("Click Me");
         button.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                layout.addComponent(new Label("Thank you for clicking"));
+                layout.addComponent(new Label("Fuck off if this doesn't work!"));
+                PatientModel pm = new PatientModel();
+                layout.addComponent(new Label(pm.toString()));
+                
             }
         });
         layout.addComponent(button);
