@@ -16,8 +16,17 @@ public class Patient {
 	private int patientID = 0;
 
 	@OneToMany(mappedBy = "patient")
-	private final List<Appointment> visits = null;
+	private final List<Appointment> appointments = null;
 
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	private String picture = null;  //base64
 	private String firstName = null;
 	private String lastName = null;
 	private String eMail = null;
@@ -39,7 +48,7 @@ public class Patient {
 	}
 
 	public List<Appointment> getAppointments() {
-		return visits;
+		return appointments;
 	}
 
 	public String getFirstName() {
