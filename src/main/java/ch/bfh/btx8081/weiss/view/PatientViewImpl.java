@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.weiss.view;
 
+import java.util.Random;
+
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -16,11 +18,12 @@ public class PatientViewImpl extends PatientView implements View {
 		super();
 		btn_patient.addClickListener(event -> {
 			PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
-			patient_name.setValue(psi.getPatientById(1).getFirstName() + " " + psi.getPatientById(1).getLastName());
+			//new PatientGenerator(psi);
+			Random r = new Random();
+			int i = (r.nextInt(5-1) + 1);
+			patient_name.setValue(psi.getPatientById(i).getFirstName() + " " + psi.getPatientById(i).getLastName());
 		});
-		btn_patient.addClickListener(event->{PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
-			patient_name.setValue(psi.getPatientById(1).getFirstName()+" "+psi.getPatientById(1).getLastName());});
-
+		
 		btn_return.addClickListener(event -> {
 			navigator.navigateTo(PatientOverviewImpl.VIEW_NAME);
 		});
