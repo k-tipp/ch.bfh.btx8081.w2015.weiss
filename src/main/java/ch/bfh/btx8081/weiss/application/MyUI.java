@@ -13,6 +13,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 
+import ch.bfh.btx8081.weiss.controller.Controller;
 import ch.bfh.btx8081.weiss.repository.MssqlEntityManager;
 import ch.bfh.btx8081.weiss.repository.PatientService;
 import ch.bfh.btx8081.weiss.view.PatientOverviewImpl;
@@ -25,29 +26,29 @@ import ch.bfh.btx8081.weiss.view.PatientViewImpl;
 @Widgetset("ch.bfh.btx8081.weiss.view.MyAppWidgetset")
 public class MyUI extends UI {
 	
-	public EntityManager em = MssqlEntityManager.createEntityManager();
-    public PatientService ps = new PatientService(em);
+
 	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Responsive.makeResponsive(this);
         setLocale(vaadinRequest.getLocale());
         getPage().setTitle("Home");
-        
         CssLayout viewContainer = new CssLayout();
+        
         viewContainer.addStyleName("valo-content");
         viewContainer.setSizeFull();
         
-        final Navigator navigator = new Navigator(MyUI.this, viewContainer);
-        navigator.setErrorView(ErrorView.class);
-        navigator.addView(PatientOverviewImpl.VIEW_NAME, new PatientOverviewImpl(navigator,ps));
-        navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator));
+        final Controller controller = new Controller(MyUI.this, viewContainer);
+        controller.setErrorView(ErrorView.class);
+        controller.addView(PatientOverviewImpl.VIEW_NAME, new PatientOverviewImpl(controller));
+        controller.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(controller));
     
         
         setContent(viewContainer);
-        navigator.navigateTo(PatientOverviewImpl.VIEW_NAME);
+        controller.navigateTo(PatientOverviewImpl.VIEW_NAME);
         
     }
+    
 
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
 	@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
