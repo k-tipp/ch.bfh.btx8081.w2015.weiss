@@ -1,11 +1,12 @@
 package ch.bfh.btx8081.weiss.view;
 
-import ch.bfh.btx8081.weiss.controller.Controller;
+import com.vaadin.navigator.Navigator;
+
 import ch.bfh.btx8081.weiss.model.Patient;
 
 public class PatientDetailComponentImpl extends PatientDetailComponent {
 
-	public PatientDetailComponentImpl(Patient patient, Controller controller)
+	public PatientDetailComponentImpl(Patient patient, Navigator navigator)
 	{
 		
 		patientPicture.setAlternateText(patient.getPicture());
@@ -13,7 +14,7 @@ public class PatientDetailComponentImpl extends PatientDetailComponent {
 		patient_name.setValue(patient.getFirstName()+" "+patient.getLastName());
 		patient_location.setValue(patient.getCity());
 		this.addLayoutClickListener(event -> {
-				controller.navigateTo(PatientViewImpl.VIEW_NAME+ "/" + patient.getPatientID());
+			navigator.navigateTo(PatientViewImpl.VIEW_NAME+ "/" + patient.getPatientID());
 			});
 	}
 }

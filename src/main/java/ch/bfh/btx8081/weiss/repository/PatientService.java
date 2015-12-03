@@ -11,10 +11,10 @@ import ch.bfh.btx8081.weiss.model.Patient;
 
 public class PatientService {
 
-	protected EntityManager em;
+	//protected EntityManager em;
 
-	public PatientService(EntityManager em) {
-		this.em = em;
+	public PatientService() {
+		//this.em = DatabaseHandler.getInstance().entityManager;
 	}
 
 	public Patient create(Patient patient) {
@@ -36,32 +36,32 @@ public class PatientService {
 		emp.setSsn(ssn);
 		emp.setStreet(street);
 		emp.setZip(zip);
-		em.getTransaction().begin();
-		em.persist(emp);
-		em.getTransaction().commit();
+		DatabaseHandler.entityManager.getTransaction().begin();
+		DatabaseHandler.entityManager.persist(emp);
+		DatabaseHandler.entityManager.getTransaction().commit();
 		return emp;
 	}
 
 
 
 	public Patient update(Patient patient) {
-		return em.merge(patient);
+		return DatabaseHandler.entityManager.merge(patient);
 	}
 
 	public void delete(Patient patient) {
 	    Patient emp = getPatientById(patient.getPatientID());
 	    if (emp != null) {
-	      em.remove(emp);
+	    	DatabaseHandler.entityManager.remove(emp);
 	    }
 	}
 
 	public List<Patient> getAllPatients() {
-	    Query query = em.createQuery("SELECT p FROM Patient p");
+	    Query query = DatabaseHandler.entityManager.createQuery("SELECT p FROM Patient p");
 	    return (List<Patient>) query.getResultList();
 	}
 
 	public Patient getPatientById(int id) {
-		return em.find(Patient.class, id);
+		return DatabaseHandler.entityManager.find(Patient.class, id);
 	}
 
 }

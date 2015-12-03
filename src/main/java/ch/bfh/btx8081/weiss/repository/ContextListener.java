@@ -8,7 +8,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 @WebListener
-public class MssqlEntityManager implements ServletContextListener {
+public class ContextListener implements ServletContextListener {
 
     private static EntityManagerFactory emf;
 
@@ -22,12 +22,12 @@ public class MssqlEntityManager implements ServletContextListener {
         emf.close();
     }
 	
-    public static EntityManager createEntityManager() {
+    protected static EntityManagerFactory getEntityManagerFactory() {
         if (emf == null) {
             throw new IllegalStateException("Context is not initialized yet.");
         }
 
-        return emf.createEntityManager();
+        return emf;
     }
 
 }

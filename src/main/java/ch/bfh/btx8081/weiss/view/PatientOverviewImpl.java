@@ -1,26 +1,26 @@
 package ch.bfh.btx8081.weiss.view;
 
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
-import ch.bfh.btx8081.weiss.controller.Controller;
 import ch.bfh.btx8081.weiss.model.Patient;
+import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 import ch.bfh.btx8081.weiss.repository.PatientService;
 
 public class PatientOverviewImpl extends PatientOverview  implements View {
 
 	private static final long serialVersionUID = 1L;
 	public static final String VIEW_NAME = "PatientOverview";
-	public Controller controller = null;
 
-	public PatientOverviewImpl(Controller controller) {
+
+	public PatientOverviewImpl(Navigator navigator) {
 		super();
-		this.controller  = controller;
-		PatientService ps = controller.getPs();
+		PatientService ps = DatabaseHandler.patientService;
 		
 		for(Patient p:ps.getAllPatients())
 		{
-		   PatientDetailComponentImpl pdc = new PatientDetailComponentImpl(p, controller);
+		   PatientDetailComponentImpl pdc = new PatientDetailComponentImpl(p, navigator);
 		   addComponent(pdc);
 		}
 		
