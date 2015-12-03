@@ -13,7 +13,7 @@ In your team, identify
     2.key features (from users' perspective)
     3.critical success factors
 	   http://en.wikipedia.org/wiki/Critical_success_factor
-Presentation of results: X2a 28.09.15, X2r 01.10.15
+Presentation of results: X2r 01.10.15
 	5 min per team
 	5 points for documents
 	5 points for presentation
@@ -31,7 +31,7 @@ CS Task 2: SE Process
 	for each activity, the goals, tasks, and potential output(s)
 	the relation among outputs of different activities
 	the required interaction with your stakeholders (= customer, users, management) and development team (= you) and required interaction
-Presentation of results: X2a 28.09.15, X2r 01.10.15
+Presentation of results: X2r 01.10.15
 	5 min per team
 	10 points for documents, 5 points for presentation
 
@@ -60,7 +60,7 @@ CS Task 3: Design Thinking
 Aim for 3 iterations (start simple and then elaborate) 
 	- your team needs to decide how to proceed
 		- who does what, how to produce a joint result, next steps, ...
-Presentation of final results: X2a 14.10., X2r 15.10.
+Presentation of final results: X2r 15.10.
 	- 10 min per group incl. discussion
 	- 5 points for the presentation
 Documentation
@@ -110,8 +110,50 @@ For your application
 	architectural design patterns 
 	the Vaadin framework
 	
-Presentation of Results: (X2a) 23.11., (X2r) 26.11., 10 min per team 
-10 points for documents
+Presentation of Results: (X2r) 26.11., 
+10 min per team / 10 points for documents
+
+CS1 Task 10: Scrum Setup (1)
+From now on, your team will work in Scrum mode. Roles are
+ * developers = you
+ * Scrum master = the most experienced developer of your group 
+ * product owner = me
+ 
+Based on your CS1 project results so far, conduct a
+- product planning meeting, resulting in a product backlog that reflects
+		user requirements and scenarios
+		priorities defined in consensus with the product owner
+- sprint planning meeting, resulting in a first overall sprint backlog
+		translate product backlog items into low-level implementation tasks
+		plan your first sprint only 
+			3 sprints in total
+		for both, use the xls template provided 1
+		
+CS1 Task 10: Scrum Setup (2)
+Resource Planning
+- 30 working hours/team member in total until the end of the semester 
+- sprint 1: 6 hours/team member
+- sprint 2: 14 hours/team member
+- sprint 3: 10 hours/team member
+Presentation of results: (X2r) 26.11., 
+5 min per team / 5 points for backlogs
+
+
+CS1 Task 11: Development Phase with Scrum
+From now on, your team will implement your Web application for mobiles in Scrum mode.
+- keep product backlog and sprint backlog up to date 
+
+	"daily" Scrum
+- beginning of every lecture
+- additional meetings if needed 
+
+sprints timeline:
+		print 1 ends week 49
+		03.12. (X2r): review and sprint 2 planning
+		sprint 2 ends week 51
+		17.12. 18.12. (X2r): review and sprint 3 planning
+		sprint 3 ends week 3
+		15.01. (X2r): final presentation
 
 	
 25.09.2015: Kick off / Task 1&2
@@ -127,3 +169,4 @@ Presentation of Results: (X2a) 23.11., (X2r) 26.11., 10 min per team
 20.11.2015: Install IDE
 25.11.2015: Define the architecture, Package Diagramm
 26.11.2015: Presentation Task 9 - Software Architecture
+03.12.2015: Presentation - Sprint 1
