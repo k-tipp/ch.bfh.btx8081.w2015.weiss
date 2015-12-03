@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.weiss.view;
 
-import com.vaadin.navigator.Navigator;
-
 import ch.bfh.btx8081.weiss.controller.Controller;
 import ch.bfh.btx8081.weiss.model.Patient;
 

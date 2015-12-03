@@ -1,13 +1,10 @@
 package ch.bfh.btx8081.weiss.view;
 
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
-import ch.bfh.btx8081.weiss.application.MyUI;
 import ch.bfh.btx8081.weiss.controller.Controller;
 import ch.bfh.btx8081.weiss.model.Patient;
-import ch.bfh.btx8081.weiss.model.PatientGenerator;
 import ch.bfh.btx8081.weiss.repository.PatientService;
 
 public class PatientOverviewImpl extends PatientOverview  implements View {
