@@ -1,5 +1,8 @@
 package ch.bfh.btx8081.weiss.view;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -27,7 +30,10 @@ public class PatientViewImpl extends PatientView implements View {
 		PatientService ps = DatabaseHandler.patientService;
 		Patient patient = ps.getPatientById(Integer.parseInt(event.getParameters()));
 		patient_name.setValue(patient.getFirstName() + " " + patient.getLastName());
-		patient_age.setValue(patient.getBirthday().toString());
+		LocalDate start = patient.getBirthday();
+		LocalDate end = LocalDate.now();
+		long age = ChronoUnit.YEARS.between(start, end);
+		patient_age.setValue(age + "");
 		patient_gender.setValue(patient.getGender());
 		patient_self_harm.setCaption((Integer.toString(patient.getHarmID())));
 		patient_description.setValue(event.getParameters());
