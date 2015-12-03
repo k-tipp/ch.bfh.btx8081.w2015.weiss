@@ -21,14 +21,6 @@ public class PatientOverviewImpl extends PatientOverview  implements View {
 		   addComponent(cpv);
 		}
 		
-//		btn_patient.addClickListener(event -> {
-//			PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
-//			patient_name.setValue(psi.getPatientById(1).getFirstName() + " " + psi.getPatientById(1).getLastName());
-//		});
-//		
-//		btn_return.addClickListener(event -> {
-//			navigator.navigateTo(PatientOverview.VIEW_NAME);
-//		});
 	}
 
 	@Override
