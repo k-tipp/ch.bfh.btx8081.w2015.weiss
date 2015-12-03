@@ -13,6 +13,7 @@ public class Medication {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int medicationID = 0;
 
+	private String picture = null;
 	private int patientID = 0;
 	private LocalDateTime fromDate = null;
 	private LocalDateTime toDate = null;
