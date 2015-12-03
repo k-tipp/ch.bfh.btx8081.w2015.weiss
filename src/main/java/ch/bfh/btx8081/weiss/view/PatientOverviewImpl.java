@@ -4,7 +4,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
-import ch.bfh.btx8081.weiss.repository.MssqlEntityManager;
+import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.PatientService;
 
 public class PatientOverviewImpl extends PatientOverview  implements View {
@@ -12,9 +12,15 @@ public class PatientOverviewImpl extends PatientOverview  implements View {
 	private static final long serialVersionUID = 1L;
 	public static final String VIEW_NAME = "PatientOverview";
 
-	public PatientOverviewImpl(Navigator navigator) {
+	public PatientOverviewImpl(Navigator navigator, PatientService ps) {
 		super();
 
+		for(Patient p:ps.getAllPatients())
+		{
+		   CustomPatientViewImpl cpv = new CustomPatientViewImpl(p, navigator);
+		   addComponent(cpv);
+		}
+		
 //		btn_patient.addClickListener(event -> {
 //			PatientServiceImpl psi = new PatientServiceImpl(MssqlEntityManager.createEntityManager());
 //			patient_name.setValue(psi.getPatientById(1).getFirstName() + " " + psi.getPatientById(1).getLastName());

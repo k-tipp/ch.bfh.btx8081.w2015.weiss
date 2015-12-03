@@ -43,11 +43,12 @@ public class MyUI extends UI {
         
         final Navigator navigator = new Navigator(MyUI.this, viewContainer);
         navigator.setErrorView(ErrorView.class);
-        navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator,1,ps));
-        navigator.addView(PatientOverviewImpl.VIEW_NAME, new PatientOverviewImpl(navigator));
+        navigator.addView(PatientOverviewImpl.VIEW_NAME, new PatientOverviewImpl(navigator,ps));
+        //navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator));
+    
         
         setContent(viewContainer);
-        navigator.navigateTo(PatientViewImpl.VIEW_NAME);
+        navigator.navigateTo(PatientOverviewImpl.VIEW_NAME);
         
     }
 

@@ -21,7 +21,6 @@ import com.vaadin.ui.declarative.Design;
 @SuppressWarnings("serial")
 public class PatientView extends VerticalLayout {
 	protected Button btn_return;
-	protected Button btn_patient;
 	protected Image patientPicture;
 	protected Label patient_name;
 	protected Label patient_age;

@@ -23,8 +23,7 @@ public class CustomPatientView extends HorizontalLayout {
 	protected Image patientPicture;
 	protected Label patient_firstname;
 	protected Label patient_lastname;
-	protected Label patient_firstname2;
-	protected Label patient_lastname2;
+	protected Label patient_location;
 	protected Button btnViewPatient;
 
 	public CustomPatientView() {
