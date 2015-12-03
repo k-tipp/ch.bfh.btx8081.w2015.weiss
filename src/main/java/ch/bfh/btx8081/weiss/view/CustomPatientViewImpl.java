@@ -10,8 +10,7 @@ public class CustomPatientViewImpl extends CustomPatientView {
 	{
 		patientPicture.setAlternateText(patient.getPicture());
 		patient_title.setValue((patient.getGender().equals("male"))?"Herr":"Frau");
-		patient_firstname.setValue(patient.getFirstName());
-		patient_lastname.setValue(patient.getLastName());
+		patient_name.setValue(patient.getFirstName()+" "+patient.getLastName());
 		patient_location.setValue(patient.getCity());
 		btnViewPatient.addClickListener(event -> {
 //				navigator.addView(PatientViewImpl.VIEW_NAME+patient.getPatientID(), new PatientViewImpl(navigator, patient));
