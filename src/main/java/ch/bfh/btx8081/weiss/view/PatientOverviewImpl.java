@@ -4,8 +4,8 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
-import ch.bfh.btx8081.weiss.repository.impl.MssqlEntityManager;
-import ch.bfh.btx8081.weiss.repository.impl.PatientServiceImpl;
+import ch.bfh.btx8081.weiss.repository.MssqlEntityManager;
+import ch.bfh.btx8081.weiss.repository.PatientService;
 
 public class PatientOverviewImpl extends PatientOverview  implements View {
 

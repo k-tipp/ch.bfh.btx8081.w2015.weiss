@@ -39,10 +39,10 @@
      <vaadin-label width="50px" height="20px" plain-text="" _id="patient_name">
        Name 
      </vaadin-label> 
-     <vaadin-label width="50px" height="20px" plain-text="">
+     <vaadin-label width="50px" height="20px" plain-text="" _id="patient_age">
        Alter 
      </vaadin-label> 
-     <vaadin-label width="50px" height="20px" plain-text="">
+     <vaadin-label width="50px" height="20px" plain-text="" _id="patient_gender">
        Geschlecht 
      </vaadin-label> 
      <vaadin-date-field></vaadin-date-field> 
@@ -53,7 +53,7 @@
     <vaadin-label plain-text="" :expand="">
       Allgemeine Informationen: 
     </vaadin-label> 
-    <vaadin-label width="500px" height="100px" plain-text="">
+    <vaadin-label width="500px" height="100px" plain-text="" _id="patient_description">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
     </vaadin-label> 
    </vaadin-horizontal-layout> 
@@ -62,14 +62,14 @@
     <vaadin-label responsive="true" size-auto="true" plain-text="">
       Selbstgefährdung: 
     </vaadin-label> 
-    <vaadin-button description="keine Gefahr" width-full="true" plain-text="" :expand="">
+    <vaadin-button description="keine Gefahr" width-full="true" plain-text="" :expand="" _id="patient_self_harm">
       0 
     </vaadin-button> 
     <vaadin-label responsive="true" size-auto="true" plain-text="">
       Fremdgefährdung: 
     </vaadin-label> 
-    <vaadin-button description="Gefahr für andere" width-full="true" plain-text="" :expand="">
-      2 
+    <vaadin-button description="Gefahr für andere" width-full="true" plain-text="" :expand="" _id="patient_danger_to_others">
+      0 
     </vaadin-button> 
    </vaadin-horizontal-layout> 
    <vaadin-vertical-layout size-auto="true"></vaadin-vertical-layout> 

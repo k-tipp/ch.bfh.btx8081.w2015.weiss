@@ -2,15 +2,15 @@ package ch.bfh.btx8081.weiss.model;
 
 import java.util.Date;
 
-import ch.bfh.btx8081.weiss.repository.impl.MssqlEntityManager;
-import ch.bfh.btx8081.weiss.repository.impl.PatientServiceImpl;
+import ch.bfh.btx8081.weiss.repository.MssqlEntityManager;
+import ch.bfh.btx8081.weiss.repository.PatientService;
 
 public class PatientGenerator {
 
-	public PatientGenerator(PatientServiceImpl psi)
+	public PatientGenerator(PatientService ps)
 	{
 	
-		psi.create(
+		ps.create(
 				1,
 				"Gregory",
 				"House",
@@ -23,7 +23,7 @@ public class PatientGenerator {
 				"gregory.house@priceton-plainsboro.com",
 				"smiley",
 				1 );
-		psi.create(
+		ps.create(
 				2,
 				"Johnathan Michael",
 				"Dorian",
@@ -36,7 +36,7 @@ public class PatientGenerator {
 				"johnathanmichael.dorian@sacred-heart.com",
 				"smiley",
 				3 );
-		psi.create(
+		ps.create(
 				3,
 				"Christopher",
 				"Turk",
@@ -49,7 +49,7 @@ public class PatientGenerator {
 				"christopher.turk@sacred-heart.com",
 				"smiley",
 				2 );
-		psi.create(
+		ps.create(
 				4,
 				"Elliot",
 				"Reid",
@@ -62,7 +62,7 @@ public class PatientGenerator {
 				"elliot.reid@sacred-heart.com",
 				"smiley",
 				1 );
-		psi.create(
+		ps.create(
 				5,
 				"James",
 				"Wilson",

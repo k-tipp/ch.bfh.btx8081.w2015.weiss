@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.weiss.repository.impl;
+package ch.bfh.btx8081.weiss.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

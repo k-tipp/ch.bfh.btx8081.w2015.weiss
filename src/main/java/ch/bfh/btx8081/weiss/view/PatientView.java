@@ -24,6 +24,11 @@ public class PatientView extends VerticalLayout {
 	protected Button btn_patient;
 	protected Image patientPicture;
 	protected Label patient_name;
+	protected Label patient_age;
+	protected Label patient_gender;
+	protected Label patient_description;
+	protected Button patient_self_harm;
+	protected Button patient_danger_to_others;
 
 	public PatientView() {
 		Design.read(this);
