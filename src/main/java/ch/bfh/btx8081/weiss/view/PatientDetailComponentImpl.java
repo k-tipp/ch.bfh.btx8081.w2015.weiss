@@ -14,10 +14,6 @@ public class PatientDetailComponentImpl extends PatientDetailComponent {
 		patient_name.setValue(patient.getFirstName()+" "+patient.getLastName());
 		patient_location.setValue(patient.getCity());
 		btnViewPatient.addClickListener(event -> {
-//				navigator.addView(PatientViewImpl.VIEW_NAME+patient.getPatientID(), new PatientViewImpl(navigator, patient));
-//				navigator.navigateTo(PatientViewImpl.VIEW_NAME+patient.getPatientID());
-//				navigator.removeView(PatientViewImpl.VIEW_NAME);
-//				navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator, patient));
 				controller.navigateTo(PatientViewImpl.VIEW_NAME+ "/" + patient.getPatientID());
 			});
 	}

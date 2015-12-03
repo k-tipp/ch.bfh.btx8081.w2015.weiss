@@ -1,6 +1,6 @@
 package ch.bfh.btx8081.weiss.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ public class Patient {
 	private String zip = null;
 	private String city = null;
 	private String ssn = null;
-	private Date birthday = null;
+	private LocalDate birthday = null;
 	private int harmID = 0;
 
 	public Patient() {
@@ -82,7 +82,7 @@ public class Patient {
 		return ssn;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
@@ -131,7 +131,7 @@ public class Patient {
 		this.ssn = ssn;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 

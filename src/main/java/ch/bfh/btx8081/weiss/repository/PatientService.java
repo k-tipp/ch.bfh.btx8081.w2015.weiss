@@ -1,13 +1,12 @@
 package ch.bfh.btx8081.weiss.repository;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import ch.bfh.btx8081.weiss.model.Patient;
-import ch.bfh.btx8081.weiss.repository.PatientService;
 
 
 public class PatientService {
@@ -23,7 +22,7 @@ public class PatientService {
 		return emp;
 	}
 	
-	public Patient create(int id, String firstName, String lastName, String gender, String street, String ssn, Date birthday, String city, String zip, String eMail, String picture, int harmID) {
+	public Patient create(int id, String firstName, String lastName, String gender, String street, String ssn, LocalDate birthday, String city, String zip, String eMail, String picture, int harmID) {
 		// TODO Auto-generated method stub
 		Patient emp = new Patient(id);
 		emp.setBirthday(birthday);
