@@ -15,9 +15,9 @@ public class CustomPatientViewImpl extends CustomPatientView {
 		btnViewPatient.addClickListener(event -> {
 //				navigator.addView(PatientViewImpl.VIEW_NAME+patient.getPatientID(), new PatientViewImpl(navigator, patient));
 //				navigator.navigateTo(PatientViewImpl.VIEW_NAME+patient.getPatientID());
-				navigator.removeView(PatientViewImpl.VIEW_NAME);
-				navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator, patient));
-				navigator.navigateTo(PatientViewImpl.VIEW_NAME);
+//				navigator.removeView(PatientViewImpl.VIEW_NAME);
+//				navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator, patient));
+				navigator.navigateTo(PatientViewImpl.VIEW_NAME+ "/" + patient.getPatientID());
 			});
 	}
 }

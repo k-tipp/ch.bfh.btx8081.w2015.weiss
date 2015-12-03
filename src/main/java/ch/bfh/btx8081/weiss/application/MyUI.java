@@ -25,6 +25,9 @@ import ch.bfh.btx8081.weiss.view.PatientViewImpl;
 @Widgetset("ch.bfh.btx8081.weiss.view.MyAppWidgetset")
 public class MyUI extends UI {
 	
+	public EntityManager em = MssqlEntityManager.createEntityManager();
+    public PatientService ps = new PatientService(em);
+	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Responsive.makeResponsive(this);
@@ -35,16 +38,10 @@ public class MyUI extends UI {
         viewContainer.addStyleName("valo-content");
         viewContainer.setSizeFull();
         
-        // In Controller auslagern!
-        EntityManager em = MssqlEntityManager.createEntityManager();
-        PatientService ps = new PatientService(em);
-        
-        
-        
         final Navigator navigator = new Navigator(MyUI.this, viewContainer);
         navigator.setErrorView(ErrorView.class);
         navigator.addView(PatientOverviewImpl.VIEW_NAME, new PatientOverviewImpl(navigator,ps));
-        //navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator));
+        navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator));
     
         
         setContent(viewContainer);
