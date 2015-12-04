@@ -6,8 +6,9 @@ public class DatabaseHandler {
 
 	private static DatabaseHandler instance = null;
 
-	public static EntityManager entityManager= ContextListener.getEntityManagerFactory().createEntityManager();
-	public static PatientService patientService= new PatientService();
+	protected static EntityManager entityManager = ContextListener.getEntityManagerFactory().createEntityManager();
+	public static PatientService patientService = new PatientService();
+	public static MedicationService medicationService = new MedicationService();
 
 	protected DatabaseHandler() {
 

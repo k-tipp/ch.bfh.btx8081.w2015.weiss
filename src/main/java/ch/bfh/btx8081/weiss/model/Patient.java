@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
-
 @Entity
 public class Patient {
 	@Id
@@ -18,9 +16,12 @@ public class Patient {
 	private int patientID = 0;
 
 	@OneToMany(mappedBy = "patient")
-	private final List<Appointment> appointments = null;
+	private List<Appointment> appointments = null;
 
-	private String picture = null;  //base64
+	@OneToMany(mappedBy = "patient")
+	private List<Medication> medication = null;
+
+	private String picture = null; // base64
 	private String firstName = null;
 	private String lastName = null;
 	private String eMail = null;
@@ -34,9 +35,8 @@ public class Patient {
 
 	public Patient() {
 	}
-	
-	public Patient(int id)
-	{
+
+	public Patient(int id) {
 		this.patientID = id;
 	}
 
@@ -89,11 +89,10 @@ public class Patient {
 	public int getHarmID() {
 		return harmID;
 	}
-	
+
 	public String getPicture() {
 		return picture;
 	}
-
 
 	public void setPatientID(int patientID) {
 		this.patientID = patientID;
@@ -138,9 +137,20 @@ public class Patient {
 	public void setHarmID(int harmID) {
 		this.harmID = harmID;
 	}
-	
+
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 
+	public List<Medication> getMedication() {
+		return medication;
+	}
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	public void setMedication(List<Medication> medication) {
+		this.medication = medication;
+	}
 }

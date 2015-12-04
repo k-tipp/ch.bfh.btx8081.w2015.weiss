@@ -12,6 +12,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 
+import ch.bfh.btx8081.weiss.view.MedicationOverviewImpl;
 import ch.bfh.btx8081.weiss.view.PatientOverviewImpl;
 import ch.bfh.btx8081.weiss.view.PatientViewImpl;
 
@@ -39,6 +40,7 @@ public class MyUI extends UI {
         navigator.setErrorView(ErrorView.class);
         navigator.addView(PatientOverviewImpl.VIEW_NAME, new PatientOverviewImpl(navigator));
         navigator.addView(PatientViewImpl.VIEW_NAME, new PatientViewImpl(navigator));
+        navigator.addView(MedicationOverviewImpl.VIEW_NAME, new MedicationOverviewImpl(navigator));
        
         setContent(viewContainer);
         navigator.navigateTo(PatientOverviewImpl.VIEW_NAME);

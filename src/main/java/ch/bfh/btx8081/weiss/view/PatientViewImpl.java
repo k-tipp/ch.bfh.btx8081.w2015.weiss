@@ -27,8 +27,9 @@ public class PatientViewImpl extends PatientView implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		PatientService ps = DatabaseHandler.patientService;
-		Patient patient = ps.getPatientById(Integer.parseInt(event.getParameters()));
+		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
+		
+		//fill in patient information in overview
 		patient_name.setValue(patient.getFirstName() + " " + patient.getLastName());
 		LocalDate start = patient.getBirthday();
 		LocalDate end = LocalDate.now();
@@ -37,5 +38,10 @@ public class PatientViewImpl extends PatientView implements View {
 		patient_gender.setValue(patient.getGender());
 		patient_self_harm.setCaption((Integer.toString(patient.getHarmID())));
 		patient_description.setValue(event.getParameters());
+		//attach listeners to buttons
+		btn_view_medicationOverview.addClickListener(clickEvent -> {
+			this.navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME+"/"+patient.getPatientID());
+		});
+		
 	}
 }

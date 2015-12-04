@@ -4,6 +4,8 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
+import ch.bfh.btx8081.w2015.weiss.generators.MedicationGenerator;
+import ch.bfh.btx8081.w2015.weiss.generators.PatientGenerator;
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 import ch.bfh.btx8081.weiss.repository.PatientService;
@@ -29,6 +31,7 @@ public class PatientOverviewImpl extends PatientOverview  implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 		// TODO Auto-generated method stub
-	       //new PatientGenerator(controller.getPs()); 
+//	       new PatientGenerator(); 
+//	       new MedicationGenerator();
 	}
 }
