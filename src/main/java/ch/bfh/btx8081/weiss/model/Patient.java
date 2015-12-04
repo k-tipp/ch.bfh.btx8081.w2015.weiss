@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,8 +18,8 @@ public class Patient {
 
 	@OneToMany(mappedBy = "patient")
 	private List<Appointment> appointments = null;
-
-	@OneToMany(mappedBy = "patient")
+	//Eager loading for being able to display stuff with toString(), without explicitly loading 
+	@OneToMany(mappedBy = "patient",  fetch=FetchType.EAGER)
 	private List<Medication> medication = null;
 
 	private String picture = null; // base64
@@ -44,10 +45,6 @@ public class Patient {
 
 	public int getPatientID() {
 		return patientID;
-	}
-
-	public List<Appointment> getAppointments() {
-		return appointments;
 	}
 
 	public String getFirstName() {
@@ -93,7 +90,9 @@ public class Patient {
 	public String getPicture() {
 		return picture;
 	}
-
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
 	public void setPatientID(int patientID) {
 		this.patientID = patientID;
 	}
