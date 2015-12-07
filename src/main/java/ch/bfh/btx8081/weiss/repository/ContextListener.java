@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.weiss.repository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletContextEvent;

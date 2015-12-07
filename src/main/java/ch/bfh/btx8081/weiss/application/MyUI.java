@@ -22,10 +22,13 @@ import ch.bfh.btx8081.weiss.view.PatientViewImpl;
 @Theme("mytheme")
 @Widgetset("ch.bfh.btx8081.weiss.view.MyAppWidgetset")
 public class MyUI extends UI {
-	
+    /**
+	 * Generated serial version uid
+	 */
+	private static final long serialVersionUID = -3679240605909357235L;
 
-	
-    @Override
+
+	@Override
     protected void init(VaadinRequest vaadinRequest) {
         Responsive.makeResponsive(this);
         setLocale(vaadinRequest.getLocale());
@@ -51,5 +54,10 @@ public class MyUI extends UI {
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
 	@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
 	public static class MyUIServlet extends VaadinServlet {
+
+		/**
+		 * Generated serial version uid
+		 */
+		private static final long serialVersionUID = -2870932209351730306L;
 	}
 }

@@ -9,7 +9,6 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
-import ch.bfh.btx8081.weiss.repository.PatientService;
 
 public class PatientViewImpl extends PatientView implements View {
 

@@ -47,6 +47,7 @@ public class MedicationService {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Medication> getAllMedications() {
 		Query query = DatabaseHandler.entityManager.createQuery("SELECT m FROM Medication m");
 		return (List<Medication>) query.getResultList();

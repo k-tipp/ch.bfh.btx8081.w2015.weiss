@@ -6,6 +6,11 @@ import ch.bfh.btx8081.weiss.model.Patient;
 
 public class PatientDetailComponentImpl extends PatientDetailComponent {
 
+	/**
+	 * Generated serial version uid
+	 */
+	private static final long serialVersionUID = -3509722714900559196L;
+
 	public PatientDetailComponentImpl(Patient patient, Navigator navigator)
 	{
 		
