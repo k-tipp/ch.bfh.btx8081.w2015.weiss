@@ -10,12 +10,26 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
+/**
+ * The Class PatientViewImpl controls the patient view user interface for a single patient.
+ */
 public class PatientViewImpl extends PatientView implements View {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The Constant VIEW_NAME contains the view name of this view. */
 	public static final String VIEW_NAME = "PatientView";
+	
+	/** The navigator. */
 	private Navigator navigator = null;
 
+	/**
+	 * Instantiates a new patient view impl.
+	 *
+	 * @param navigator
+	 *            the navigator
+	 */
 	public PatientViewImpl(final Navigator navigator) {
 		super();
 		this.navigator = navigator;
@@ -24,6 +38,9 @@ public class PatientViewImpl extends PatientView implements View {
 		});
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.ViewChangeEvent)
+	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
 		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));

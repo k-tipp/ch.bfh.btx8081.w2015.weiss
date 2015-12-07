@@ -4,16 +4,24 @@ import com.vaadin.navigator.Navigator;
 
 import ch.bfh.btx8081.weiss.model.Patient;
 
+/**
+ * The Class PatientDetailComponentImpl controls the PatientDetailsComponent.
+ */
 public class PatientDetailComponentImpl extends PatientDetailComponent {
 
-	/**
-	 * Generated serial version uid
-	 */
+	/** Generated serial version uid. */
 	private static final long serialVersionUID = -3509722714900559196L;
 
+	/**
+	 * Instantiates a new patient detail component implementation.
+	 *
+	 * @param patient
+	 *            the patient
+	 * @param navigator
+	 *            the navigator
+	 */
 	public PatientDetailComponentImpl(Patient patient, Navigator navigator)
-	{
-		
+	{	
 		patientPicture.setAlternateText(patient.getPicture());
 		patient_title.setValue((patient.getGender().equals("male"))?"Herr":"Frau");
 		patient_name.setValue(patient.getFirstName()+" "+patient.getLastName());

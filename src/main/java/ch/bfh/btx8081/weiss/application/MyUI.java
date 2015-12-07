@@ -16,18 +16,21 @@ import ch.bfh.btx8081.weiss.view.MedicationOverviewImpl;
 import ch.bfh.btx8081.weiss.view.PatientOverviewImpl;
 import ch.bfh.btx8081.weiss.view.PatientViewImpl;
 
+// TODO: Auto-generated Javadoc
 /**
- *
+ * The Class MyUI initializes the user interface.
  */
 @Theme("mytheme")
 @Widgetset("ch.bfh.btx8081.weiss.view.MyAppWidgetset")
 public class MyUI extends UI {
-    /**
-	 * Generated serial version uid
-	 */
+    
+    /** Generated serial version uid. */
 	private static final long serialVersionUID = -3679240605909357235L;
 
 
+	/* (non-Javadoc)
+	 * @see com.vaadin.ui.UI#init(com.vaadin.server.VaadinRequest)
+	 */
 	@Override
     protected void init(VaadinRequest vaadinRequest) {
         Responsive.makeResponsive(this);
@@ -51,13 +54,14 @@ public class MyUI extends UI {
     }
     
 
+	/**
+	 * The Class MyUIServlet create the user interface servlet.
+	 */
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
 	@VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
 	public static class MyUIServlet extends VaadinServlet {
 
-		/**
-		 * Generated serial version uid
-		 */
+		/** Generated serial version uid. */
 		private static final long serialVersionUID = -2870932209351730306L;
 	}
 }

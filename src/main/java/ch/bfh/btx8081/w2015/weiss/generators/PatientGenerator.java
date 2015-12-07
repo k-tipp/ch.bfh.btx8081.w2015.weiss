@@ -5,8 +5,14 @@ import java.time.LocalDate;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 import ch.bfh.btx8081.weiss.repository.PatientService;
 
+/**
+ * The Class PatientGenerator generates patient data.
+ */
 public class PatientGenerator {
 
+	/**
+	 * Instantiates a new patient generator.
+	 */
 	public PatientGenerator() {
 		PatientService ps = DatabaseHandler.patientService;
 

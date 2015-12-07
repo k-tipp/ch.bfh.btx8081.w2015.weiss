@@ -14,12 +14,15 @@ import com.vaadin.ui.themes.Reindeer;
  */
 public class ErrorView extends VerticalLayout implements View {
 
-    /**
-	 * Generated serial version uid
-	 */
+    /** Generated serial version uid. */
 	private static final long serialVersionUID = 5072540290689498716L;
+	
+	/** The explanation label. */
 	private Label explanation;
 
+    /**
+	 * Instantiates a new error view.
+	 */
     public ErrorView() {
         setMargin(true);
         setSpacing(true);
@@ -30,6 +33,9 @@ public class ErrorView extends VerticalLayout implements View {
         addComponent(explanation = new Label());
     }
 
+    /* (non-Javadoc)
+     * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.ViewChangeEvent)
+     */
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         explanation.setValue(String.format(
