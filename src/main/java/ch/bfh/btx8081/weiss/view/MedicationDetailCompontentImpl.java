@@ -14,7 +14,7 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 	private static final long serialVersionUID = 1L;
 
 	/** The Constant VIEW_NAME contains the name of this view. */
-	public static final String VIEW_NAME = "MedicationDetailComponent";
+	public static final String VIEW_NAME = "MedicationPrescriptionView";
 	private Medication medication = null;
 
 	/**
@@ -38,7 +38,7 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 //		protected Button btnViewMedication;
 	
 		this.addLayoutClickListener(event -> {
-			//navigator.navigateTo(MedicationPrescriptionView.VIEW_NAME+ "/" + patient.getPatientID());
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME+ "/" + medication.getMedicationID());
 			});
 	}
 	
