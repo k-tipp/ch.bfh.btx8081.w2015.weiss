@@ -41,7 +41,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		
 		
 		
-		//fill in patient information in overview
+		//TODO change from patient to medication and add header
 		medication.setValue(patient.getFirstName() + " " + patient.getLastName());
 		
 	
