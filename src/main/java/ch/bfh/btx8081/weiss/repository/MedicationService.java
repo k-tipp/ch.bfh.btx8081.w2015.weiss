@@ -118,5 +118,9 @@ public class MedicationService {
 	public Medication getMedicationById(int id) {
 		return DatabaseHandler.entityManager.find(Medication.class, id);
 	}
+	
+
+	
+
 
 }

@@ -4,6 +4,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
+import ch.bfh.btx8081.weiss.model.Medication;
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
@@ -18,6 +19,7 @@ public class MedicationOverviewImpl extends MedicationOverview implements View {
 	/** The Constant VIEW_NAME contains the name of this view. */
 	public static final String VIEW_NAME = "MedicationOverview";
 
+	private Navigator navigator = null;
 	/**
 	 * Instantiates a new medication overview implementation.
 	 *
@@ -26,8 +28,9 @@ public class MedicationOverviewImpl extends MedicationOverview implements View {
 	 */
 	public MedicationOverviewImpl(Navigator navigator) {
 		super();
+		this.navigator = navigator;
+		
 	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -37,8 +40,16 @@ public class MedicationOverviewImpl extends MedicationOverview implements View {
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
+
+		this.removeAllComponents();
+
 		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
-		medication_id.setValue(patient.getMedication().get(0).getPicture());
+		
+		for(Medication m:patient.getMedication())
+		{
+           MedicationDetailCompontentImpl mdci = new MedicationDetailCompontentImpl(m, navigator);
+		   addComponent(mdci);
+		}
 	}
 
 }

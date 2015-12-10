@@ -29,9 +29,8 @@ public class PatientOverviewImpl extends PatientOverview  implements View {
 	 */
 	public PatientOverviewImpl(Navigator navigator) {
 		super();
-		PatientService ps = DatabaseHandler.patientService;
 		
-		for(Patient p:ps.getAllPatients())
+		for(Patient p:DatabaseHandler.patientService.getAllPatients())
 		{
 		   PatientDetailComponentImpl pdc = new PatientDetailComponentImpl(p, navigator);
 		   addComponent(pdc);

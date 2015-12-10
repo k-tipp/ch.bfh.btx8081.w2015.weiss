@@ -34,6 +34,7 @@ public class Medication {
 	private LocalDateTime toDate = null;
 	
 	/** The drug id for the prescriped drug. */
+	//@ManyToOne
 	private int drugID = 0;
 	
 	/** The dosage of the medication. */
