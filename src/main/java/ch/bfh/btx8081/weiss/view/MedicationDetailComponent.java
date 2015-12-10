@@ -27,7 +27,7 @@ public class MedicationDetailComponent extends HorizontalLayout {
 	protected Label to_date;
 	protected Label dosage;
 	protected Label unit;
-	protected Button btnViewMedication;
+	protected Image patientPicture3;
 
 	public MedicationDetailComponent() {
 		Design.read(this);
