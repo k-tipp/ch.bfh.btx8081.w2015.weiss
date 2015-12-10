@@ -47,8 +47,8 @@ public class MedicationOverviewImpl extends MedicationOverview implements View {
 
 		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
 
-		PatientDetailComponentImpl pdc = new PatientDetailComponentImpl(patient, navigator);
-		addComponent(pdc);
+		PatientHeaderImpl ph = new PatientHeaderImpl(patient, navigator);
+		addComponent(ph);
 		
 		for (Medication m : patient.getMedication()) {
 			MedicationDetailCompontentImpl mdci = new MedicationDetailCompontentImpl(m, navigator);
