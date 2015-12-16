@@ -5,6 +5,7 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
 
@@ -26,8 +27,8 @@ public class PatientView extends VerticalLayout {
 	protected Label patient_age;
 	protected Label patient_gender;
 	protected Label patient_description;
-	protected Button patient_self_harm;
-	protected Button patient_danger_to_others;
+	protected NativeSelect patient_self_harm;
+	protected NativeSelect patient_danger_to_others;
 	protected Button btn_view_medicationOverview;
 
 	public PatientView() {

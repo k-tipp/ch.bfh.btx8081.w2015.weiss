@@ -29,5 +29,14 @@ public class PatientDetailComponentImpl extends PatientDetailComponent {
 		this.addLayoutClickListener(event -> {
 			navigator.navigateTo(PatientViewImpl.VIEW_NAME+ "/" + patient.getPatientID());
 			});
+		
+		switch(patient.getHarmID()) {
+			case 1: patient_state.setStyleName("green_circle");
+				break;
+			case 2: patient_state.setStyleName("orange_circle");
+				break;
+			case 3: patient_state.setStyleName("red_circle");
+				break;
+		}
 	}
 }

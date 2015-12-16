@@ -33,4 +33,27 @@
   @include valo;
 
   // Insert your own theme rules here
+  .green_circle {
+    background: green;
+    border-radius: 35px;
+    width: 70px;
+    height:70px;
+    position: center middle;
+  }
+  
+    .orange_circle {
+    background: orange;
+    border-radius: 35px;
+    width: 70px;
+    height:70px;
+    position: center middle;
+  }
+  
+    .red_circle {
+    background: red;
+    border-radius: 35px;
+    width: 70px;
+    height:70px;
+    position: center middle;
+  }
 }

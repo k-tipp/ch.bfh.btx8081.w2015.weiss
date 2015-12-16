@@ -20,7 +20,6 @@ public class PatientOverviewImpl extends PatientOverview  implements View {
 	/** The Constant VIEW_NAME of the patient overview. */
 	public static final String VIEW_NAME = "PatientOverview";
 
-
 	/**
 	 * Instantiates a new patient overview implementation.
 	 *
@@ -29,13 +28,11 @@ public class PatientOverviewImpl extends PatientOverview  implements View {
 	 */
 	public PatientOverviewImpl(Navigator navigator) {
 		super();
-		
 		for(Patient p:DatabaseHandler.patientService.getAllPatients())
 		{
 		   PatientDetailComponentImpl pdc = new PatientDetailComponentImpl(p, navigator);
 		   addComponent(pdc);
 		}
-		
 	}
 
 	/* (non-Javadoc)
@@ -45,5 +42,7 @@ public class PatientOverviewImpl extends PatientOverview  implements View {
 	public void enter(ViewChangeEvent event) {
 //	       new PatientGenerator(); 
 //	       new MedicationGenerator();
+		
+
 	}
 }
