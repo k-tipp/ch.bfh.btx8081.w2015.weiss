@@ -54,16 +54,17 @@ public class PatientViewImpl extends PatientView implements View {
 		long age = ChronoUnit.YEARS.between(start, end);
 		patient_age.setValue(age + "");
 		patient_gender.setValue(patient.getGender());
+		
+		
 		patient_self_harm.select(Integer.toString(patient.getHarmID()));
 		patient_self_harm.addValueChangeListener(valueChangeEvent -> {
 			patient.setHarmID(Integer.parseInt(valueChangeEvent.getProperty().getValue().toString()));
 			DatabaseHandler.patientService.update(patient);
 	});
 		
-		patient_danger_to_others.select(Integer.toString(patient.getHarmID()));
-		
+		patient_danger_to_others.select(Integer.toString(patient.getDangerID()));
 		patient_danger_to_others.addValueChangeListener(valueChangeEvent -> {
-				patient.setHarmID(Integer.parseInt(valueChangeEvent.getProperty().getValue().toString()));
+				patient.setDangerID(Integer.parseInt(valueChangeEvent.getProperty().getValue().toString()));
 				DatabaseHandler.patientService.update(patient);
 		});
 		

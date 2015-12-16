@@ -23,8 +23,9 @@ public class PatientDetailComponent extends HorizontalLayout {
 	protected Label patient_title;
 	protected Label patient_name;
 	protected Label patient_location;
-	protected Image patientPicture3;
 	protected Label patient_state;
+	protected Label patient_state2;
+	protected Image patientPicture3;
 
 	public PatientDetailComponent() {
 		Design.read(this);

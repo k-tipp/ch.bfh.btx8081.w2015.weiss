@@ -38,5 +38,14 @@ public class PatientDetailComponentImpl extends PatientDetailComponent {
 			case 3: patient_state.setStyleName("red_circle");
 				break;
 		}
+		
+		switch(patient.getDangerID()) {
+		case 1: patient_state2.setStyleName("green_circle");
+			break;
+		case 2: patient_state2.setStyleName("orange_circle");
+			break;
+		case 3: patient_state2.setStyleName("red_circle");
+			break;
+	}
 	}
 }

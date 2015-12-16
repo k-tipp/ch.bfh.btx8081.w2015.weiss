@@ -64,6 +64,9 @@ public class Patient {
 	/** The self harm status of this patient. */
 	private int harmID = 0;
 
+	/** The self harm status of this patient. */
+	private int dangerID = 0;
+	
 	/**
 	 * Instantiates a new patient.
 	 */
@@ -179,6 +182,16 @@ public class Patient {
 	 */
 	public int getHarmID() {
 		return harmID;
+	}
+	
+	/**
+	 * Gets the danger id.
+	 *
+	 * @return the danger id
+	 */
+	
+	public int getDangerID(){
+		return dangerID;
 	}
 
 	/**
@@ -309,6 +322,19 @@ public class Patient {
 		this.harmID = harmID;
 	}
 
+	/**
+	 * Sets the danger id.
+	 *
+	 * @param dangerID
+	 *            the new danger id
+	 */
+	public void setDangerID(int dangerID) {
+		this.dangerID = dangerID;
+	}
+	
+	
+	
+	
 	/**
 	 * Sets the picture.
 	 *
