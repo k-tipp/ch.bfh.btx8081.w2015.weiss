@@ -10,11 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
- * The Class DangerToOthers represents the status of the danger to other indicator for a patient.
+ * The Class DangerToOthers represents the status of the danger to other
+ * indicator for a patient.
  */
 @Entity
 public class Drug {
-	
+
 	/** The drug id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
@@ -22,34 +23,33 @@ public class Drug {
 
 	/** The drug name. */
 	private String name = null;
-	
-	
 
 	/** The drug active ingredient. */
 	private String active_ingredient = null;
-	
+
+	/** The drug dosage form. */
+	private String dosage_form = null;
 	
 	
 	/** The drug picture. */
 	private String picture = null;
-	
-	
 
 	/** The medications for this patient. */
-	//Eager loading for being able to display stuff with toString(), without explicitly loading 
-	@OneToMany(mappedBy = "drug",  fetch=FetchType.EAGER)
+	// Eager loading for being able to display stuff with toString(), without
+	// explicitly loading
+	@OneToMany(mappedBy = "drug", fetch = FetchType.EAGER)
 	private List<Medication> medications = null;
-	
+
 	/**
-	 * Instantiates a new drug. 
+	 * Instantiates a new drug.
 	 */
 	public Drug() {
 	}
-	
+
 	public Drug(int id) {
 		setDrugID(id);
 	}
-	
+
 	public int getDrugID() {
 		return drugID;
 	}
@@ -57,7 +57,7 @@ public class Drug {
 	public void setDrugID(int drugID) {
 		this.drugID = drugID;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -80,5 +80,13 @@ public class Drug {
 
 	public void setActive_ingredient(String active_ingredient) {
 		this.active_ingredient = active_ingredient;
+	}
+
+	public String getDosage_form() {
+		return dosage_form;
+	}
+
+	public void setDosage_form(String dosage_form) {
+		this.dosage_form = dosage_form;
 	}
 }
