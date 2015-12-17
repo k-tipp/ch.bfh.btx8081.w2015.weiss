@@ -5,6 +5,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
 import ch.bfh.btx8081.weiss.model.Drug;
+import ch.bfh.btx8081.weiss.model.Medication;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
 public class CompendiumViewImpl extends CompendiumView implements View {
@@ -26,15 +27,24 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 	 * @param navigator
 	 *            the navigator
 	 */
-	public CompendiumViewImpl(final Navigator navigator) {
+
+	public CompendiumViewImpl (final Navigator navigator) {
 		super();
 		this.navigator = navigator;
 				
 		for (Drug d : DatabaseHandler.drugService.getAllDrugs()) {
 			listMedication.addItem(d.getName());
 		}
-	}
+	 
+		//TODO replace "/1"
+		
+		btnBack.addClickListener(event -> {
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME+ "/1" );
+			});
 
+	
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
