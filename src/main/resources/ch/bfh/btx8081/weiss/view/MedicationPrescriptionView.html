@@ -5,11 +5,14 @@
  </head> 
  <body> 
   <vaadin-horizontal-layout height-full="true"> 
-   <vaadin-vertical-layout spacing="true" size-auto="true" margin="true"> 
+   <vaadin-vertical-layout height-full="true" spacing="true" size-auto="true" margin="true"> 
     <vaadin-label size-auto="true" plain-text="" _id="medication">
       Medication 
     </vaadin-label> 
-    <vaadin-vertical-layout width="258px" _id="listMedication"></vaadin-vertical-layout> 
+    <vaadin-vertical-layout width="258px" height-full="true">
+        <vaadin-list-select null-selection-allowed="false" item-caption-mode="id" width="232px" height="560" _id="drugList">
+        </vaadin-list-select>
+    </vaadin-vertical-layout> 
    </vaadin-vertical-layout> 
    <vaadin-vertical-layout spacing="true" width="428px" margin-top="true"> 
     <vaadin-button width="238px" plain-text="" _id="btnCompendium" :right="">
@@ -45,25 +48,25 @@
       Tage: 
     </vaadin-label> 
     <vaadin-horizontal-layout spacing="true" immediate="true" :middle="" :center=""> 
-     <vaadin-button width="50px" plain-text="" _id="btnMon" :middle="" :center="">
+     <vaadin-button style-name="v-button-deselected" width="50px" plain-text="" _id="btnMon" :middle="" :center="">
        Mo 
      </vaadin-button> 
-     <vaadin-button width="50px" plain-text="" _id="btnTue" :middle="" :center="">
+     <vaadin-button style-name="v-button-deselected" width="50px" plain-text="" _id="btnTue" :middle="" :center="">
        Di 
      </vaadin-button> 
-     <vaadin-button width="50px" plain-text="" _id="btnWed" :middle="" :center="">
+     <vaadin-button style-name="v-button-deselected" width="50px" plain-text="" _id="btnWed" :middle="" :center="">
        Mi 
      </vaadin-button> 
-     <vaadin-button width="50px" plain-text="" _id="btnThu" :middle="" :center="">
+     <vaadin-button style-name="v-button-deselected" width="50px" plain-text="" _id="btnThu" :middle="" :center="">
        Do 
      </vaadin-button> 
-     <vaadin-button width="50px" plain-text="" _id="btnFri" :middle="" :center="">
+     <vaadin-button style-name="v-button-deselected" width="50px" plain-text="" _id="btnFri" :middle="" :center="">
        Fr 
      </vaadin-button> 
-     <vaadin-button width="50px" plain-text="" _id="btnSat" :middle="" :center="">
+     <vaadin-button style-name="v-button-deselected" width="50px" plain-text="" _id="btnSat" :middle="" :center="">
        Sa 
      </vaadin-button> 
-     <vaadin-button width="50px" plain-text="" _id="btnSun" :middle="" :center="">
+     <vaadin-button style-name="v-button-deselected" width="50px" plain-text="" _id="btnSun" :middle="" :center="">
        So 
      </vaadin-button> 
     </vaadin-horizontal-layout> 
@@ -150,14 +153,13 @@
       <vaadin-label size-auto="true" plain-text="">
         Einheit: 
       </vaadin-label> 
-      <vaadin-list-select null-selection-allowed="false" item-caption-mode="id" width="232px" height="146px" _id="listUnits"> 
-       <option>Option 1</option> 
-       <option>Option 2</option> 
-       <option>Option 3</option> 
-       <option>Option 4</option> 
-       <option>Option 5</option> 
-       <option>Option 6</option> 
-       <option>Option 7</option> 
+      <vaadin-list-select null-selection-allowed="false" item-caption-mode="id" width="232px" height="146px" _id="unitList"> 
+       <option>ml</option> 
+       <option>cl</option> 
+       <option>dl</option> 
+       <option>l</option> 
+       <option>gr</option> 
+       <option>kg</option> 
       </vaadin-list-select> 
       <vaadin-button height="63px" plain-text="" _id="btnPrescripe" :bottom="">
         Verschreiben 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import ch.bfh.btx8081.weiss.model.Drug;
 import ch.bfh.btx8081.weiss.model.Medication;
 import ch.bfh.btx8081.weiss.model.Patient;
 
@@ -57,11 +58,11 @@ public class MedicationService {
 	 * @return the medication
 	 */
 	public Medication create(int id, Patient patient, String picture, LocalDateTime fromDate, LocalDateTime toDate,
-			int drugID, String dosage, String unit, int statusID) {
+			Drug drug, String dosage, String unit, int statusID) {
 		Medication emm = new Medication(id);
 		emm.setPatient(patient);
 		emm.setDosage(dosage);
-		emm.setDrugID(drugID);
+		emm.setDrug(drug);
 		emm.setFromDate(fromDate);
 		emm.setToDate(toDate);
 		emm.setPicture(picture);

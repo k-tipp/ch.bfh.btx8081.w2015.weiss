@@ -22,7 +22,7 @@ import com.vaadin.ui.declarative.Design;
 @SuppressWarnings("serial")
 public class MedicationPrescriptionView extends HorizontalLayout {
 	protected Label medication;
-	protected VerticalLayout listMedication;
+	protected ListSelect drugList;
 	protected Button btnCompendium;
 	protected Button btnDaily1;
 	protected Button btnDaily2;
@@ -58,7 +58,7 @@ public class MedicationPrescriptionView extends HorizontalLayout {
 	protected Button btnDose0;
 	protected Button btnDosePoint;
 	protected Button btnDoseBackspace;
-	protected ListSelect listUnits;
+	protected ListSelect unitList;
 	protected Button btnPrescripe;
 
 	public MedicationPrescriptionView() {

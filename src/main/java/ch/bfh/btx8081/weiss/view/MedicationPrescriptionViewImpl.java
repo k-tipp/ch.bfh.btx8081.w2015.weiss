@@ -8,6 +8,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 
+import ch.bfh.btx8081.weiss.model.Drug;
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
@@ -29,6 +30,10 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		super();
 		this.navigator = navigator;
 		addListenersToComponents();
+		
+		for (Drug d : DatabaseHandler.drugService.getAllDrugs()) {
+			drugList.addItem(d.getName());
+		}
 
 	}
 
@@ -49,6 +54,10 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	}
 
 	private void addListenersToComponents() {
+		btnCompendium.addClickListener(clickEvent -> {
+			navigator.navigateTo(CompendiumViewImpl.VIEW_NAME);
+		});
+		
 		btnDose0.addClickListener(clickEvent -> addCharToDose('0'));
 		btnDose1.addClickListener(clickEvent -> addCharToDose('1'));
 		btnDose2.addClickListener(clickEvent -> addCharToDose('2'));
@@ -86,7 +95,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		
 		for(Button btn : dailyButtons) {
 			btn.addClickListener(clickEvent -> {
-				btnGrpStateManager(dailyButtons, clickEvent.getButton());
+				manageSingleButtonClickEvent(dailyButtons, clickEvent.getButton());
 			});
 		}
 		
@@ -101,7 +110,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		
 		for(Button btn : daysInWeekButtons) {
 			btn.addClickListener(clickEvent -> {
-				btnGrpStateManager(daysInWeekButtons, clickEvent.getButton());
+				if(clickEvent.getButton().getStyleName().equals("v-button-deselected")) {
+					clickEvent.getButton().setStyleName("friendly");
+				} else {
+					clickEvent.getButton().setStyleName("v-button-deselected");
+				}
 			});
 		}
 		
@@ -116,9 +129,45 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		
 		for(Button btn : weeksButtons) {
 			btn.addClickListener(clickEvent -> {
-				btnGrpStateManager(weeksButtons, clickEvent.getButton());
+				manageSingleButtonClickEvent(weeksButtons, clickEvent.getButton());
 			});
 		}
+		
+		btnPrescripe.addClickListener(clickEvent -> {
+			String drugName = (String) drugList.getValue(); // returns the selected option
+			Drug drug = DatabaseHandler.drugService.getDrugByName(drugName);
+			String timesDaily = "";
+			for(Button btn : dailyButtons) {
+				if(btn.getStyleName().equals("friendly")) {
+					timesDaily = btn.getCaption();
+				}
+			}
+			
+			String daysInWeek = "";
+			for(Button btn : daysInWeekButtons) {
+				if(btn.getStyleName().equals("friendly")) {
+					daysInWeek = btn.getCaption() + ",";
+				}
+				daysInWeek = daysInWeek.substring(0, daysInWeek.length() - 1);
+			}
+			
+			String weeks = "";
+			for(Button btn : weeksButtons) {
+				if(btn.getStyleName().equals("friendly")) {
+					weeks = btn.getCaption();
+				}
+			}
+			
+			String dose = lblDose.getValue();
+			String unit = (String) unitList.getValue(); // returns the selected option
+			
+			/*
+			 * Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose, unit);
+			 * patient.addMedication(med);
+			 */
+			
+			
+		});
 	}
 
 	private void addCharToDose(char c) {
@@ -130,11 +179,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		}
 	}
 	
-	private void btnGrpStateManager(List<Button> btnList, Button clickedBtn) {
+	private void manageSingleButtonClickEvent(List<Button> btnList, Button clickedBtn) {
 		for(Button btn : btnList) {
-			btn.setEnabled(true);
+			btn.setStyleName("v-button-deselected");
 		}
-		clickedBtn.setEnabled(false);
+		clickedBtn.setStyleName("friendly");
 	}
 
 }

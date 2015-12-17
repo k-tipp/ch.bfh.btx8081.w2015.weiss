@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * The Class Medication represents the medication enity. Multiple medications can be connected to
@@ -24,7 +25,7 @@ public class Medication {
 	private String picture = null;
 	
 	/** The patient. */
-	@ManyToOne
+	@OneToOne
 	private Patient patient = null;
 	
 	/** The from date is the start date for the medication period. */
@@ -34,8 +35,8 @@ public class Medication {
 	private LocalDateTime toDate = null;
 	
 	/** The drug id for the prescriped drug. */
-	//@ManyToOne
-	private int drugID = 0;
+	@OneToOne
+	private Drug drug = null;
 	
 	/** The dosage of the medication. */
 	private String dosage = null;
@@ -152,10 +153,10 @@ public class Medication {
 	/**
 	 * Gets the drug id.
 	 *
-	 * @return the drug id
+	 * @return the drug
 	 */
-	public int getDrugID() {
-		return drugID;
+	public Drug getDrug() {
+		return drug;
 	}
 
 	/**
@@ -164,8 +165,8 @@ public class Medication {
 	 * @param drugID
 	 *            the new drug id
 	 */
-	public void setDrugID(int drugID) {
-		this.drugID = drugID;
+	public void setDrug(Drug drug) {
+		this.drug = drug;
 	}
 
 	/**

@@ -19,6 +19,9 @@ public class DatabaseHandler {
 	
 	/** The medication service. */
 	public static MedicationService medicationService = new MedicationService();
+	
+	/** The drug service. */
+	public static DrugService drugService = new DrugService();
 
 	/**
 	 * Instantiates a new database handler.

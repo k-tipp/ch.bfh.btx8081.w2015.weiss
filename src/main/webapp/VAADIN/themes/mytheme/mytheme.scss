@@ -56,4 +56,9 @@
     height:70px;
     position: center middle;
   }
+  
+  .v-button-deselected {
+    @include v-button;
+    width: 50px;
+  }
 }
