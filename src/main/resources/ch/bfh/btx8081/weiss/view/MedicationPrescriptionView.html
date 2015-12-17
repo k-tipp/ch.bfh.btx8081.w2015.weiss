@@ -2,7 +2,7 @@
 <html>
  <head>
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
-  <meta name="package-mapping" content="weiss:ch.bfh.btx8081.weiss.view" />
+  <meta name="package-mapping" content="weiss:ch.bfh.btx8081.weiss.view.statefulButton" />
  </head> 
  <body> 
   <vaadin-horizontal-layout height-full="true"> 
@@ -11,7 +11,7 @@
       Medication 
     </vaadin-label> 
     <vaadin-vertical-layout width="258px" height-full="true"> 
-     <vaadin-list-select item-caption-mode="id" width="232px" height="560px" _id="drugList"></vaadin-list-select> 
+     <vaadin-list-select null-selection-allowed="false" item-caption-mode="id" width="232px" height="560px" _id="drugList"></vaadin-list-select> 
     </vaadin-vertical-layout> 
    </vaadin-vertical-layout> 
    <vaadin-vertical-layout spacing="true" width="428px" margin-top="true"> 
@@ -158,7 +158,7 @@
       <vaadin-label size-auto="true" plain-text="">
         Einheit: 
       </vaadin-label> 
-      <vaadin-list-select item-caption-mode="id" width="232px" height="146px" _id="unitList"> 
+      <vaadin-list-select null-selection-allowed="false" item-caption-mode="id" width="232px" height="146px" _id="unitList"> 
        <option>ml</option> 
        <option>cl</option> 
        <option>dl</option> 

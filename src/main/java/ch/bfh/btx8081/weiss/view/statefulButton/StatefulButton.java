@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.weiss.view;
+package ch.bfh.btx8081.weiss.view.statefulButton;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
