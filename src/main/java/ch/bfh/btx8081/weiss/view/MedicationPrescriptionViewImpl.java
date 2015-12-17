@@ -14,11 +14,20 @@ import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
 public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView implements View {
 
+	private static final long serialVersionUID = -2513599133421077982L;
+
 	/** The Constant VIEW_NAME contains the view name of this view. */
 	public static final String VIEW_NAME = "MedicationPrescriptionView";
 
 	/** The navigator. */
 	private Navigator navigator = null;
+	
+	private static SelectedButtonState selectedButtonState = null;
+	private static UnselectedButtonState unselectedButtonState = null;
+	
+	private List<StatefulButton> dailyButtons;
+	private List<StatefulButton> daysInWeekButtons;
+	private List<StatefulButton> weeksButtons;
 
 	/**
 	 * Instantiates a new medication view impl.
@@ -29,12 +38,17 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	public MedicationPrescriptionViewImpl(final Navigator navigator) {
 		super();
 		this.navigator = navigator;
+		
+		selectedButtonState = new SelectedButtonState();
+		unselectedButtonState = new UnselectedButtonState();
+		
+		fillButtonLists();
+		setAllButtonsUnselected();
 		addListenersToComponents();
 		
 		for (Drug d : DatabaseHandler.drugService.getAllDrugs()) {
 			drugList.addItem(d.getName());
 		}
-
 	}
 
 	/*
@@ -62,7 +76,6 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			navigator.navigateTo(PatientViewImpl.VIEW_NAME);
 		});
 		
-		
 		btnDose0.addClickListener(clickEvent -> addCharToDose('0'));
 		btnDose1.addClickListener(clickEvent -> addCharToDose('1'));
 		btnDose2.addClickListener(clickEvent -> addCharToDose('2'));
@@ -89,53 +102,26 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			}
 		});
 
-		List<Button> dailyButtons = new ArrayList<Button>();
-		dailyButtons.add(btnDaily1);
-		dailyButtons.add(btnDaily2);
-		dailyButtons.add(btnDaily3);
-		dailyButtons.add(btnDaily4);
-		dailyButtons.add(btnDaily6);
-		dailyButtons.add(btnDaily8);
-		dailyButtons.add(btnDaily12);
-		
-		for(Button btn : dailyButtons) {
-			btn.addClickListener(clickEvent -> {
-				manageSingleButtonClickEvent(dailyButtons, clickEvent.getButton());
-			});
+		for(StatefulButton btn : dailyButtons) {
+			btn.addStatefulClickListener(statefulClickEvent -> {
+					manageSingleButtonClickEvent(dailyButtons, statefulClickEvent.getButton());
+				});
 		}
 		
-		List<Button> daysInWeekButtons = new ArrayList<Button>();
-		daysInWeekButtons.add(btnMon);
-		daysInWeekButtons.add(btnTue);
-		daysInWeekButtons.add(btnWed);
-		daysInWeekButtons.add(btnThu);
-		daysInWeekButtons.add(btnFri);
-		daysInWeekButtons.add(btnSat);
-		daysInWeekButtons.add(btnSun);
-		
-		for(Button btn : daysInWeekButtons) {
-			btn.addClickListener(clickEvent -> {
-				if(clickEvent.getButton().getStyleName().equals("v-button-deselected")) {
-					clickEvent.getButton().setStyleName("friendly");
+		for(StatefulButton btn : daysInWeekButtons) {
+			btn.addStatefulClickListener(statefulClickEvent -> {
+				if(statefulClickEvent.getButton().getButtonState() == unselectedButtonState) {
+					selectedButtonState.doAction(statefulClickEvent.getButton());
 				} else {
-					clickEvent.getButton().setStyleName("v-button-deselected");
+					unselectedButtonState.doAction(statefulClickEvent.getButton());
 				}
 			});
 		}
-		
-		List<Button> weeksButtons = new ArrayList<Button>();
-		weeksButtons.add(btnWeeks1);
-		weeksButtons.add(btnWeeks2);
-		weeksButtons.add(btnWeeks3);
-		weeksButtons.add(btnWeeks4);
-		weeksButtons.add(btnWeeks5);
-		weeksButtons.add(btnWeeks6);
-		weeksButtons.add(btnWeeksInfinitely);
-		
-		for(Button btn : weeksButtons) {
-			btn.addClickListener(clickEvent -> {
-				manageSingleButtonClickEvent(weeksButtons, clickEvent.getButton());
-			});
+
+		for(StatefulButton btn : weeksButtons) {
+			btn.addStatefulClickListener(statefulClickEvent -> {
+					manageSingleButtonClickEvent(weeksButtons, statefulClickEvent.getButton());
+				});
 		}
 		
 		btnPrescripe.addClickListener(clickEvent -> {
@@ -170,9 +156,50 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			 * Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose, unit);
 			 * patient.addMedication(med);
 			 */
-			
-			
 		});
+	}
+	
+	private void setAllButtonsUnselected() {
+		for(StatefulButton button : dailyButtons) {
+			unselectedButtonState.doAction(button);
+		}
+		
+		for(StatefulButton button : daysInWeekButtons) {
+			unselectedButtonState.doAction(button);
+		}
+		
+		for(StatefulButton button : weeksButtons) {
+			unselectedButtonState.doAction(button);
+		}
+	}
+
+	private void fillButtonLists() {
+		dailyButtons = new ArrayList<StatefulButton>();
+		dailyButtons.add(btnDaily1);
+		dailyButtons.add(btnDaily2);
+		dailyButtons.add(btnDaily3);
+		dailyButtons.add(btnDaily4);
+		dailyButtons.add(btnDaily6);
+		dailyButtons.add(btnDaily8);
+		dailyButtons.add(btnDaily12);
+		
+		weeksButtons = new ArrayList<StatefulButton>();
+		weeksButtons.add(btnWeeks1);
+		weeksButtons.add(btnWeeks2);
+		weeksButtons.add(btnWeeks3);
+		weeksButtons.add(btnWeeks4);
+		weeksButtons.add(btnWeeks5);
+		weeksButtons.add(btnWeeks6);
+		weeksButtons.add(btnWeeksInfinitely);
+		
+		daysInWeekButtons = new ArrayList<StatefulButton>();
+		daysInWeekButtons.add(btnMon);
+		daysInWeekButtons.add(btnTue);
+		daysInWeekButtons.add(btnWed);
+		daysInWeekButtons.add(btnThu);
+		daysInWeekButtons.add(btnFri);
+		daysInWeekButtons.add(btnSat);
+		daysInWeekButtons.add(btnSun);	
 	}
 
 	private void addCharToDose(char c) {
@@ -184,11 +211,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		}
 	}
 	
-	private void manageSingleButtonClickEvent(List<Button> btnList, Button clickedBtn) {
-		for(Button btn : btnList) {
-			btn.setStyleName("v-button-deselected");
+	private void manageSingleButtonClickEvent(List<StatefulButton> btnList, StatefulButton clickedBtn) {		
+		for(StatefulButton btn : btnList) {
+			unselectedButtonState.doAction(btn);
 		}
-		clickedBtn.setStyleName("friendly");
+		selectedButtonState.doAction(clickedBtn);
 	}
 
 }
