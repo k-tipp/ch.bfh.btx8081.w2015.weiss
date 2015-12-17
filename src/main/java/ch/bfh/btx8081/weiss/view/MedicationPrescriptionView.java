@@ -6,7 +6,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.ListSelect;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
 
 /** 
@@ -23,6 +22,7 @@ import com.vaadin.ui.declarative.Design;
 public class MedicationPrescriptionView extends HorizontalLayout {
 	protected Label medication;
 	protected ListSelect drugList;
+	protected Button btnBack;
 	protected Button btnCompendium;
 	protected Button btnDaily1;
 	protected Button btnDaily2;
