@@ -101,7 +101,12 @@ public class PatientService {
 	 * @return the patient
 	 */
 	public Patient update(Patient patient) {
-		return DatabaseHandler.entityManager.merge(patient);
+		DatabaseHandler.entityManager.getTransaction().begin();
+		Patient updatedPatient = DatabaseHandler.entityManager.merge(patient);
+		DatabaseHandler.entityManager.getTransaction().commit();
+		return updatedPatient;
+		
+		
 	}
 
 	/**
@@ -111,10 +116,12 @@ public class PatientService {
 	 *            the patient
 	 */
 	public void delete(Patient patient) {
+		DatabaseHandler.entityManager.getTransaction().begin();
 		Patient emp = getPatientById(patient.getPatientID());
 		if (emp != null) {
 			DatabaseHandler.entityManager.remove(emp);
 		}
+		DatabaseHandler.entityManager.getTransaction().commit();
 	}
 
 	/**
