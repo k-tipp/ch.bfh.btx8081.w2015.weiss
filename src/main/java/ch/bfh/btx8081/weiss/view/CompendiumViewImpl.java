@@ -32,9 +32,6 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 		super();
 		this.navigator = navigator;
 				
-		for (Drug d : DatabaseHandler.drugService.getAllDrugs()) {
-			listMedication.addItem(d.getName());
-		}
 	 
 		//TODO replace "/1"
 		

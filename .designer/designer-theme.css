@@ -12788,3 +12788,31 @@ div.v-layout.v-horizontal.v-widget {
 	width: 19px;
 	overflow: hidden;
 }
+
+.mytheme .green_circle {
+	background: green;
+	border-radius: 35px;
+	width: 70px;
+	height: 70px;
+	position: center middle;
+}
+
+.mytheme .orange_circle {
+	background: orange;
+	border-radius: 35px;
+	width: 70px;
+	height: 70px;
+	position: center middle;
+}
+
+.mytheme .red_circle {
+	background: red;
+	border-radius: 35px;
+	width: 70px;
+	height: 70px;
+	position: center middle;
+}
+
+.mytheme .v-button-deselected {
+	width: 50px;
+}
