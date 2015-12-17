@@ -58,6 +58,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			navigator.navigateTo(CompendiumViewImpl.VIEW_NAME);
 		});
 		
+		btnBack.addClickListener(clickEvent -> {
+			navigator.navigateTo(PatientViewImpl.VIEW_NAME);
+		});
+		
+		
 		btnDose0.addClickListener(clickEvent -> addCharToDose('0'));
 		btnDose1.addClickListener(clickEvent -> addCharToDose('1'));
 		btnDose2.addClickListener(clickEvent -> addCharToDose('2'));
