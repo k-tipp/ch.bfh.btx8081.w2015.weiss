@@ -11,6 +11,9 @@ import com.vaadin.ui.Button;
 import ch.bfh.btx8081.weiss.model.Drug;
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
+import ch.bfh.btx8081.weiss.view.statefulButton.SelectedButtonState;
+import ch.bfh.btx8081.weiss.view.statefulButton.StatefulButton;
+import ch.bfh.btx8081.weiss.view.statefulButton.UnselectedButtonState;
 
 public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView implements View {
 
@@ -60,6 +63,12 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
+		if(event.getParameters().equals("new")) {
+			setAllButtonsUnselected();
+		} else {
+			// TODO load medication to prescription view.
+		}
+		
 		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
 
 		// TODO change from patient to medication and add header
