@@ -22,6 +22,18 @@ public class Drug {
 
 	/** The drug name. */
 	private String name = null;
+	
+	
+
+	/** The drug active ingredient. */
+	private String active_ingredient = null;
+	
+	
+	
+	/** The drug picture. */
+	private String picture = null;
+	
+	
 
 	/** The medications for this patient. */
 	//Eager loading for being able to display stuff with toString(), without explicitly loading 
@@ -52,5 +64,21 @@ public class Drug {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public String getActive_ingredient() {
+		return active_ingredient;
+	}
+
+	public void setActive_ingredient(String active_ingredient) {
+		this.active_ingredient = active_ingredient;
 	}
 }
