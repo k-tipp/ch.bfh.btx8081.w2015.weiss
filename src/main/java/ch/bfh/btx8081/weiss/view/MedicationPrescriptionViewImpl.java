@@ -45,17 +45,12 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	public MedicationPrescriptionViewImpl(final Navigator navigator) {
 		super();
 		this.navigator = navigator;
-		
 		selectedButtonState = new SelectedButtonState();
 		unselectedButtonState = new UnselectedButtonState();
 		
 		fillButtonLists();
 		setAllButtonsUnselected();
 		addListenersToComponents();
-		
-		for (Drug d : DatabaseHandler.drugService.getAllDrugs()) {
-			drugList.addItem(d.getName());
-		}
 	}
 
 	/*
@@ -67,6 +62,18 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
+		
+		//this.removeAllComponents();
+		btnBack.addClickListener(clickEvent -> {
+			navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME +"/"+patient.getPatientID());
+		});
+		
+		for (Drug d : DatabaseHandler.drugService.getAllDrugs()) {
+			drugList.addItem(d.getName());
+			
+		}
+		
+		
 		if(event.getParameters().startsWith("pat")) {
 			setAllButtonsUnselected();
 			String patientid = event.getParameters().replace("pat", "");
@@ -88,10 +95,6 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	private void addListenersToComponents() {
 		btnCompendium.addClickListener(clickEvent -> {
 			navigator.navigateTo(CompendiumViewImpl.VIEW_NAME);
-		});
-		
-		btnBack.addClickListener(clickEvent -> {
-			navigator.navigateTo(PatientViewImpl.VIEW_NAME);
 		});
 		
 		btnDose0.addClickListener(clickEvent -> addCharToDose('0'));
@@ -157,7 +160,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 				if(btn.getStyleName().equals("friendly")) {
 					daysInWeek = btn.getCaption() + ",";
 				}
-				daysInWeek = daysInWeek.substring(0, daysInWeek.length() - 1);
+				daysInWeek = daysInWeek.substring(0, daysInWeek.length());
 			}
 			
 			String weeks = "";
@@ -171,12 +174,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			String unit = (String) unitList.getValue(); // returns the selected option
 			
 			if(medication == null) {
-				/*
-				 * Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose, unit);
-				 * 
-				 * patient.getMedication().add(null); // TODO add medication instead of null
-				 * DatabaseHandler.patientService.update(patient);
-				 */
+				
+				 Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose, unit);
+				 patient.getMedication().add(med); // TODO add medication instead of null
+				 DatabaseHandler.patientService.update(patient);
+				 
 			} else {
 				//medication.setXXXX(value);
 				//DatabaseHandler.medicationService.update(medication);
