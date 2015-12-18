@@ -38,7 +38,7 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 //		protected Button btnViewMedication;
 	
 		this.addLayoutClickListener(event -> {
-			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME+ "/" + medication.getMedicationID());
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME+ "/med" + medication.getMedicationID());
 			});
 	}
 	

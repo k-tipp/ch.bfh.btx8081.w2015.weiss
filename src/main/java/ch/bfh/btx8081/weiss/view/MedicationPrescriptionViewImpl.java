@@ -9,6 +9,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 
 import ch.bfh.btx8081.weiss.model.Drug;
+import ch.bfh.btx8081.weiss.model.Medication;
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 import ch.bfh.btx8081.weiss.view.statefulButton.SelectedButtonState;
@@ -24,6 +25,9 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 
 	/** The navigator. */
 	private Navigator navigator = null;
+	
+	private Patient patient = null;
+	private Medication medication = null;
 	
 	private static SelectedButtonState selectedButtonState = null;
 	private static UnselectedButtonState unselectedButtonState = null;
@@ -63,16 +67,21 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
-		if(event.getParameters().equals("new")) {
+		if(event.getParameters().startsWith("pat")) {
 			setAllButtonsUnselected();
-		} else {
-			// TODO load medication to prescription view.
+			String patientid = event.getParameters().replace("pat", "");
+			patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(patientid));
+			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
+		} else if(event.getParameters().startsWith("med")){
+			String medicationid = event.getParameters().replace("med", "");
+			medication = DatabaseHandler.medicationService.getMedicationById(Integer.parseInt(medicationid));
+			patient = medication.getPatient();
 		}
 		
-		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
+		
 
 		// TODO change from patient to medication and add header
-		medication.setValue(patient.getFirstName() + " " + patient.getLastName());
+		
 
 	}
 
@@ -161,10 +170,17 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			String dose = lblDose.getValue();
 			String unit = (String) unitList.getValue(); // returns the selected option
 			
-			/*
-			 * Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose, unit);
-			 * patient.addMedication(med);
-			 */
+			if(medication == null) {
+				/*
+				 * Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose, unit);
+				 * 
+				 * patient.getMedication().add(null); // TODO add medication instead of null
+				 * DatabaseHandler.patientService.update(patient);
+				 */
+			} else {
+				//medication.setXXXX(value);
+				//DatabaseHandler.medicationService.update(medication);
+			}			
 		});
 	}
 	

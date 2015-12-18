@@ -50,6 +50,12 @@ public class MedicationOverviewImpl extends MedicationOverview implements View {
 		PatientHeaderImpl ph = new PatientHeaderImpl(patient, navigator);
 		addComponent(ph);
 		
+		btnNewMedication.addClickListener(clickEvent -> {
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/pat" + patient.getPatientID());
+		});
+
+		addComponent(btnNewMedication);
+
 		for (Medication m : patient.getMedication()) {
 			MedicationDetailCompontentImpl mdci = new MedicationDetailCompontentImpl(m, navigator);
 			addComponent(mdci);
