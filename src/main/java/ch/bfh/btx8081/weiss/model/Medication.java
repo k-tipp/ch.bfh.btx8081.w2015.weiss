@@ -10,59 +10,57 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
- * The Class Medication represents the medication enity. Multiple medications can be connected to
- * one patient.
+ * The Class Medication represents the medication enity. Multiple medications
+ * can be connected to one patient.
  */
 @Entity
 public class Medication {
-	
+
 	/** The medication id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int medicationID = 0;
-	
+
 	/** The picture. */
 	private String picture = null;
-	
+
 	/** The patient. */
 	@OneToOne
 	private Patient patient = null;
-	
+
 	/** The from date is the start date for the medication period. */
 	private LocalDateTime fromDate = null;
-	
+
 	/** The to date is the last date for the medication period. */
 	private LocalDateTime toDate = null;
-	
+
 	/** The drug id for the prescriped drug. */
 	@OneToOne
 	private Drug drug = null;
-	
+
 	/** The dosage of the medication. */
 	private String dosage = null;
-	
+
 	/** The unit of the medication. */
 	private String unit = null;
-	
+
 	/** The status id for this medication. */
 	private int statusID = 0;
-	
+
 	/** The times daily of the medication. */
-	private int timesDaily = 0;
-	
+	private String timesDaily = null;
+
 	/** The days in week of the medication. */
-	private int daysInWeek = 0;
-	
+	private String daysInWeek = null;
+
 	/** The weeks of the medication. */
-	private int weeks = 0;
-	
-	
+	private String weeks = null;
+
 	/**
 	 * Instantiates a new medication.
 	 */
-	public Medication()
-	{
-		
+	public Medication() {
+
 	}
 
 	/**
@@ -73,6 +71,16 @@ public class Medication {
 	 */
 	public Medication(int id) {
 		this.medicationID = id;
+	}
+
+	public Medication(Drug drug, String timesDaily, String daysInWeek, String weeks, String dose, String unit) {
+		this.drug = drug;
+		this.timesDaily = timesDaily;
+		this.daysInWeek = daysInWeek;
+		this.weeks = weeks;
+		this.dosage = dose;
+		this.unit = unit;
+		
 	}
 
 	/**
@@ -236,27 +244,27 @@ public class Medication {
 		this.statusID = statusID;
 	}
 
-	public int getTimesDaily() {
+	public String getTimesDaily() {
 		return timesDaily;
 	}
 
-	public void setTimesDaily(int timesDaily) {
+	public void setTimesDaily(String timesDaily) {
 		this.timesDaily = timesDaily;
 	}
 
-	public int getDaysInWeek() {
+	public String getDaysInWeek() {
 		return daysInWeek;
 	}
 
-	public void setDaysInWeek(int daysInWeek) {
+	public void setDaysInWeek(String daysInWeek) {
 		this.daysInWeek = daysInWeek;
 	}
 
-	public int getWeeks() {
+	public String getWeeks() {
 		return weeks;
 	}
 
-	public void setWeeks(int weeks) {
+	public void setWeeks(String weeks) {
 		this.weeks = weeks;
 	}
 
