@@ -47,6 +47,16 @@ public class Medication {
 	/** The status id for this medication. */
 	private int statusID = 0;
 	
+	/** The times daily of the medication. */
+	private int timesDaily = 0;
+	
+	/** The days in week of the medication. */
+	private int daysInWeek = 0;
+	
+	/** The weeks of the medication. */
+	private int weeks = 0;
+	
+	
 	/**
 	 * Instantiates a new medication.
 	 */
@@ -224,6 +234,30 @@ public class Medication {
 	 */
 	public void setStatusID(int statusID) {
 		this.statusID = statusID;
+	}
+
+	public int getTimesDaily() {
+		return timesDaily;
+	}
+
+	public void setTimesDaily(int timesDaily) {
+		this.timesDaily = timesDaily;
+	}
+
+	public int getDaysInWeek() {
+		return daysInWeek;
+	}
+
+	public void setDaysInWeek(int daysInWeek) {
+		this.daysInWeek = daysInWeek;
+	}
+
+	public int getWeeks() {
+		return weeks;
+	}
+
+	public void setWeeks(int weeks) {
+		this.weeks = weeks;
 	}
 
 }
