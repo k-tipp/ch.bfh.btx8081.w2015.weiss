@@ -4,10 +4,6 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
-import ch.bfh.btx8081.weiss.model.Drug;
-import ch.bfh.btx8081.weiss.model.Medication;
-import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
-
 public class CompendiumViewImpl extends CompendiumView implements View {
 
 	/**
@@ -36,7 +32,7 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 		//TODO replace "/1"
 		
 		btnBack.addClickListener(event -> {
-			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME+ "/1" );
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/1" );
 			});
 
 	

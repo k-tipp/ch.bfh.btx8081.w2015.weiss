@@ -3,11 +3,8 @@ package ch.bfh.btx8081.weiss.view;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
 
 import ch.bfh.btx8081.weiss.model.Medication;
-import ch.bfh.btx8081.weiss.model.Patient;
 
 public class MedicationDetailCompontentImpl extends MedicationDetailComponent implements View {
 	/** The Constant serialVersionUID. */
@@ -15,7 +12,6 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 
 	/** The Constant VIEW_NAME contains the name of this view. */
 	public static final String VIEW_NAME = "MedicationPrescriptionView";
-	private Medication medication = null;
 
 	/**
 	 * Instantiates a new medication overview implementation.
