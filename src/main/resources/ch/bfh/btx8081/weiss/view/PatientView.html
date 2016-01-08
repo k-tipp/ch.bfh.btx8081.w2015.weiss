@@ -59,18 +59,18 @@
     <vaadin-label responsive="true" size-auto="true" plain-text="">
       Selbstgefährdung: 
     </vaadin-label> 
-    <vaadin-native-select null-selection-allowed="false" description="Selbstgefährdung" width-full="true" _id="patient_self_harm" :expand="">
-      <option>1</option> 
-      <option>2</option>
-      <option>3</option>
+    <vaadin-native-select description="Selbstgefährdung" width-full="true" _id="patient_self_harm" :expand=""> 
+     <option>1</option> 
+     <option>2</option> 
+     <option>3</option> 
     </vaadin-native-select> 
     <vaadin-label responsive="true" size-auto="true" plain-text="">
       Fremdgefährdung: 
     </vaadin-label> 
-    <vaadin-native-select null-selection-allowed="false" description="Fremdgefährdung" width-full="true" _id="patient_danger_to_others" :expand="">
-      <option>1</option> 
-      <option>2</option>
-      <option>3</option>
+    <vaadin-native-select description="Fremdgefährdung" width-full="true" _id="patient_danger_to_others" :expand=""> 
+     <option>1</option> 
+     <option>2</option> 
+     <option>3</option> 
     </vaadin-native-select> 
    </vaadin-horizontal-layout> 
    <vaadin-vertical-layout size-auto="true"></vaadin-vertical-layout> 
@@ -80,7 +80,7 @@
    <vaadin-button width-full="true" plain-text="" _id="btn_view_medicationOverview">
      Medikation 
    </vaadin-button> 
-   <vaadin-button width-full="true" plain-text="">
+   <vaadin-button width-full="true" plain-text="" _id="btn_view_therapyOverview">
      Therapieplan 
    </vaadin-button> 
   </vaadin-vertical-layout>  
