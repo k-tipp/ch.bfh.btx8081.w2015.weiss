@@ -73,6 +73,9 @@ public class PatientViewImpl extends PatientView implements View {
 		btn_view_medicationOverview.addClickListener(clickEvent -> {
 			this.navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME+"/"+patient.getPatientID());
 		});
+		btn_view_therapyOverview.addClickListener(clickEvent -> {
+			this.navigator.navigateTo(TherapyOverviewImpl.VIEW_NAME+"/"+patient.getPatientID());
+		});
 		
 	}
 }
