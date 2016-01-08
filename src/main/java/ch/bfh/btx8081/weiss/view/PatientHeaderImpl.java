@@ -17,6 +17,10 @@ public class PatientHeaderImpl extends PatientHeader {
 		patient_title.setValue((patient.getGender().equals("male")) ? "Herr" : "Frau");
 		patient_name.setValue(patient.getFirstName() + " " + patient.getLastName());
 		patient_location.setValue(patient.getCity());
+		btnBack.addClickListener(event -> {
+			navigator.navigateTo(PatientViewImpl.VIEW_NAME+ "/" + patient.getPatientID());
+			});
+		
 	
 		
 	
