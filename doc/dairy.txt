@@ -170,3 +170,6 @@ sprints timeline:
 25.11.2015: Define the architecture, Package Diagramm
 26.11.2015: Presentation Task 9 - Software Architecture
 03.12.2015: Presentation - Sprint 1
+11.12.2015: classes medication
+17.12.2015: Presentation - Sprint 2
+08.01.2016: Therapy View classes
