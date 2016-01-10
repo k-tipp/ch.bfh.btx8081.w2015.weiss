@@ -1,0 +1,5 @@
+Username   Password     Hash
+admin      1234         1267b43129b358b7178f89382838e83c1fd71ab1f2ad3bd0
+user1      password     f57b61af0c5103d3ba105a26102f391fe494932ec29c6b80
+user2      asdf         f53b9ca0e64075342dcd1ad65dec99219065ee4340b118cf
+user3      qwertz       1a55180aa4aeab913447a4ba6b5269fdcdc2d59cafe02ef2
