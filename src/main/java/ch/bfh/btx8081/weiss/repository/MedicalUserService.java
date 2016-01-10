@@ -3,33 +3,41 @@ package ch.bfh.btx8081.weiss.repository;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.persistence.Query;
 
+import ch.bfh.btx8081.weiss.model.MedicalUser;
 import ch.bfh.btx8081.weiss.model.Patient;
-import ch.bfh.btx8081.weiss.model.User;
 
-public class UserService {
+public class MedicalUserService {
 
 	public Patient getUserById(int id) {
 		return DatabaseHandler.entityManager.find(Patient.class, id);
 	}
 
-	public User getUserByUsernamePassword(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+	public MedicalUser getUserByUsernamePassword(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		
 		// TODO Optimize by generating a random salt for each user.
 		// Same password should not result in the same hash.
 		
 		String passwordHash = PasswordHash.createHash(password, "MyNewSalt");
-		System.out.println(passwordHash);
+
 		Query query = DatabaseHandler.entityManager.createQuery(
-				"SELECT u FROM User u WHERE u.username LIKE :username AND u.password = :password");
+				"SELECT u FROM MedicalUser u WHERE u.username LIKE :username AND u.password = :password");
 		
 		query.setParameter("username", username);
 		query.setParameter("password", passwordHash);
-		return (User) query.setMaxResults(1).getResultList().get(0);
+		
+		@SuppressWarnings("unchecked")
+		List<MedicalUser> users = query.setMaxResults(1).getResultList();
+		if(users.isEmpty()) {
+			return null;
+		}		
+		
+		return (MedicalUser) users.get(0);
 	}
 
 	private static class PasswordHash {

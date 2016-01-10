@@ -1,10 +1,12 @@
 package ch.bfh.btx8081.weiss.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class User {
+@Entity
+public class MedicalUser {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)

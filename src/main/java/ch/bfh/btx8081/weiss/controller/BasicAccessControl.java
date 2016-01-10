@@ -3,8 +3,8 @@ package ch.bfh.btx8081.weiss.controller;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
-import ch.bfh.btx8081.weiss.model.User;
-import ch.bfh.btx8081.weiss.repository.UserService;
+import ch.bfh.btx8081.weiss.model.MedicalUser;
+import ch.bfh.btx8081.weiss.repository.MedicalUserService;
 
 /**
  * Default mock implementation of {@link AccessControl}. This implementation
@@ -13,10 +13,10 @@ import ch.bfh.btx8081.weiss.repository.UserService;
  */
 public class BasicAccessControl implements AccessControl {
 	
-	private UserService userService;
+	private MedicalUserService userService;
 	
 	public BasicAccessControl() {
-		this.userService = new UserService();
+		this.userService = new MedicalUserService();
 	}
 	
 
@@ -27,10 +27,10 @@ public class BasicAccessControl implements AccessControl {
         if (username == null || username.isEmpty())
             return false;
         
-        User user = this.userService.getUserByUsernamePassword(username, password);
+        MedicalUser user = this.userService.getUserByUsernamePassword(username, password);
         
         if(user != null) {
-            CurrentUser.set(username);
+            CurrentUser.set(user.getUsername());
             return true;
         }
         return false;

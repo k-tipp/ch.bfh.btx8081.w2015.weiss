@@ -74,7 +74,6 @@ public class MyUI extends UI {
 
 				@Override
                 public void loginSuccessful() {
-                	System.out.println("login successful");
                 	setContent(viewContainer);
                 	navigator.navigateTo(navigator.getState());
                 }
