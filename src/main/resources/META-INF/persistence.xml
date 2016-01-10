@@ -12,6 +12,7 @@
 		<class>ch.bfh.btx8081.weiss.model.Drug</class>
 		<class>ch.bfh.btx8081.weiss.model.SelfHarm</class>
 		<class>ch.bfh.btx8081.weiss.model.DangerToOthers</class>
+		<class>ch.bfh.btx8081.weiss.model.User</class>
 		<!--<class>ch.bfh.btx8081.weiss.model.MedicationStatus</class>
 		<class>ch.bfh.btx8081.weiss.model.Soap</class>
 		<class>ch.bfh.btx8081.weiss.model.SoapList</class>-->

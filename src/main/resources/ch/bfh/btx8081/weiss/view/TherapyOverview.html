@@ -5,9 +5,14 @@
  </head> 
  <body> 
   <vaadin-vertical-layout spacing="true" margin-top="true"> 
-   <vaadin-button description="Neue Medikation" width="238px" plain-text="" _id="btnNewTherapy" :right="">
+   <vaadin-horizontal-layout _id="headerComponent" height="0" width="100%" :middle="" margin="0 0 0 10"> 
+      <vaadin-label size-auto="true" :middle="">
+        <b>Therapien:</b>
+      </vaadin-label>
+   <vaadin-button description="Neue Therapie" width="238px" plain-text="" _id="btnNewTherapy" :right="">
      Neue Therapie 
-   </vaadin-button> 
+   </vaadin-button>
+    </vaadin-horizontal-layout>  
   </vaadin-vertical-layout>  
  </body>
 </html>

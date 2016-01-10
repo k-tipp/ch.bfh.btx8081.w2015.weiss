@@ -5,10 +5,13 @@
  </head> 
  <body> 
   <vaadin-vertical-layout size-full="true"> 
-   <vaadin-horizontal-layout :middle="" :center=""> 
-    <vaadin-label size-auto="true" plain-text="">
-      Patienten 
-    </vaadin-label> 
+   <vaadin-horizontal-layout _id="headerComponent" width="100%" :middle="" margin="0 10 0 10"> 
+    <vaadin-label size-auto="true" :middle="">
+      <h1>Patienten</h1>
+    </vaadin-label>
+    <vaadin-button _id="logout" :middle="" :right="">
+        Logout
+    </vaadin-button> 
    </vaadin-horizontal-layout> 
   </vaadin-vertical-layout>  
  </body>
