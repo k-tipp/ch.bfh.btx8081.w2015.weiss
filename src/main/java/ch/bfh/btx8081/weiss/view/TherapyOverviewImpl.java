@@ -3,6 +3,8 @@ package ch.bfh.btx8081.weiss.view;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinSession;
 
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
@@ -29,7 +31,6 @@ public class TherapyOverviewImpl extends TherapyOverview implements View {
 	public TherapyOverviewImpl(Navigator navigator) {
 		super();
 		this.navigator = navigator;
-
 	}
 
 	/*
@@ -44,10 +45,13 @@ public class TherapyOverviewImpl extends TherapyOverview implements View {
 
 		this.removeAllComponents();
 
+		addComponent(headerComponent);
+		
 		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
 
 		PatientHeaderImpl ph = new PatientHeaderImpl(patient, navigator);
 		addComponent(ph);
+		
 		
 		/*btnNewTherapy.addClickListener(clickEvent -> {
 			navigator.navigateTo(TherapyPrescriptionViewImpl.VIEW_NAME + "/pat" + patient.getPatientID());

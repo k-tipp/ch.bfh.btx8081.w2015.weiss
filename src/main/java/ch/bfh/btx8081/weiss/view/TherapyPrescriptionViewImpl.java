@@ -6,6 +6,8 @@ import java.util.List;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 
 import ch.bfh.btx8081.weiss.model.Drug;
@@ -47,6 +49,11 @@ public class TherapyPrescriptionViewImpl extends MedicationPrescriptionView impl
 		this.navigator = navigator;
 		selectedButtonState = new SelectedButtonState();
 		unselectedButtonState = new UnselectedButtonState();
+		
+		logout.addClickListener(clickEvent -> {
+			VaadinSession.getCurrent().getSession().invalidate();
+			Page.getCurrent().reload();
+		});
 		
 		fillButtonLists();
 		setAllButtonsUnselected();

@@ -19,6 +19,7 @@ import com.vaadin.ui.declarative.Design;
 @SuppressWarnings("serial")
 public class CompendiumView extends HorizontalLayout {
 	protected Button btnBack;
+	protected Button logout;
 
 	public CompendiumView() {
 		Design.read(this);

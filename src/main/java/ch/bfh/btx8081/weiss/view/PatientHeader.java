@@ -25,6 +25,7 @@ public class PatientHeader extends HorizontalLayout {
 	protected Label patient_name;
 	protected Label patient_location;
 	protected Button btnBack;
+	protected Button logout;
 
 	public PatientHeader() {
 		Design.read(this);

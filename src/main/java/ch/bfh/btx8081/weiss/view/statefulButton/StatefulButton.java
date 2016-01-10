@@ -17,32 +17,24 @@ public class StatefulButton extends Button {
 
 	private ButtonState state;
 
-	
-	
-	
 	public StatefulButton() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public StatefulButton(Resource icon) {
 		super(icon);
-		// TODO Auto-generated constructor stub
 	}
 
 	public StatefulButton(String caption, ClickListener listener) {
 		super(caption, listener);
-		// TODO Auto-generated constructor stub
 	}
 
 	public StatefulButton(String caption, Resource icon) {
 		super(caption, icon);
-		// TODO Auto-generated constructor stub
 	}
 
 	public StatefulButton(String caption) {
 		super(caption);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void setButtonState(ButtonState state) {
@@ -223,8 +215,8 @@ public class StatefulButton extends Button {
                         StatefulClickEvent.class);
 
         /**
-         * Called when a {@link Button} has been clicked. A reference to the
-         * button is given by {@link ClickEvent#getButton()}.
+         * Called when a {@link StatefulButton} has been clicked. A reference to the
+         * button is given by {@link StatefulClickEvent#getButton()}.
          * 
          * @param event
          *            An event containing information about the click.

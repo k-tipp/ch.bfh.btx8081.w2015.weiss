@@ -1,5 +1,8 @@
 package ch.bfh.btx8081.weiss.application;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -12,7 +15,11 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 
+import ch.bfh.btx8081.weiss.controller.AccessControl;
+import ch.bfh.btx8081.weiss.controller.BasicAccessControl;
 import ch.bfh.btx8081.weiss.view.CompendiumViewImpl;
+import ch.bfh.btx8081.weiss.view.LoginViewImpl;
+import ch.bfh.btx8081.weiss.view.LoginViewImpl.LoginListener;
 import ch.bfh.btx8081.weiss.view.MedicationOverviewImpl;
 import ch.bfh.btx8081.weiss.view.MedicationPrescriptionViewImpl;
 import ch.bfh.btx8081.weiss.view.PatientOverviewImpl;
@@ -28,6 +35,7 @@ public class MyUI extends UI {
 
 	/** Generated serial version uid. */
 	private static final long serialVersionUID = -3679240605909357235L;
+	private AccessControl accessControl = new BasicAccessControl();
 
 	/*
 	 * (non-Javadoc)
@@ -53,9 +61,28 @@ public class MyUI extends UI {
 		navigator.addView(MedicationPrescriptionViewImpl.VIEW_NAME, new MedicationPrescriptionViewImpl(navigator));
 		navigator.addView(CompendiumViewImpl.VIEW_NAME, new CompendiumViewImpl(navigator));
 		
-		setContent(viewContainer);
-		navigator.navigateTo(PatientOverviewImpl.VIEW_NAME);
+		if(navigator.getState() == null || navigator.getState().isEmpty()) {
+			navigator.navigateTo(PatientOverviewImpl.VIEW_NAME);
+		}
+	
+        if (!accessControl.isUserSignedIn()) {
+            setContent(new LoginViewImpl(accessControl, new LoginListener() {
+                /**
+				 * 
+				 */
+				private static final long serialVersionUID = -5836891708671386234L;
 
+				@Override
+                public void loginSuccessful() {
+                	System.out.println("login successful");
+                	setContent(viewContainer);
+                	navigator.navigateTo(navigator.getState());
+                }
+            }));
+        } else {
+        	setContent(viewContainer);
+        	navigator.navigateTo(navigator.getState());
+        }
 	}
 
 	/**

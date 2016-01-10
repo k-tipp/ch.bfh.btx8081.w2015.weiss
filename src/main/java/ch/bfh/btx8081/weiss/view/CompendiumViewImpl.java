@@ -3,6 +3,8 @@ package ch.bfh.btx8081.weiss.view;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinSession;
 
 public class CompendiumViewImpl extends CompendiumView implements View {
 
@@ -35,6 +37,10 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/1" );
 			});
 
+		logout.addClickListener(clickEvent -> {
+			VaadinSession.getCurrent().getSession().invalidate();
+			Page.getCurrent().reload();
+		});
 	
 	}
 	

@@ -23,6 +23,7 @@ public class TherapyPrescriptionView extends HorizontalLayout {
 	protected Label lblTherapy;
 	protected ListSelect therapyList;
 	protected Button btnBack;
+	protected Button logout;
 
 	public TherapyPrescriptionView() {
 		Design.read(this);

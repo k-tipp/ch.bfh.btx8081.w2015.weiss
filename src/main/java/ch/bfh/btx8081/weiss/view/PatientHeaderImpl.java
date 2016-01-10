@@ -1,6 +1,8 @@
 package ch.bfh.btx8081.weiss.view;
 
 import com.vaadin.navigator.Navigator;
+import com.vaadin.server.Page;
+import com.vaadin.server.VaadinSession;
 
 import ch.bfh.btx8081.weiss.model.Patient;
 
@@ -20,6 +22,11 @@ public class PatientHeaderImpl extends PatientHeader {
 		btnBack.addClickListener(event -> {
 			navigator.navigateTo(PatientViewImpl.VIEW_NAME+ "/" + patient.getPatientID());
 			});
+		
+		logout.addClickListener(clickEvent -> {
+			VaadinSession.getCurrent().getSession().invalidate();
+			Page.getCurrent().reload();
+		});
 		
 	
 		

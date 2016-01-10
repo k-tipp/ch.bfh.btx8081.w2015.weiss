@@ -62,6 +62,7 @@ public class MedicationPrescriptionView extends HorizontalLayout {
 	protected Button btnDoseBackspace;
 	protected ListSelect unitList;
 	protected Button btnPrescripe;
+	protected Button logout;
 
 	public MedicationPrescriptionView() {
 		Design.read(this);

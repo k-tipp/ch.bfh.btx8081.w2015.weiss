@@ -31,6 +31,7 @@ public class PatientView extends VerticalLayout {
 	protected NativeSelect patient_danger_to_others;
 	protected Button btn_view_medicationOverview;
 	protected Button btn_view_therapyOverview;
+	protected Button logout;
 
 	public PatientView() {
 		Design.read(this);
