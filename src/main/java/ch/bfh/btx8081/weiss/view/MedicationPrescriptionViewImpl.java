@@ -76,6 +76,8 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	@Override
 	public void enter(ViewChangeEvent event) {
 
+		medication = null;
+		
 		// this.removeAllComponents();
 		btnBack.addClickListener(clickEvent -> {
 			navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
@@ -97,9 +99,6 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			lblDosage.setValue(medication.getDosage());
 			drugList.select(medication.getDrug().getDrugID());
 		}
-
-		// TODO change from patient to medication and add header
-
 	}
 
 	private void addListenersToComponents() {
@@ -235,16 +234,16 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			    notification.show(Page.getCurrent());
 			} else if (medication == null) {
 				// Add a new medication to patient
-				System.out.println("medication is null");
+				System.out.println("medication is null, patientid: " + patient.getPatientID());
 				Medication med = new Medication((Drug) drugList.getValue(), timesDaily, daysInWeek, weeks, dose);
-				patient.getMedication().add(med);
-				DatabaseHandler.patientService.update(patient);
-				navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
-				
+//				patient.getMedication().add(med);
+				med.setPatient(patient);
+				DatabaseHandler.medicationService.create(med);
+				navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());			
 
 			} else {
 				// Update the existing medication
-				System.out.println("medication is not null");
+				System.out.println("medication is not null, patientid: " +  + patient.getPatientID());
 				medication.setDrug((Drug) drugList.getValue());
 				medication.setTimesDaily(timesDaily);
 				medication.setDaysInWeek(daysInWeek);
