@@ -86,10 +86,13 @@ public class TherapyPrescriptionViewImpl extends MedicationPrescriptionView impl
 			String patientid = event.getParameters().replace("pat", "");
 			patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(patientid));
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
+
 		} else if(event.getParameters().startsWith("med")){
 			String medicationid = event.getParameters().replace("med", "");
 			medication = DatabaseHandler.medicationService.getMedicationById(Integer.parseInt(medicationid));
 			patient = medication.getPatient();
+			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
+			lblDosageForm.setValue(medication.getDrug().getDosageForm());
 		}
 		
 		
@@ -116,17 +119,17 @@ public class TherapyPrescriptionViewImpl extends MedicationPrescriptionView impl
 		btnDose9.addClickListener(clickEvent -> addCharToDose('9'));
 
 		btnDosePoint.addClickListener(clickEvent -> {
-			if (lblDose.getValue().length() == 0) {
+			if (lblDosage.getValue().length() == 0) {
 				addCharToDose('0');
 				addCharToDose('.');
-			} else if (!lblDose.getValue().contains(".")) {
+			} else if (!lblDosage.getValue().contains(".")) {
 				addCharToDose('.');
 			}
 		});
 
 		btnDoseBackspace.addClickListener(clickEvent -> {
-			if (lblDose.getValue().length() != 0) {
-				lblDose.setValue(lblDose.getValue().substring(0, lblDose.getValue().length() - 1));
+			if (lblDosage.getValue().length() != 0) {
+				lblDosage.setValue(lblDosage.getValue().substring(0, lblDosage.getValue().length() - 1));
 			}
 		});
 
@@ -177,12 +180,11 @@ public class TherapyPrescriptionViewImpl extends MedicationPrescriptionView impl
 				}
 			}
 			
-			String dose = lblDose.getValue();
-			String unit = (String) unitList.getValue(); // returns the selected option
+			String dose = lblDosage.getValue();
 			
 			if(medication == null) {
 				
-				 Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose, unit);
+				 Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose);
 				 patient.getMedication().add(med); // TODO add medication instead of null
 				 DatabaseHandler.patientService.update(patient);
 				 
@@ -238,10 +240,10 @@ public class TherapyPrescriptionViewImpl extends MedicationPrescriptionView impl
 
 	private void addCharToDose(char c) {
 
-		if (lblDose.getValue().equals("0.00")) {
-			lblDose.setValue(Character.toString(c));
+		if (lblDosage.getValue().equals("0.00")) {
+			lblDosage.setValue(Character.toString(c));
 		} else {
-			lblDose.setValue(lblDose.getValue() + c);
+			lblDosage.setValue(lblDosage.getValue() + c);
 		}
 	}
 	

@@ -41,9 +41,6 @@ public class Medication {
 	/** The dosage of the medication. */
 	private String dosage = null;
 
-	/** The unit of the medication. */
-	private String unit = null;
-
 	/** The status id for this medication. */
 	private int statusID = 0;
 
@@ -73,14 +70,12 @@ public class Medication {
 		this.medicationID = id;
 	}
 
-	public Medication(Drug drug, String timesDaily, String daysInWeek, String weeks, String dose, String unit) {
+	public Medication(Drug drug, String timesDaily, String daysInWeek, String weeks, String dose) {
 		this.drug = drug;
 		this.timesDaily = timesDaily;
 		this.daysInWeek = daysInWeek;
 		this.weeks = weeks;
 		this.dosage = dose;
-		this.unit = unit;
-		
 	}
 
 	/**
@@ -204,25 +199,6 @@ public class Medication {
 	 */
 	public void setDosage(String dosage) {
 		this.dosage = dosage;
-	}
-
-	/**
-	 * Gets the unit.
-	 *
-	 * @return the unit
-	 */
-	public String getUnit() {
-		return unit;
-	}
-
-	/**
-	 * Sets the unit.
-	 *
-	 * @param unit
-	 *            the new unit
-	 */
-	public void setUnit(String unit) {
-		this.unit = unit;
 	}
 
 	/**

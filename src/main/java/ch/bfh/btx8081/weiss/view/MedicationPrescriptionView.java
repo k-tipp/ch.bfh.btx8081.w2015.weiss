@@ -47,7 +47,7 @@ public class MedicationPrescriptionView extends HorizontalLayout {
 	protected StatefulButton btnWeeks5;
 	protected StatefulButton btnWeeks6;
 	protected StatefulButton btnWeeksInfinitely;
-	protected Label lblDose;
+	protected Label lblDosage;
 	protected Button btnDose7;
 	protected Button btnDose8;
 	protected Button btnDose9;
@@ -60,7 +60,7 @@ public class MedicationPrescriptionView extends HorizontalLayout {
 	protected Button btnDose0;
 	protected Button btnDosePoint;
 	protected Button btnDoseBackspace;
-	protected ListSelect unitList;
+	protected Label lblDosageForm;
 	protected Button btnPrescripe;
 	protected Button logout;
 

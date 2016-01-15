@@ -3,12 +3,17 @@ package ch.bfh.btx8081.weiss.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.data.Property;
+import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinSession;
+import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Notification;
 
 import ch.bfh.btx8081.weiss.model.Drug;
 import ch.bfh.btx8081.weiss.model.Medication;
@@ -27,13 +32,13 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 
 	/** The navigator. */
 	private Navigator navigator = null;
-	
+
 	private Patient patient = null;
 	private Medication medication = null;
-	
+
 	private static SelectedButtonState selectedButtonState = null;
 	private static UnselectedButtonState unselectedButtonState = null;
-	
+
 	private List<StatefulButton> dailyButtons;
 	private List<StatefulButton> daysInWeekButtons;
 	private List<StatefulButton> weeksButtons;
@@ -47,15 +52,15 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	public MedicationPrescriptionViewImpl(final Navigator navigator) {
 		super();
 		this.navigator = navigator;
-		
+
 		logout.addClickListener(clickEvent -> {
 			VaadinSession.getCurrent().getSession().invalidate();
 			Page.getCurrent().reload();
 		});
-		
+
 		selectedButtonState = new SelectedButtonState();
 		unselectedButtonState = new UnselectedButtonState();
-		
+
 		fillButtonLists();
 		setAllButtonsUnselected();
 		addListenersToComponents();
@@ -70,33 +75,30 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
-		
-		//this.removeAllComponents();
+
+		// this.removeAllComponents();
 		btnBack.addClickListener(clickEvent -> {
-			navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME +"/"+patient.getPatientID());
+			navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
 		});
-		
-		for (Drug d : DatabaseHandler.drugService.getAllDrugs()) {
-			drugList.addItem(d.getName());
-			
-		}
-		
-		
-		if(event.getParameters().startsWith("pat")) {
+
+		if (event.getParameters().startsWith("pat")) {
 			setAllButtonsUnselected();
 			String patientid = event.getParameters().replace("pat", "");
 			patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(patientid));
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
-		} else if(event.getParameters().startsWith("med")){
+			lblDosageForm.setValue("");
+			lblDosage.setValue("0.00");
+		} else if (event.getParameters().startsWith("med")) {
 			String medicationid = event.getParameters().replace("med", "");
 			medication = DatabaseHandler.medicationService.getMedicationById(Integer.parseInt(medicationid));
 			patient = medication.getPatient();
+			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
+			lblDosageForm.setValue(medication.getDrug().getDosageForm());
+			lblDosage.setValue(medication.getDosage());
+			drugList.select(medication.getDrug().getDrugID());
 		}
-		
-		
 
 		// TODO change from patient to medication and add header
-		
 
 	}
 
@@ -104,7 +106,32 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		btnCompendium.addClickListener(clickEvent -> {
 			navigator.navigateTo(CompendiumViewImpl.VIEW_NAME);
 		});
-		
+
+		// Add listener and add drugs to drugList
+		drugList.setImmediate(true);
+		drugList.addValueChangeListener(new Property.ValueChangeListener() {
+
+			/**
+			 * Generated serial version uid.
+			 */
+			private static final long serialVersionUID = -3913643306964087559L;
+
+			public void valueChange(ValueChangeEvent event) {
+				Drug selectedDrug = (Drug) event.getProperty().getValue();
+				lblDosageForm.setValue(selectedDrug.getDosageForm());
+				lblDosage.setValue("0.00");
+			}
+		});
+
+		// Add drugs to drugList
+		BeanItemContainer<Drug> drugContainer = new BeanItemContainer<Drug>(Drug.class,
+				DatabaseHandler.drugService.getAllDrugs());
+		drugList.setContainerDataSource(drugContainer);
+		drugList.setItemCaptionMode(ItemCaptionMode.PROPERTY);
+		drugList.setItemCaptionPropertyId("name");
+		drugList.setImmediate(true);
+
+		// Add number buttons listeners
 		btnDose0.addClickListener(clickEvent -> addCharToDose('0'));
 		btnDose1.addClickListener(clickEvent -> addCharToDose('1'));
 		btnDose2.addClickListener(clickEvent -> addCharToDose('2'));
@@ -117,29 +144,31 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		btnDose9.addClickListener(clickEvent -> addCharToDose('9'));
 
 		btnDosePoint.addClickListener(clickEvent -> {
-			if (lblDose.getValue().length() == 0) {
+			if (lblDosage.getValue().length() == 0) {
 				addCharToDose('0');
 				addCharToDose('.');
-			} else if (!lblDose.getValue().contains(".")) {
+			} else if (!lblDosage.getValue().contains(".")) {
 				addCharToDose('.');
 			}
 		});
 
 		btnDoseBackspace.addClickListener(clickEvent -> {
-			if (lblDose.getValue().length() != 0) {
-				lblDose.setValue(lblDose.getValue().substring(0, lblDose.getValue().length() - 1));
+			if (lblDosage.getValue().length() != 0) {
+				lblDosage.setValue(lblDosage.getValue().substring(0, lblDosage.getValue().length() - 1));
 			}
 		});
 
-		for(StatefulButton btn : dailyButtons) {
+		// Add listeners to daily buttons
+		for (StatefulButton btn : dailyButtons) {
 			btn.addStatefulClickListener(statefulClickEvent -> {
-					manageSingleButtonClickEvent(dailyButtons, statefulClickEvent.getButton());
-				});
+				manageSingleButtonClickEvent(dailyButtons, statefulClickEvent.getButton());
+			});
 		}
-		
-		for(StatefulButton btn : daysInWeekButtons) {
+
+		// Add listeners to days in week buttons
+		for (StatefulButton btn : daysInWeekButtons) {
 			btn.addStatefulClickListener(statefulClickEvent -> {
-				if(statefulClickEvent.getButton().getButtonState() == unselectedButtonState) {
+				if (statefulClickEvent.getButton().getButtonState() == unselectedButtonState) {
 					selectedButtonState.doAction(statefulClickEvent.getButton());
 				} else {
 					unselectedButtonState.doAction(statefulClickEvent.getButton());
@@ -147,63 +176,96 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			});
 		}
 
-		for(StatefulButton btn : weeksButtons) {
+		// Add listeners to weeks buttons
+		for (StatefulButton btn : weeksButtons) {
 			btn.addStatefulClickListener(statefulClickEvent -> {
-					manageSingleButtonClickEvent(weeksButtons, statefulClickEvent.getButton());
-				});
+				manageSingleButtonClickEvent(weeksButtons, statefulClickEvent.getButton());
+			});
 		}
-		
+
+		// Add listener to prescripe button (add new or update a medication)
 		btnPrescripe.addClickListener(clickEvent -> {
-			String drugName = (String) drugList.getValue(); // returns the selected option
-			Drug drug = DatabaseHandler.drugService.getDrugByName(drugName);
+			String errorMessage = "";
+			if(drugList.getValue() == null) {
+				errorMessage += "- Medikament fehlt\n";
+			}
+
+
 			String timesDaily = "";
-			for(Button btn : dailyButtons) {
-				if(btn.getStyleName().equals("friendly")) {
+			for (Button btn : dailyButtons) {
+				if (btn.getStyleName().equals("friendly")) {
 					timesDaily = btn.getCaption();
 				}
 			}
-			
+			if(timesDaily == null || timesDaily.isEmpty()) {
+				errorMessage += "- Anzahl 'täglich' fehlt\n";
+			}
+
 			String daysInWeek = "";
-			for(Button btn : daysInWeekButtons) {
-				if(btn.getStyleName().equals("friendly")) {
+			for (Button btn : daysInWeekButtons) {
+				if (btn.getStyleName().equals("friendly")) {
 					daysInWeek = btn.getCaption() + ",";
 				}
 				daysInWeek = daysInWeek.substring(0, daysInWeek.length());
 			}
 			
+			if(daysInWeek == null || daysInWeek.isEmpty()) {
+				errorMessage += "- Wochentage fehlen\n";
+			}
+
 			String weeks = "";
-			for(Button btn : weeksButtons) {
-				if(btn.getStyleName().equals("friendly")) {
+			for (Button btn : weeksButtons) {
+				if (btn.getStyleName().equals("friendly")) {
 					weeks = btn.getCaption();
 				}
 			}
 			
-			String dose = lblDose.getValue();
-			String unit = (String) unitList.getValue(); // returns the selected option
+			if(weeks == null || weeks.isEmpty()) {
+				errorMessage += "- Anzahl Wochen fehlt\n";
+			}
+
+			String dose = lblDosage.getValue();
+			if(dose.equals("0.00")) {
+				errorMessage += "- Keine Dosis\n";
+			}
 			
-			if(medication == null) {
+			if(errorMessage != null && !errorMessage.isEmpty()) {
+			    Notification notification = new Notification(errorMessage, Notification.Type.HUMANIZED_MESSAGE);
+			    notification.setDelayMsec(2000);
+			    notification.show(Page.getCurrent());
+			} else if (medication == null) {
+				// Add a new medication to patient
+				System.out.println("medication is null");
+				Medication med = new Medication((Drug) drugList.getValue(), timesDaily, daysInWeek, weeks, dose);
+				patient.getMedication().add(med);
+				DatabaseHandler.patientService.update(patient);
+				navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
 				
-				 Medication med = new Medication(drug, timesDaily, daysInWeek, weeks, dose, unit);
-				 patient.getMedication().add(med); // TODO add medication instead of null
-				 DatabaseHandler.patientService.update(patient);
-				 
+
 			} else {
-				//medication.setXXXX(value);
-				//DatabaseHandler.medicationService.update(medication);
-			}			
+				// Update the existing medication
+				System.out.println("medication is not null");
+				medication.setDrug((Drug) drugList.getValue());
+				medication.setTimesDaily(timesDaily);
+				medication.setDaysInWeek(daysInWeek);
+				medication.setWeeks(weeks);
+				medication.setDosage(dose);
+				DatabaseHandler.medicationService.update(medication);
+				navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
+			}
 		});
 	}
-	
+
 	private void setAllButtonsUnselected() {
-		for(StatefulButton button : dailyButtons) {
+		for (StatefulButton button : dailyButtons) {
 			unselectedButtonState.doAction(button);
 		}
-		
-		for(StatefulButton button : daysInWeekButtons) {
+
+		for (StatefulButton button : daysInWeekButtons) {
 			unselectedButtonState.doAction(button);
 		}
-		
-		for(StatefulButton button : weeksButtons) {
+
+		for (StatefulButton button : weeksButtons) {
 			unselectedButtonState.doAction(button);
 		}
 	}
@@ -217,7 +279,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		dailyButtons.add(btnDaily6);
 		dailyButtons.add(btnDaily8);
 		dailyButtons.add(btnDaily12);
-		
+
 		weeksButtons = new ArrayList<StatefulButton>();
 		weeksButtons.add(btnWeeks1);
 		weeksButtons.add(btnWeeks2);
@@ -226,7 +288,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		weeksButtons.add(btnWeeks5);
 		weeksButtons.add(btnWeeks6);
 		weeksButtons.add(btnWeeksInfinitely);
-		
+
 		daysInWeekButtons = new ArrayList<StatefulButton>();
 		daysInWeekButtons.add(btnMon);
 		daysInWeekButtons.add(btnTue);
@@ -234,20 +296,22 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		daysInWeekButtons.add(btnThu);
 		daysInWeekButtons.add(btnFri);
 		daysInWeekButtons.add(btnSat);
-		daysInWeekButtons.add(btnSun);	
+		daysInWeekButtons.add(btnSun);
 	}
 
+	// Updates the dose label with the new char
 	private void addCharToDose(char c) {
 
-		if (lblDose.getValue().equals("0.00")) {
-			lblDose.setValue(Character.toString(c));
+		if (lblDosage.getValue().equals("0.00")) {
+			lblDosage.setValue(Character.toString(c));
 		} else {
-			lblDose.setValue(lblDose.getValue() + c);
+			lblDosage.setValue(lblDosage.getValue() + c);
 		}
 	}
-	
-	private void manageSingleButtonClickEvent(List<StatefulButton> btnList, StatefulButton clickedBtn) {		
-		for(StatefulButton btn : btnList) {
+
+	// Checks that only one button in single button collection can be selected.
+	private void manageSingleButtonClickEvent(List<StatefulButton> btnList, StatefulButton clickedBtn) {
+		for (StatefulButton btn : btnList) {
 			unselectedButtonState.doAction(btn);
 		}
 		selectedButtonState.doAction(clickedBtn);

@@ -58,7 +58,7 @@ public class MedicationService {
 	 * @return the medication
 	 */
 	public Medication create(int id, Patient patient, String picture, LocalDateTime fromDate, LocalDateTime toDate,
-			Drug drug, String dosage, String unit, int statusID) {
+			Drug drug, String dosage, int statusID) {
 		Medication emm = new Medication(id);
 		emm.setPatient(patient);
 		emm.setDosage(dosage);
@@ -67,7 +67,6 @@ public class MedicationService {
 		emm.setToDate(toDate);
 		emm.setPicture(picture);
 		emm.setStatusID(statusID);
-		emm.setUnit(unit);
 		DatabaseHandler.entityManager.getTransaction().begin();
 		DatabaseHandler.entityManager.persist(emm);
 		DatabaseHandler.entityManager.getTransaction().commit();

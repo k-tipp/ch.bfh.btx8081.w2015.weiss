@@ -82,11 +82,11 @@ public class Drug {
 		this.active_ingredient = active_ingredient;
 	}
 
-	public String getDosage_form() {
+	public String getDosageForm() {
 		return dosage_form;
 	}
 
-	public void setDosage_form(String dosage_form) {
+	public void setDosageForm(String dosage_form) {
 		this.dosage_form = dosage_form;
 	}
 }
