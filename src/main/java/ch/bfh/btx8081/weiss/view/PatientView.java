@@ -22,6 +22,7 @@ import com.vaadin.ui.declarative.Design;
 @SuppressWarnings("serial")
 public class PatientView extends VerticalLayout {
 	protected Button btn_return;
+	protected Button logout;
 	protected Image patientPicture;
 	protected Label patient_name;
 	protected Label patient_age;
@@ -31,7 +32,7 @@ public class PatientView extends VerticalLayout {
 	protected NativeSelect patient_danger_to_others;
 	protected Button btn_view_medicationOverview;
 	protected Button btn_view_therapyOverview;
-	protected Button logout;
+	protected Button btnSoapOverview;
 
 	public PatientView() {
 		Design.read(this);
