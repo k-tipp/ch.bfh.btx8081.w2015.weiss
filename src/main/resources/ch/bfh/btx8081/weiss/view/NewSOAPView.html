@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout size-full="true"> 
+   <vaadin-horizontal-layout width-full="true" margin="true" _id="headerComponent" :middle=""> 
+    <vaadin-label size-auto="true" :middle=""> 
+     <h1>Neuer Eintrag</h1> 
+    </vaadin-label> 
+    <vaadin-button _id="btnLogout" :middle="" :right="">
+      Logout 
+    </vaadin-button> 
+    <vaadin-button _id="btnBack" :middle="" :right="">
+      zurück 
+    </vaadin-button> 
+   </vaadin-horizontal-layout> 
+   <vaadin-horizontal-layout margin="true" :middle="" spacing="true"> 
+    <vaadin-label size-auto="true" :right="">
+      Subjective: 
+    </vaadin-label> 
+    <vaadin-text-area width="500px" height="100px" _id="taSubjective"></vaadin-text-area> 
+   </vaadin-horizontal-layout> 
+   <vaadin-horizontal-layout margin="true" :middle="" spacing="true">  
+    <vaadin-label size-auto="true" :right="">
+      Objective: 
+    </vaadin-label>
+    <vaadin-text-area width="500px" height="100px" _id="taObjective"></vaadin-text-area> 
+   </vaadin-horizontal-layout> 
+   <vaadin-horizontal-layout margin="true" :middle="" spacing="true"> 
+    <vaadin-label size-auto="true" :middle="">
+      Assessment: 
+    </vaadin-label> 
+    <vaadin-text-area width="500px" height="100px"  _id="taAssessment"></vaadin-text-area> 
+   </vaadin-horizontal-layout> 
+   <vaadin-horizontal-layout margin="true" :middle="" spacing="true"> 
+    <vaadin-label size-auto="true" :middle="">
+      Procedure: 
+    </vaadin-label> 
+    <vaadin-text-area width="500px" height="100px" _id="taProcedure"></vaadin-text-area> 
+   </vaadin-horizontal-layout> 
+   <vaadin-button _id="btnSave" :middle="" :right="">
+      speichern 
+    </vaadin-button> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

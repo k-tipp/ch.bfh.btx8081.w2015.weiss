@@ -22,8 +22,10 @@ import ch.bfh.btx8081.weiss.view.LoginViewImpl;
 import ch.bfh.btx8081.weiss.view.LoginViewImpl.LoginListener;
 import ch.bfh.btx8081.weiss.view.MedicationOverviewImpl;
 import ch.bfh.btx8081.weiss.view.MedicationPrescriptionViewImpl;
+import ch.bfh.btx8081.weiss.view.NewSOAPViewImpl;
 import ch.bfh.btx8081.weiss.view.PatientOverviewImpl;
 import ch.bfh.btx8081.weiss.view.PatientViewImpl;
+import ch.bfh.btx8081.weiss.view.SOAPOverviewImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -60,6 +62,8 @@ public class MyUI extends UI {
 		navigator.addView(MedicationOverviewImpl.VIEW_NAME, new MedicationOverviewImpl(navigator));
 		navigator.addView(MedicationPrescriptionViewImpl.VIEW_NAME, new MedicationPrescriptionViewImpl(navigator));
 		navigator.addView(CompendiumViewImpl.VIEW_NAME, new CompendiumViewImpl(navigator));
+		navigator.addView(SOAPOverviewImpl.VIEW_NAME, new SOAPOverviewImpl(navigator));
+		navigator.addView(NewSOAPViewImpl.VIEW_NAME, new NewSOAPViewImpl(navigator));
 		
 		if(navigator.getState() == null || navigator.getState().isEmpty()) {
 			navigator.navigateTo(PatientOverviewImpl.VIEW_NAME);
