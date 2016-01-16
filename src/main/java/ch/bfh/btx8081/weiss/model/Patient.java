@@ -31,6 +31,11 @@ public class Patient {
 	@OneToMany(mappedBy = "patient",  fetch=FetchType.EAGER)
 	private List<Medication> medication = null;
 
+	/** The medications for this patient. */
+	//Eager loading for being able to display stuff with toString(), without explicitly loading 
+	@OneToMany(mappedBy = "patient",  fetch=FetchType.EAGER)
+	private List<Soap> soap = null;
+	
 	/** The picture of this patient. */
 	private String picture = null; // base64
 	
@@ -373,4 +378,15 @@ public class Patient {
 	public void setMedication(List<Medication> medication) {
 		this.medication = medication;
 	}
+
+	public List<Soap> getSoap() {
+		
+		return this.soap;
+	}
+	
+	public void setSoap(List<Soap> soap){
+		this.soap = soap;
+	
+	}
+	
 }

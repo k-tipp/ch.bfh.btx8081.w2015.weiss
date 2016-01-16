@@ -8,6 +8,7 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 
+import ch.bfh.btx8081.weiss.model.Soap;
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
@@ -34,10 +35,18 @@ public class SOAPOverviewImpl extends SOAPOverview implements View {
 		// });
 	}
 	
+	
 
 	@Override
 	public void enter(ViewChangeEvent event) {
+		
+		this.removeAllComponents();
+		
 		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
+		PatientHeaderImpl ph = new PatientHeaderImpl(patient, navigator);
+		addComponent(ph);
+		
+		
 		btnBack.addClickListener(clickEvent -> {
 				navigator.navigateTo(PatientViewImpl.VIEW_NAME + "/" + patient.getPatientID());
 			 });
@@ -46,6 +55,11 @@ public class SOAPOverviewImpl extends SOAPOverview implements View {
 			System.out.println("clicked " + patient.getPatientID());
 			navigator.navigateTo(NewSOAPViewImpl.VIEW_NAME + "/" + patient.getPatientID());
 		 });
+		addComponent(headerComponent);
+		
+		for (Soap s : patient.getSoap()) {
+			SOAPDetailComponentImpl sdci = new SOAPDetailComponentImpl(s, navigator);
+			addComponent(sdci);
+		}
 	}
-
 }

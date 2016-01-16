@@ -28,7 +28,7 @@ public class NewSOAPView extends VerticalLayout {
 	protected TextArea taSubjective;
 	protected TextArea taObjective;
 	protected TextArea taAssessment;
-	protected TextArea taProcedure;
+	protected TextArea taPlan;
 
 	public NewSOAPView() {
 		Design.read(this);

@@ -26,7 +26,7 @@ public class NewSOAPViewImpl extends NewSOAPView implements View {
 	private String subjective;
 	private String objective;
 	private String assessment;
-	private String procedure;
+	private String plan;
 	
 	
 	public NewSOAPViewImpl(final Navigator navigator) {
@@ -52,7 +52,7 @@ public class NewSOAPViewImpl extends NewSOAPView implements View {
 			subjective = taSubjective.getValue();
 			objective = taObjective.getValue();
 			assessment = taAssessment.getValue();
-			procedure = taProcedure.getValue();
+			plan = taPlan.getValue();
 			System.out.println(toString());
 		 });
 		
@@ -63,7 +63,7 @@ public class NewSOAPViewImpl extends NewSOAPView implements View {
 	@Override
 	public String toString() {
 		return "NewSOAPViewImpl [subjective=" + subjective + ", objective=" + objective + ", assessment=" + assessment
-				+ ", procedure=" + procedure + "]";
+				+ ", procedure=" + plan + "]";
 	}
 
 }
