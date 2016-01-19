@@ -20,6 +20,9 @@ public class DatabaseHandler {
 	/** The medication service. */
 	public static MedicationService medicationService = new MedicationService();
 	
+	/** The soap service. */
+	public static SoapService soapService = new SoapService();
+	
 	/** The drug service. */
 	public static DrugService drugService = new DrugService();
 

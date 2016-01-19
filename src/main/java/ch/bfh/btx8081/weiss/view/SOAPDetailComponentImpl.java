@@ -1,15 +1,18 @@
 package ch.bfh.btx8081.weiss.view;
 
+import java.time.format.DateTimeFormatter;
+
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Label;
 
 import ch.bfh.btx8081.weiss.model.Soap;
 
 public class SOAPDetailComponentImpl extends SOAPDetailComponent implements View {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.uuuu HH:mm:ss");
 
 	/** The Constant VIEW_NAME contains the name of this view. */
 	public static final String VIEW_NAME = "MedicationPrescriptionView";
@@ -19,25 +22,22 @@ public class SOAPDetailComponentImpl extends SOAPDetailComponent implements View
 	 *
 	 * @param navigator
 	 *            the navigator
-	 * @return 
+	 * @return
 	 */
-	public SOAPDetailComponentImpl(Soap soap, Navigator navigator)
-	{
-	 super();
-		
-		subjective_entry.setValue(soap.getSubjective());
-		objective_entry.setValue(soap.getObjective());
-		assessment_entry.setValue(soap.getAssessment());
-		procedure_entry.setValue(soap.getPlan());
+	public SOAPDetailComponentImpl(Soap soap, Navigator navigator) {
+		super();
 	
+		entryDate.setValue(soap.getCreatedAt().format(formatter) + " - " + soap.getCreator().getUsername());
+		subjectiveText.setValue(soap.getSubjective());
+		objectiveText.setValue(soap.getObjective());
+		assessmentText.setValue(soap.getAssessment());
+		planText.setValue(soap.getPlan());
+
 	}
-	
+
 	@Override
 	public void enter(ViewChangeEvent event) {
 
-		
 	}
-	
-	
 
 }

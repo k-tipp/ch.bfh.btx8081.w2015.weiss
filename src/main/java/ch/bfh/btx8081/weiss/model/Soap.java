@@ -1,10 +1,13 @@
 package ch.bfh.btx8081.weiss.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 /**
@@ -19,21 +22,32 @@ public class Soap {
 	/** The patient. */
 	@OneToOne
 	private Patient patient = null;
-    
 
 	/** The subjective informations. */
-	// @GeneratedValue(strategy = GenerationType.TABLE)
+	@Lob
+	@Column(name="SOAPSUBJECTIVE")
 	private String subjective = null;
 	
 	/** The objective informations. */
+	@Lob
+	@Column(name="SOAPOBJECTIVE")
 	private String objective = null;
 	
 	/** The assessment informations. */
+	@Lob
+	@Column(name="SOAPASSESSMENT")
 	private String assessment = null;
 	
 	/** The plan for further treatment. */
-	@Column(name="PLANX")
+	@Lob
+	@Column(name="SOAPPLAN")
 	private String plan = null;
+	
+	/** The date and time when the entry was created. **/
+	private LocalDateTime createdAt = null;
+	
+	@OneToOne
+	private MedicalUser creator = null;
 	
 	/**
 	 * Instantiates a new soap entry.
@@ -41,16 +55,14 @@ public class Soap {
 	public Soap() {
 	}
 	
-	public Soap(int id) {
-		this.soapId = id;
-	}
-
-	public Soap(int soapId, String subjective, String objective, String assessment, String plan, Patient patient) {
-		this.soapId = soapId;
+	public Soap(String subjective, String objective, String assessment, String plan, Patient patient, LocalDateTime createdAt, MedicalUser creator) {
 		this.subjective = subjective;
 		this.objective = objective;
 		this.assessment = assessment;
 		this.plan = plan;
+		this.patient = patient;
+		this.createdAt = createdAt;
+		this.setCreator(creator);
 	}
 
 	public int getSoapId() {
@@ -99,6 +111,22 @@ public class Soap {
 
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public MedicalUser getCreator() {
+		return creator;
+	}
+
+	public void setCreator(MedicalUser creator) {
+		this.creator = creator;
 	}
 
 }

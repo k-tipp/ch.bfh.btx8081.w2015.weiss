@@ -15,9 +15,6 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 	
 	/** The Constant VIEW_NAME contains the view name of this view. */
 	public static final String VIEW_NAME = "CompendiumView";
-	
-	/** The navigator. */
-	private Navigator navigator = null;
 
 	/**
 	 * Instantiates a new medication view impl.
@@ -28,9 +25,7 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 
 	public CompendiumViewImpl (final Navigator navigator) {
 		super();
-		this.navigator = navigator;
-				
-	 
+
 		//TODO replace "/1"
 		
 		btnBack.addClickListener(event -> {

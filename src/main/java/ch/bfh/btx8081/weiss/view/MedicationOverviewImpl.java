@@ -20,6 +20,8 @@ public class MedicationOverviewImpl extends MedicationOverview implements View {
 	public static final String VIEW_NAME = "MedicationOverview";
 
 	private Navigator navigator = null;
+	
+	private Patient patient = null;
 
 	/**
 	 * Instantiates a new medication overview implementation.
@@ -30,6 +32,10 @@ public class MedicationOverviewImpl extends MedicationOverview implements View {
 	public MedicationOverviewImpl(Navigator navigator) {
 		super();
 		this.navigator = navigator;
+		
+		btnNewMedication.addClickListener(clickEvent -> {
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/pat" + this.patient.getPatientID());
+		});
 
 	}
 
@@ -45,15 +51,11 @@ public class MedicationOverviewImpl extends MedicationOverview implements View {
 
 		this.removeAllComponents();
 
-		Patient patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
+		this.patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
 
 		PatientHeaderImpl ph = new PatientHeaderImpl(patient, navigator);
 		addComponent(ph);
 		
-		btnNewMedication.addClickListener(clickEvent -> {
-			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/pat" + patient.getPatientID());
-		});
-
 		addComponent(headerComponent);
 
 		for (Medication m : patient.getMedication()) {

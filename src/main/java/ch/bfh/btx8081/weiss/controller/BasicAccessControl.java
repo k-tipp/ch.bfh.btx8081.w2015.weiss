@@ -30,7 +30,7 @@ public class BasicAccessControl implements AccessControl {
         MedicalUser user = this.userService.getUserByUsernamePassword(username, password);
         
         if(user != null) {
-            CurrentUser.set(user.getUsername());
+            CurrentUser.set(user);
             return true;
         }
         return false;
@@ -38,12 +38,12 @@ public class BasicAccessControl implements AccessControl {
 
     @Override
     public boolean isUserSignedIn() {
-        return !CurrentUser.get().isEmpty();
+        return (CurrentUser.get() == null ? false : true);
     }
 
     @Override
     public String getPrincipalName() {
-        return CurrentUser.get();
+        return CurrentUser.get().getUsername();
     }
 
 }

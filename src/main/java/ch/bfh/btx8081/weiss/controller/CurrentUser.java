@@ -3,6 +3,8 @@ package ch.bfh.btx8081.weiss.controller;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 
+import ch.bfh.btx8081.weiss.model.MedicalUser;
+
 /**
  * Class for retrieving and setting the name of the current user of the current
  * session (without using JAAS). All methods of this class require that a
@@ -29,11 +31,11 @@ public final class CurrentUser {
      * @throws IllegalStateException
      *             if the current session cannot be accessed.
      */
-    public static String get() {
-        String currentUser = (String) getCurrentRequest().getWrappedSession()
+    public static MedicalUser get() {
+    	MedicalUser currentUser = (MedicalUser) getCurrentRequest().getWrappedSession()
                 .getAttribute(CURRENT_USER_SESSION_ATTRIBUTE_KEY);
         if (currentUser == null) {
-            return "";
+            return null;
         } else {
             return currentUser;
         }
@@ -46,7 +48,7 @@ public final class CurrentUser {
      * @throws IllegalStateException
      *             if the current session cannot be accessed.
      */
-    public static void set(String currentUser) {
+    public static void set(MedicalUser currentUser) {
         if (currentUser == null) {
             getCurrentRequest().getWrappedSession().removeAttribute(
                     CURRENT_USER_SESSION_ATTRIBUTE_KEY);
