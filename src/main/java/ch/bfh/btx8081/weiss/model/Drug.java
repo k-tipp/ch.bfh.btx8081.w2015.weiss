@@ -33,6 +33,12 @@ public class Drug {
 	
 	/** The drug picture. */
 	private String picture = null;
+	
+	
+	/** The drug compendium link. */
+	private String compendium = null;
+	
+	
 
 	/** The medications for this patient. */
 	// Eager loading for being able to display stuff with toString(), without
@@ -88,5 +94,13 @@ public class Drug {
 
 	public void setDosageForm(String dosage_form) {
 		this.dosage_form = dosage_form;
+	}
+
+	public String getCompendium() {
+		return compendium;
+	}
+
+	public void setCompendium(String compendium) {
+		this.compendium = compendium;
 	}
 }
