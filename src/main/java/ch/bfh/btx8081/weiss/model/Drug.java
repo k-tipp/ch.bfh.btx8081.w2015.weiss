@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.weiss.model;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.Entity;
