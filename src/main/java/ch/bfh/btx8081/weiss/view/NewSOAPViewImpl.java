@@ -47,8 +47,10 @@ public class NewSOAPViewImpl extends NewSOAPView implements View {
 			plan = taPlan.getValue();
 			
 			Soap soap = new Soap(subjective, objective, assessment, plan, patient, LocalDateTime.now(), CurrentUser.get());
+			soap = DatabaseHandler.soapService.create(soap);
 			patient.getSoaps().add(soap);
 			DatabaseHandler.patientService.update(patient);
+			
 			
 			navigator.navigateTo(SOAPOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
 		 });
