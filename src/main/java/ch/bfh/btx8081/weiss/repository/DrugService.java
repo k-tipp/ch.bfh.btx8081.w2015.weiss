@@ -46,7 +46,7 @@ public class DrugService {
 		return (List<Drug>) query.getResultList();
 	}
 
-	public Drug getDrugById(int id) {
+	public Drug getDrugById(long id) {
 		return DatabaseHandler.entityManager.find(Drug.class, id);
 	}
 
