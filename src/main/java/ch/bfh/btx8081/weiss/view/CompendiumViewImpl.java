@@ -47,11 +47,8 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 			Page.getCurrent().reload();
 		});
 
-		// TODO replace 568
 
-		drug = DatabaseHandler.drugService.getDrugById(568);
 
-		comp.setSource(new ExternalResource(drug.getCompendium()));
 
 	}
 
@@ -64,7 +61,12 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
+//TODO replace /1 with delete first 2 char
+		String drugid = event.getParameters().replace("1/", "");
+		drug = DatabaseHandler.drugService.getDrugById(Integer.parseInt(drugid));
+		comp.setSource(new ExternalResource(drug.getCompendium()));
 
+		
 	}
 
 }
