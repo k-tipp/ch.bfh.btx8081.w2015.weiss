@@ -21,16 +21,20 @@ public final class CurrentUser {
     public static final String CURRENT_USER_SESSION_ATTRIBUTE_KEY = CurrentUser.class
             .getCanonicalName();
 
+    /**
+	 * Instantiates a new current user.
+	 */
     private CurrentUser() {
     }
 
     /**
-     * Returns the name of the current user stored in the current session, or an
-     * empty string if no user name is stored.
-     * 
-     * @throws IllegalStateException
-     *             if the current session cannot be accessed.
-     */
+	 * Returns the name of the current user stored in the current session, or an
+	 * empty string if no user name is stored.
+	 *
+	 * @return the medical user
+	 * @throws IllegalStateException
+	 *             if the current session cannot be accessed.
+	 */
     public static MedicalUser get() {
     	MedicalUser currentUser = (MedicalUser) getCurrentRequest().getWrappedSession()
                 .getAttribute(CURRENT_USER_SESSION_ATTRIBUTE_KEY);
@@ -42,13 +46,15 @@ public final class CurrentUser {
     }
 
     /**
-     * Sets the name of the current user and stores it in the current session.
-     * Using a {@code null} username will remove the username from the session.
-     * 
-     * @throws IllegalStateException
-     *             if the current session cannot be accessed.
-     */
-    public static void set(MedicalUser currentUser) {
+	 * Sets the name of the current user and stores it in the current session.
+	 * Using a {@code null} username will remove the username from the session.
+	 *
+	 * @param currentUser
+	 *            the current user
+	 * @throws IllegalStateException
+	 *             if the current session cannot be accessed.
+	 */
+    public static void set(final MedicalUser currentUser) {
         if (currentUser == null) {
             getCurrentRequest().getWrappedSession().removeAttribute(
                     CURRENT_USER_SESSION_ATTRIBUTE_KEY);
@@ -58,6 +64,11 @@ public final class CurrentUser {
         }
     }
 
+    /**
+	 * Gets the current request.
+	 *
+	 * @return the current request
+	 */
     private static VaadinRequest getCurrentRequest() {
         VaadinRequest request = VaadinService.getCurrentRequest();
         if (request == null) {

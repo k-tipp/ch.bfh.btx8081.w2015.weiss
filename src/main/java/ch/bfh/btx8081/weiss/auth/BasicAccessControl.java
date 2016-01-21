@@ -29,15 +29,17 @@ public class BasicAccessControl implements AccessControl {
      * @see ch.bfh.btx8081.weiss.auth.AccessControl#signIn(java.lang.String, java.lang.String)
      */
     @Override
-    public boolean signIn(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
-    	username = username.trim();
-    	password = password.trim();
-        if (username == null || username.isEmpty())
-            return false;
+	public final boolean signIn(final String username, final String password)
+    		throws NoSuchAlgorithmException, InvalidKeySpecException {
+    	String trimedUsername = username.trim();
+    	String trimedPassword = password.trim();
+        if (trimedUsername == null || trimedUsername.isEmpty()) {
+			return false;
+		}
         
-        MedicalUser user = this.userService.getUserByUsernamePassword(username, password);
+        MedicalUser user = this.userService.getUserByUsernamePassword(trimedUsername, trimedPassword);
         
-        if(user != null) {
+        if (user != null) {
             CurrentUser.set(user);
             return true;
         }
@@ -48,7 +50,7 @@ public class BasicAccessControl implements AccessControl {
      * @see ch.bfh.btx8081.weiss.auth.AccessControl#isUserSignedIn()
      */
     @Override
-    public boolean isUserSignedIn() {
+	public final boolean isUserSignedIn() {
         return (CurrentUser.get() == null ? false : true);
     }
 
@@ -56,7 +58,7 @@ public class BasicAccessControl implements AccessControl {
      * @see ch.bfh.btx8081.weiss.auth.AccessControl#getPrincipalName()
      */
     @Override
-    public String getPrincipalName() {
+	public final String getPrincipalName() {
         return CurrentUser.get().getUsername();
     }
 
