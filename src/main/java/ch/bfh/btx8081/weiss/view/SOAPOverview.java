@@ -21,7 +21,6 @@ import com.vaadin.ui.declarative.Design;
 public class SOAPOverview extends VerticalLayout {
 	protected HorizontalLayout headerComponent;
 	protected Button btnNewEntry;
-	protected Button btnBack;
 
 	public SOAPOverview() {
 		Design.read(this);

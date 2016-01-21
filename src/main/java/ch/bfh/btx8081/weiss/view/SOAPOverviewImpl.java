@@ -25,10 +25,6 @@ public class SOAPOverviewImpl extends SOAPOverview implements View {
 		super();
 		this.navigator = navigator;
    
-		btnBack.addClickListener(clickEvent -> {
-			navigator.navigateTo(PatientViewImpl.VIEW_NAME + "/" + patient.getPatientID());
-		 });
-	 
 		btnNewEntry.addClickListener(clickEvent -> {
 			System.out.println("clicked " + patient.getPatientID());
 			navigator.navigateTo(NewSOAPViewImpl.VIEW_NAME + "/" + patient.getPatientID());
@@ -39,19 +35,14 @@ public class SOAPOverviewImpl extends SOAPOverview implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		
 		removeAllComponents();
-		this.patient = null;
 		this.patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(event.getParameters()));
-		System.out.println("read");
 		PatientHeaderImpl ph = new PatientHeaderImpl(patient, navigator);
 		addComponent(ph);
 
 		addComponent(headerComponent);
-		int i = 0;
+		
 		for (Soap s : this.patient.getSoaps()) {
-			i++;
-			System.out.println("new Soap " + i);
 			SOAPDetailComponentImpl sdci = new SOAPDetailComponentImpl(s, navigator);
 			addComponent(sdci);
 		}

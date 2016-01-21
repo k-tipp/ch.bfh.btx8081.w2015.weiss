@@ -35,7 +35,6 @@ public class NewSOAPViewImpl extends NewSOAPView implements View {
 		super();
 		
 		btnLogout.addClickListener(clickEvent -> {
-			System.out.println("logout");
 			VaadinSession.getCurrent().getSession().invalidate();
 			Page.getCurrent().reload();
 		 });
