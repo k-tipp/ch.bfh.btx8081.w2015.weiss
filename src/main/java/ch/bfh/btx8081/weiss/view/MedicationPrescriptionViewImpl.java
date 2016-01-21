@@ -35,6 +35,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 
 	private Patient patient = null;
 	private Medication medication = null;
+	private Drug selectedDrug = null;
 
 	private static SelectedButtonState selectedButtonState = null;
 	private static UnselectedButtonState unselectedButtonState = null;
@@ -75,9 +76,9 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
-		
+
 		medication = null;
-		
+
 		// this.removeAllComponents();
 		btnBack.addClickListener(clickEvent -> {
 			navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
@@ -102,8 +103,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	}
 
 	private void addListenersToComponents() {
+
 		btnCompendium.addClickListener(clickEvent -> {
-			navigator.navigateTo(CompendiumViewImpl.VIEW_NAME);
+			navigator.navigateTo(
+					CompendiumViewImpl.VIEW_NAME + "/" + patient.getPatientID() + "/" + selectedDrug.getDrugID());
+
 		});
 
 		// Add listener and add drugs to drugList
@@ -116,7 +120,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			private static final long serialVersionUID = -3913643306964087559L;
 
 			public void valueChange(ValueChangeEvent event) {
-				Drug selectedDrug = (Drug) event.getProperty().getValue();
+				selectedDrug = (Drug) event.getProperty().getValue();
 				lblDosageForm.setValue(selectedDrug.getDosageForm());
 				lblDosage.setValue("0.00");
 			}
@@ -185,10 +189,9 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		// Add listener to prescripe button (add new or update a medication)
 		btnPrescripe.addClickListener(clickEvent -> {
 			String errorMessage = "";
-			if(drugList.getValue() == null) {
+			if (drugList.getValue() == null) {
 				errorMessage += "- Medikament fehlt\n";
 			}
-
 
 			String timesDaily = "";
 			for (Button btn : dailyButtons) {
@@ -196,7 +199,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 					timesDaily = btn.getCaption();
 				}
 			}
-			if(timesDaily == null || timesDaily.isEmpty()) {
+			if (timesDaily == null || timesDaily.isEmpty()) {
 				errorMessage += "- Anzahl 'täglich' fehlt\n";
 			}
 
@@ -207,8 +210,8 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 				}
 				daysInWeek = daysInWeek.substring(0, daysInWeek.length());
 			}
-			
-			if(daysInWeek == null || daysInWeek.isEmpty()) {
+
+			if (daysInWeek == null || daysInWeek.isEmpty()) {
 				errorMessage += "- Wochentage fehlen\n";
 			}
 
@@ -218,26 +221,26 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 					weeks = btn.getCaption();
 				}
 			}
-			
-			if(weeks == null || weeks.isEmpty()) {
+
+			if (weeks == null || weeks.isEmpty()) {
 				errorMessage += "- Anzahl Wochen fehlt\n";
 			}
 
 			String dose = lblDosage.getValue();
-			if(dose.equals("0.00")) {
+			if (dose.equals("0.00")) {
 				errorMessage += "- Keine Dosis\n";
 			}
-			
-			if(errorMessage != null && !errorMessage.isEmpty()) {
-			    Notification notification = new Notification(errorMessage, Notification.Type.HUMANIZED_MESSAGE);
-			    notification.setDelayMsec(2000);
-			    notification.show(Page.getCurrent());
+
+			if (errorMessage != null && !errorMessage.isEmpty()) {
+				Notification notification = new Notification(errorMessage, Notification.Type.HUMANIZED_MESSAGE);
+				notification.setDelayMsec(2000);
+				notification.show(Page.getCurrent());
 			} else if (medication == null) {
 				// Add a new medication to patient
 				Medication med = new Medication((Drug) drugList.getValue(), timesDaily, daysInWeek, weeks, dose);
 				med.setPatient(patient);
 				DatabaseHandler.medicationService.create(med);
-				navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());			
+				navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
 
 			} else {
 				// Update the existing medication
