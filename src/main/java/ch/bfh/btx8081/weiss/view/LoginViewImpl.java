@@ -8,7 +8,7 @@ import com.vaadin.event.ShortcutAction;
 import com.vaadin.server.Page;
 import com.vaadin.ui.Notification;
 
-import ch.bfh.btx8081.weiss.controller.AccessControl;
+import ch.bfh.btx8081.weiss.auth.AccessControl;
 
 public class LoginViewImpl extends LoginView {
 	

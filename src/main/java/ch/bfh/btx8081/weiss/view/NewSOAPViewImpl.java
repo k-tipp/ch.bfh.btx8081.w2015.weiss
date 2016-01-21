@@ -8,7 +8,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinSession;
 
-import ch.bfh.btx8081.weiss.controller.CurrentUser;
+import ch.bfh.btx8081.weiss.auth.CurrentUser;
 import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.model.Soap;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
