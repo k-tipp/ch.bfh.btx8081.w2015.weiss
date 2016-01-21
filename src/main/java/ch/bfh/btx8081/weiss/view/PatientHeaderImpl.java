@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.weiss.view;
 
 import com.vaadin.navigator.Navigator;
+import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinSession;
 
@@ -15,7 +16,7 @@ public class PatientHeaderImpl extends PatientHeader {
 	private static final long serialVersionUID = -2732738654777986936L;
 
 	public PatientHeaderImpl(Patient patient, Navigator navigator) {
-		patientPicture.setAlternateText(patient.getPicture());
+		patientPicture.setSource(new ExternalResource(patient.getPicture()));
 		patient_title.setValue((patient.getGender().equals("male")) ? "Herr" : "Frau");
 		patient_name.setValue(patient.getFirstName() + " " + patient.getLastName());
 		patient_location.setValue(patient.getCity());
