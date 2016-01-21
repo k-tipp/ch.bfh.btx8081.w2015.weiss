@@ -106,7 +106,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 
 		btnCompendium.addClickListener(clickEvent -> {
 			navigator.navigateTo(
-					CompendiumViewImpl.VIEW_NAME + "/" + patient.getPatientID() + "/" + selectedDrug.getDrugID());
+					CompendiumViewImpl.VIEW_NAME + "/" + patient.getPatientID() + "/" + medication.getMedicationID() + "/"+ selectedDrug.getDrugID());
 
 		});
 
