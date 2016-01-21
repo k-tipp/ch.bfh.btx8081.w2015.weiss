@@ -3,6 +3,7 @@ package ch.bfh.btx8081.weiss.view;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.ExternalResource;
 
 import ch.bfh.btx8081.weiss.model.Medication;
 
@@ -24,9 +25,16 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 	{
 	 super();
 	 	
-		patientPicture.setAlternateText(medication.getPatient().getPicture());
+		
+
+
+		patientPicture.setSource(new ExternalResource(medication.getDrug().getPicture()));
 		medication_title.setValue(Integer.toString(medication.getMedicationID()));
-//		protected Label medication_name;
+		medication_name.setValue(medication.getDrug().getName());
+		
+		
+		
+		//		protected Label medication_name;
 //		protected Label from_date;
 //		protected Label to_date;
 //		protected Label dosage;
