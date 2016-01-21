@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.weiss.model;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ public class Drug {
 	/** The drug id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	private int drugID = 0;
+	private long drugID = 0;
 
 	/** The drug name. */
 	private String name = null;
@@ -52,15 +53,15 @@ public class Drug {
 	public Drug() {
 	}
 
-	public Drug(int id) {
+	public Drug(long id) {
 		setDrugID(id);
 	}
 
-	public int getDrugID() {
+	public long getDrugID() {
 		return drugID;
 	}
 
-	public void setDrugID(int drugID) {
+	public void setDrugID(long drugID) {
 		this.drugID = drugID;
 	}
 
