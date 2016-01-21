@@ -12,12 +12,15 @@ import com.vaadin.server.Resource;
 import com.vaadin.server.VaadinSession;
 
 import ch.bfh.btx8081.weiss.model.Drug;
+import ch.bfh.btx8081.weiss.model.Medication;
+import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
 public class CompendiumViewImpl extends CompendiumView implements View {
 
 	private Drug drug = null;
-
+	
+	private String[] parameters = new String[2];
 	/**
 	 * 
 	 */
@@ -39,7 +42,7 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 		// TODO replace "/1"
 
 		btnBack.addClickListener(event -> {
-			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/1");
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/" + parameters[1]);
 		});
 
 		logout.addClickListener(clickEvent -> {
@@ -58,11 +61,12 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// TODO replace /1 with delete first 2 char
-		String drugid = event.getParameters().substring(2);
-		drug = DatabaseHandler.drugService.getDrugById(Integer.parseInt(drugid));
+		parameters = event.getParameters().split("/");
+		
+		
+		drug = DatabaseHandler.drugService.getDrugById(Integer.parseInt(parameters[0]));
 		comp.setSource(new ExternalResource(drug.getCompendium()));
-
+		
 	}
 
 }
