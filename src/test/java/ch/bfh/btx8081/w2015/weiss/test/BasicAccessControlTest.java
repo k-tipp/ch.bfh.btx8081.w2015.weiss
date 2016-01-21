@@ -7,8 +7,8 @@ import java.security.spec.InvalidKeySpecException;
 
 import org.junit.Test;
 
-import ch.bfh.btx8081.weiss.controller.AccessControl;
-import ch.bfh.btx8081.weiss.controller.BasicAccessControl;
+import ch.bfh.btx8081.weiss.auth.AccessControl;
+import ch.bfh.btx8081.weiss.auth.BasicAccessControl;
 import ch.bfh.btx8081.weiss.repository.ContextListener;
 
 public class BasicAccessControlTest {

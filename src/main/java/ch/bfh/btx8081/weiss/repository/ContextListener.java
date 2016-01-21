@@ -26,7 +26,7 @@ public class ContextListener implements ServletContextListener {
      */
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        emf = Persistence.createEntityManagerFactory("Shrinkie");
+        emf = Persistence.createEntityManagerFactory("swe_white");
     }
 
     /* (non-Javadoc)
