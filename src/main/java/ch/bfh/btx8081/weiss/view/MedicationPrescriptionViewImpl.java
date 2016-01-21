@@ -36,6 +36,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	private Patient patient = null;
 	private Medication medication = null;
 	private Drug selectedDrug = null;
+	private String viewParameters = null;
 
 	private static SelectedButtonState selectedButtonState = null;
 	private static UnselectedButtonState unselectedButtonState = null;
@@ -76,23 +77,24 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
-
 		medication = null;
-
+		viewParameters = event.getParameters();
+		
 		// this.removeAllComponents();
 		btnBack.addClickListener(clickEvent -> {
 			navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
 		});
 
-		if (event.getParameters().startsWith("pat")) {
+		if (viewParameters.startsWith("pat")) {
 			setAllButtonsUnselected();
-			String patientid = event.getParameters().replace("pat", "");
+			String patientid = viewParameters.replace("pat", "");
 			patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(patientid));
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
 			lblDosageForm.setValue("");
 			lblDosage.setValue("0.00");
-		} else if (event.getParameters().startsWith("med")) {
-			String medicationid = event.getParameters().replace("med", "");
+			
+		} else if (viewParameters.startsWith("med")) {
+			String medicationid = viewParameters.replace("med", "");
 			medication = DatabaseHandler.medicationService.getMedicationById(Integer.parseInt(medicationid));
 			patient = medication.getPatient();
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
@@ -106,7 +108,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 
 		btnCompendium.addClickListener(clickEvent -> {
 			navigator.navigateTo(
-					CompendiumViewImpl.VIEW_NAME + "/" + patient.getPatientID() + "/" + medication.getMedicationID() + "/"+ selectedDrug.getDrugID());
+					CompendiumViewImpl.VIEW_NAME + "/" + selectedDrug.getDrugID() + "/" + viewParameters);
 
 		});
 

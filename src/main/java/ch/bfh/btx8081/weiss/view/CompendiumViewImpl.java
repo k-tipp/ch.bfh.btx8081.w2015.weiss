@@ -19,8 +19,8 @@ import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 public class CompendiumViewImpl extends CompendiumView implements View {
 
 	private Drug drug = null;
-	private Patient patient = null;
-	private Medication medication = null;
+	
+	private String[] parameters = new String[2];
 	/**
 	 * 
 	 */
@@ -42,7 +42,7 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 		// TODO replace "/1"
 
 		btnBack.addClickListener(event -> {
-			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/med" + medication.getMedicationID());
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/" + parameters[1]);
 		});
 
 		logout.addClickListener(clickEvent -> {
@@ -61,13 +61,12 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
-		String drugid = event.getParameters().substring(4);
-		drug = DatabaseHandler.drugService.getDrugById(Integer.parseInt(drugid));
+		parameters = event.getParameters().split("/");
+		
+		
+		drug = DatabaseHandler.drugService.getDrugById(Integer.parseInt(parameters[0]));
 		comp.setSource(new ExternalResource(drug.getCompendium()));
-
-		String[] medicationid = event.getParameters().split("/");
-		medication = DatabaseHandler.medicationService.getMedicationById(Integer.parseInt(medicationid[1]));
-
+		
 	}
 
 }
