@@ -7,7 +7,6 @@ import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Page;
 
 import ch.bfh.btx8081.weiss.model.Medication;
-import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
 public class MedicationDetailCompontentImpl extends MedicationDetailComponent implements View {
@@ -22,32 +21,24 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 	 *
 	 * @param navigator
 	 *            the navigator
-	 * @return 
+	 * @return
 	 */
-	public MedicationDetailCompontentImpl(Medication medication, Navigator navigator)
-	{
-	 super();
-	 	
-		
-
+	public MedicationDetailCompontentImpl(Medication medication, Navigator navigator) {
+		super();
 
 		patientPicture.setSource(new ExternalResource(medication.getDrug().getPicture()));
-		medication_title.setValue(Integer.toString(medication.getMedicationID()));
 		medication_name.setValue(medication.getDrug().getName());
-		
-		
-		
-		//		protected Label medication_name;
-//		protected Label from_date;
-//		protected Label to_date;
-//		protected Label dosage;
-//		protected Label unit;
-//		protected Button btnViewMedication;
-	
+		from_date.setValue(medication.getDrug().getActive_ingredient());
+		to_date.setValue(medication.getTimesDaily() + " " + medication.getDrug().getDosageForm());
+		dosage.setValue("für " + medication.getWeeks() + " Woche(n)");
+
+		// protected Label dosage;
+		// protected Label unit;
+
 		this.addLayoutClickListener(event -> {
-			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME+ "/med" + medication.getMedicationID());
-			});
-		
+			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/med" + medication.getMedicationID());
+		});
+
 		btnDeleteMedication.addClickListener(clickEvent -> {
 			medication.getPatient().getMedication().remove(medication);
 			DatabaseHandler.patientService.update(medication.getPatient());
@@ -55,13 +46,10 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 			Page.getCurrent().reload();
 		});
 	}
-	
+
 	@Override
 	public void enter(ViewChangeEvent event) {
 
-		
 	}
-	
-	
 
 }

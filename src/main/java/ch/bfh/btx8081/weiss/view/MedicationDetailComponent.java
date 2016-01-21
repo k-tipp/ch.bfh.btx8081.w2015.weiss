@@ -21,12 +21,10 @@ import com.vaadin.ui.declarative.Design;
 @SuppressWarnings("serial")
 public class MedicationDetailComponent extends HorizontalLayout {
 	protected Image patientPicture;
-	protected Label medication_title;
 	protected Label medication_name;
 	protected Label from_date;
 	protected Label to_date;
 	protected Label dosage;
-	protected Label unit;
 	protected Image patientPicture3;
 	protected Button btnDeleteMedication;
 
