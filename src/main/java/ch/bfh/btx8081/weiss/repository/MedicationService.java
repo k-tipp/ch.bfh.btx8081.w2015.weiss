@@ -31,6 +31,9 @@ public class MedicationService {
 	 */
 	public Medication create(Medication medication) {
 		Medication emm = medication;
+		DatabaseHandler.entityManager.getTransaction().begin();
+		DatabaseHandler.entityManager.persist(emm);
+		DatabaseHandler.entityManager.getTransaction().commit();
 		return emm;
 	}
 
