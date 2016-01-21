@@ -15,8 +15,8 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 
-import ch.bfh.btx8081.weiss.controller.AccessControl;
-import ch.bfh.btx8081.weiss.controller.BasicAccessControl;
+import ch.bfh.btx8081.weiss.auth.AccessControl;
+import ch.bfh.btx8081.weiss.auth.BasicAccessControl;
 import ch.bfh.btx8081.weiss.view.CompendiumViewImpl;
 import ch.bfh.btx8081.weiss.view.LoginViewImpl;
 import ch.bfh.btx8081.weiss.view.LoginViewImpl.LoginListener;
