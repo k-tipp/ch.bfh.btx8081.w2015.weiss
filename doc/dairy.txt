@@ -173,3 +173,7 @@ sprints timeline:
 11.12.2015: classes medication
 17.12.2015: Presentation - Sprint 2
 08.01.2016: Therapy View classes
+16.01.2016: Implementing SOAP Classes
+20.01.2016: Ending SOAP Classes
+21.01.2016: Task 11
+22.01.2016: Final Presentation - Sprint 3
