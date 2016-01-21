@@ -117,7 +117,6 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			}
 		});
 
-
 		// Add listener and add drugs to drugList
 		drugList.setImmediate(true);
 		drugList.addValueChangeListener(new Property.ValueChangeListener() {
@@ -247,7 +246,9 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 				// Add a new medication to patient
 				Medication med = new Medication((Drug) drugList.getValue(), timesDaily, daysInWeek, weeks, dose);
 				med.setPatient(patient);
-				DatabaseHandler.medicationService.create(med);
+				med = DatabaseHandler.medicationService.create(med);
+				patient.getMedication().add(med);
+				DatabaseHandler.patientService.update(patient);
 				navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
 
 			} else {
