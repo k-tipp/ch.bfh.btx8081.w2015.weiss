@@ -29,7 +29,7 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 		patientPicture.setSource(new ExternalResource(medication.getDrug().getPicture()));
 		medication_name.setValue(medication.getDrug().getName());
 		from_date.setValue(medication.getDrug().getActive_ingredient());
-		to_date.setValue(medication.getTimesDaily() + " " + medication.getDrug().getDosageForm());
+		to_date.setValue(medication.getTimesDaily() + " " + medication.getDrug().getDosageForm() + "  Mo-Mi-Ab");
 		dosage.setValue("für " + medication.getWeeks() + " Woche(n)");
 
 		// protected Label dosage;
