@@ -4,8 +4,11 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.Page;
 
 import ch.bfh.btx8081.weiss.model.Medication;
+import ch.bfh.btx8081.weiss.model.Patient;
+import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
 public class MedicationDetailCompontentImpl extends MedicationDetailComponent implements View {
 	/** The Constant serialVersionUID. */
@@ -44,6 +47,12 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 		this.addLayoutClickListener(event -> {
 			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME+ "/med" + medication.getMedicationID());
 			});
+		
+		btnDeleteMedication.addClickListener(clickEvent -> {
+			medication.getPatient().getMedication().remove(medication);
+			DatabaseHandler.patientService.update(medication.getPatient());
+			Page.getCurrent().reload();
+		});
 	}
 	
 	@Override

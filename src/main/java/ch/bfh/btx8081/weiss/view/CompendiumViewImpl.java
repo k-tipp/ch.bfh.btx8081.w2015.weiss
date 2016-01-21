@@ -1,19 +1,13 @@
 package ch.bfh.btx8081.weiss.view;
 
-import java.net.URL;
-
-import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Page;
-import com.vaadin.server.Resource;
 import com.vaadin.server.VaadinSession;
 
 import ch.bfh.btx8081.weiss.model.Drug;
-import ch.bfh.btx8081.weiss.model.Medication;
-import ch.bfh.btx8081.weiss.model.Patient;
 import ch.bfh.btx8081.weiss.repository.DatabaseHandler;
 
 public class CompendiumViewImpl extends CompendiumView implements View {
@@ -38,9 +32,6 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 
 	public CompendiumViewImpl(final Navigator navigator) {
 		super();
-
-		// TODO replace "/1"
-
 		btnBack.addClickListener(event -> {
 			navigator.navigateTo(MedicationPrescriptionViewImpl.VIEW_NAME + "/" + parameters[1]);
 		});
@@ -62,9 +53,7 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 		parameters = event.getParameters().split("/");
-		
-		
-		drug = DatabaseHandler.drugService.getDrugById(Integer.parseInt(parameters[0]));
+		drug = DatabaseHandler.drugService.getDrugById(Long.parseLong(parameters[0]));
 		comp.setSource(new ExternalResource(drug.getCompendium()));
 		
 	}
