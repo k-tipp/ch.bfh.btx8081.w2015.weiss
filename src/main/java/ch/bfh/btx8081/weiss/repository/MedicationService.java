@@ -30,11 +30,10 @@ public class MedicationService {
 	 * @return the medication
 	 */
 	public Medication create(Medication medication) {
-		Medication emm = medication;
 		DatabaseHandler.entityManager.getTransaction().begin();
-		DatabaseHandler.entityManager.persist(emm);
+		DatabaseHandler.entityManager.persist(medication);
 		DatabaseHandler.entityManager.getTransaction().commit();
-		return emm;
+		return medication;
 	}
 
 	/**
@@ -84,7 +83,10 @@ public class MedicationService {
 	 * @return the medication
 	 */
 	public Medication update(Medication medication) {
-		return DatabaseHandler.entityManager.merge(medication);
+		DatabaseHandler.entityManager.getTransaction().begin();
+		Medication mergedMedication =  DatabaseHandler.entityManager.merge(medication);
+		DatabaseHandler.entityManager.getTransaction().commit();
+		return mergedMedication;
 	}
 
 	/**
@@ -94,10 +96,9 @@ public class MedicationService {
 	 *            the medication
 	 */
 	public void delete(Medication medication) {
-		Medication emp = getMedicationById(medication.getMedicationID());
-		if (emp != null) {
-			DatabaseHandler.entityManager.remove(emp);
-		}
+		DatabaseHandler.entityManager.getTransaction().begin();
+		DatabaseHandler.entityManager.remove(medication);
+		DatabaseHandler.entityManager.getTransaction().commit();
 	}
 
 	/**

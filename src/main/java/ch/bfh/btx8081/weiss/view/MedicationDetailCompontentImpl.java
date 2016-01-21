@@ -49,8 +49,11 @@ public class MedicationDetailCompontentImpl extends MedicationDetailComponent im
 			});
 		
 		btnDeleteMedication.addClickListener(clickEvent -> {
-			medication.getPatient().getMedication().remove(medication);
-			DatabaseHandler.patientService.update(medication.getPatient());
+//			medication.getPatient().getMedication().remove(medication);
+//			DatabaseHandler.patientService.update(medication.getPatient());
+			
+			DatabaseHandler.medicationService.delete(medication);
+			
 			Page.getCurrent().reload();
 		});
 	}

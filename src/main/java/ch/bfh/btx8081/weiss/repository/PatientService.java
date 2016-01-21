@@ -30,11 +30,10 @@ public class PatientService {
 	 * @return the patient
 	 */
 	public Patient create(Patient patient) {
-		Patient emp = patient;
 		DatabaseHandler.entityManager.getTransaction().begin();
-		DatabaseHandler.entityManager.persist(emp);
+		DatabaseHandler.entityManager.persist(patient);
 		DatabaseHandler.entityManager.getTransaction().commit();
-		return emp;
+		return patient;
 	}
 
 	/**
@@ -72,7 +71,7 @@ public class PatientService {
 	 */
 	public Patient create(int id, String firstName, String lastName, String gender, String street, String ssn,
 			LocalDate birthday, String city, String zip, String eMail, String picture, int harmID, List<Appointment> appointments, List<Medication> medication) {
-		// TODO Auto-generated method stub
+
 		Patient emp = new Patient(id);
 		emp.setBirthday(birthday);
 		emp.setCity(city);

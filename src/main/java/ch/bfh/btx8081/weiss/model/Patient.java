@@ -28,7 +28,7 @@ public class Patient {
 	
 	/** The medications for this patient. */
 	//Eager loading for being able to display stuff with toString(), without explicitly loading 
-	@OneToMany(mappedBy = "patient",  fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="patient")
 	private List<Medication> medication = null;
 
 	/** The medications for this patient. */

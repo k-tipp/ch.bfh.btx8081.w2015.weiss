@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -24,7 +25,7 @@ public class Medication {
 	private String picture = null;
 
 	/** The patient. */
-	@OneToOne
+	@ManyToOne
 	private Patient patient = null;
 
 	/** The from date is the start date for the medication period. */
