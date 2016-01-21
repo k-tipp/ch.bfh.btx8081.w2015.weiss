@@ -1,8 +1,5 @@
 package ch.bfh.btx8081.weiss.application;
 
-import java.io.IOException;
-import java.util.Scanner;
-
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -27,7 +24,6 @@ import ch.bfh.btx8081.weiss.view.PatientOverviewImpl;
 import ch.bfh.btx8081.weiss.view.PatientViewImpl;
 import ch.bfh.btx8081.weiss.view.SOAPOverviewImpl;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MyUI initializes the user interface.
  */
@@ -37,6 +33,8 @@ public class MyUI extends UI {
 
 	/** Generated serial version uid. */
 	private static final long serialVersionUID = -3679240605909357235L;
+	
+	/** The access controller for the application. */
 	private AccessControl accessControl = new BasicAccessControl();
 
 	/*
@@ -45,7 +43,7 @@ public class MyUI extends UI {
 	 * @see com.vaadin.ui.UI#init(com.vaadin.server.VaadinRequest)
 	 */
 	@Override
-	protected void init(VaadinRequest vaadinRequest) {
+	protected final void init(final VaadinRequest vaadinRequest) {
 		Responsive.makeResponsive(this);
 		setLocale(vaadinRequest.getLocale());
 		getPage().setTitle("Home");
@@ -65,14 +63,15 @@ public class MyUI extends UI {
 		navigator.addView(SOAPOverviewImpl.VIEW_NAME, new SOAPOverviewImpl(navigator));
 		navigator.addView(NewSOAPViewImpl.VIEW_NAME, new NewSOAPViewImpl(navigator));
 		
-		if(navigator.getState() == null || navigator.getState().isEmpty()) {
+		if (navigator.getState() == null || navigator.getState().isEmpty()) {
 			navigator.navigateTo(PatientOverviewImpl.VIEW_NAME);
 		}
 	
         if (!accessControl.isUserSignedIn()) {
             setContent(new LoginViewImpl(accessControl, new LoginListener() {
-                /**
-				 * 
+
+				/**
+				 * Generated serial version UID.
 				 */
 				private static final long serialVersionUID = -5836891708671386234L;
 

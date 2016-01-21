@@ -30,14 +30,15 @@ public class ErrorView extends VerticalLayout implements View {
         Label header = new Label("The view could not be found");
         header.addStyleName(Reindeer.LABEL_H1);
         addComponent(header);
-        addComponent(explanation = new Label());
+        explanation = new Label();
+        addComponent(explanation);
     }
 
     /* (non-Javadoc)
      * @see com.vaadin.navigator.View#enter(com.vaadin.navigator.ViewChangeListener.ViewChangeEvent)
      */
     @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
+    public void enter(final ViewChangeListener.ViewChangeEvent event) {
         explanation.setValue(String.format(
                 "You tried to navigate to a view ('%s') that does not exist.",
                 event.getViewName()));
