@@ -107,10 +107,16 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	private void addListenersToComponents() {
 
 		btnCompendium.addClickListener(clickEvent -> {
-			navigator.navigateTo(
-					CompendiumViewImpl.VIEW_NAME + "/" + selectedDrug.getDrugID() + "/" + viewParameters);
-
+			if (drugList.getValue() == null) {
+				Notification notification = new Notification("- kein Medikament ausgewählt", Notification.Type.HUMANIZED_MESSAGE);
+				notification.setDelayMsec(2000);
+				notification.show(Page.getCurrent());
+			} else {
+				navigator.navigateTo(
+						CompendiumViewImpl.VIEW_NAME + "/" + selectedDrug.getDrugID() + "/" + viewParameters);
+			}
 		});
+
 
 		// Add listener and add drugs to drugList
 		drugList.setImmediate(true);
