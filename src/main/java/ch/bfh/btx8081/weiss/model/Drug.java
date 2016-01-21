@@ -53,7 +53,7 @@ public class Drug {
 	public Drug() {
 	}
 
-	public Drug(long id) {
+	public Drug(int id) {
 		setDrugID(id);
 	}
 
