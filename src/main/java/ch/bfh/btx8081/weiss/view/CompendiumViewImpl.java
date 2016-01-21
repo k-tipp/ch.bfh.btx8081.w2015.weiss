@@ -55,6 +55,8 @@ public class CompendiumViewImpl extends CompendiumView implements View {
 		parameters = event.getParameters().split("/");
 		drug = DatabaseHandler.drugService.getDrugById(Long.parseLong(parameters[0]));
 		comp.setSource(new ExternalResource(drug.getCompendium()));
+		name.setValue(drug.getName());
+
 		
 	}
 

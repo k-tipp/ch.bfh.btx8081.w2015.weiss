@@ -5,6 +5,7 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.BrowserFrame;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.declarative.Design;
 
 /** 
@@ -22,6 +23,7 @@ public class CompendiumView extends HorizontalLayout {
 	protected Button btnBack;
 	protected Button logout;
 	protected BrowserFrame comp;
+	protected Label name;
 
 	public CompendiumView() {
 		Design.read(this);
