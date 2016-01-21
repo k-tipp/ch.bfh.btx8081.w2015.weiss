@@ -4,8 +4,8 @@
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
  </head> 
  <body> 
-  <vaadin-horizontal-layout size-full="true" margin="true"> 
-   <vaadin-vertical-layout size-auto="true" :middle=""> 
+  <vaadin-horizontal-layout size-full="true" margin-left="" margin-right=""> 
+   <vaadin-vertical-layout :middle="" width="100%"> 
     <vaadin-label size-auto="true" plain-text="" _id="entryDate">
       entryDate 
     </vaadin-label> 
@@ -40,7 +40,8 @@
      <vaadin-label size-auto="true" plain-text="" _id="planText">
        plan 
      </vaadin-label> 
-    </vaadin-horizontal-layout> 
+    </vaadin-horizontal-layout>
+    <vaadin-label width="100%" content-mode="HTML"><hr /></vaadin-label>
    </vaadin-vertical-layout> 
   </vaadin-horizontal-layout>  
  </body>
