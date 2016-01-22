@@ -29,9 +29,6 @@ public class MedicationPrescriptionView extends HorizontalLayout {
 	protected StatefulButton btnDaily2;
 	protected StatefulButton btnDaily3;
 	protected StatefulButton btnDaily4;
-	protected StatefulButton btnDaily6;
-	protected StatefulButton btnDaily8;
-	protected StatefulButton btnDaily12;
 	protected StatefulButton btnMon;
 	protected StatefulButton btnTue;
 	protected StatefulButton btnWed;

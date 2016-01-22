@@ -25,6 +25,8 @@ public class MedicationDetailComponent extends HorizontalLayout {
 	protected Label from_date;
 	protected Label to_date;
 	protected Label dosage;
+	protected Label unit;
+
 	protected Image patientPicture3;
 	protected Button btnDeleteMedication;
 

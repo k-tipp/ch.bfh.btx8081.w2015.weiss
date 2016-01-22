@@ -95,38 +95,38 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			patient = medication.getPatient();
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
 			lblDosageForm.setValue(medication.getDrug().getDosageForm());
-			drugList.select(medication.getDrug());  // Do not switch order with line 99, selecting a new medication resets the dosage value to 0.00
+			drugList.select(medication.getDrug()); // Do not switch order with
+													// line 99, selecting a new
+													// medication resets the
+													// dosage value to 0.00
 			lblDosage.setValue(medication.getDosage());
 			selectButtons(medication);
 		}
 	}
 
 	private void selectButtons(Medication medication) {
-		switch (medication.getTimesDaily()) {
-		case "1x":
-			selectedButtonState.doAction(btnDaily1);
-			break;
-		case "2x":
-			selectedButtonState.doAction(btnDaily2);
-			break;
-		case "3x":
-			selectedButtonState.doAction(btnDaily3);
-			break;
-		case "4x":
-			selectedButtonState.doAction(btnDaily4);
-			break;
-		case "6x":
-			selectedButtonState.doAction(btnDaily6);
-			break;
-		case "8x":
-			selectedButtonState.doAction(btnDaily8);
-			break;
-		case "12x":
-			selectedButtonState.doAction(btnDaily12);
+
+		String[] arrTimesDaily = medication.getTimesDaily().split(", ");
+		for (String t : arrTimesDaily) {
+			switch (t) {
+			case "Morgen":
+				selectedButtonState.doAction(btnDaily1);
+				break;
+			case "Mittag":
+				selectedButtonState.doAction(btnDaily2);
+				break;
+			case "Abend":
+				selectedButtonState.doAction(btnDaily3);
+				break;
+			case "Nacht":
+				selectedButtonState.doAction(btnDaily4);
+				break;
+
+			}
 		}
 
-		String[] arrDaysInWeek = medication.getDaysInWeek().split(",");
-		for(String s : arrDaysInWeek) {
+		String[] arrDaysInWeek = medication.getDaysInWeek().split(", ");
+		for (String s : arrDaysInWeek) {
 			switch (s) {
 			case "Mo":
 				selectedButtonState.doAction(btnMon);
@@ -148,9 +148,10 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 				break;
 			case "So":
 				selectedButtonState.doAction(btnSun);
+				break;
 			}
 		}
-		
+
 		switch (medication.getWeeks()) {
 		case "1":
 			selectedButtonState.doAction(btnWeeks1);
@@ -172,6 +173,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			break;
 		case "∞":
 			selectedButtonState.doAction(btnWeeksInfinitely);
+			break;
 		}
 	}
 
@@ -248,7 +250,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		// Add listeners to daily buttons
 		for (StatefulButton btn : dailyButtons) {
 			btn.addStatefulClickListener(statefulClickEvent -> {
-				manageSingleButtonClickEvent(dailyButtons, statefulClickEvent.getButton());
+				if (statefulClickEvent.getButton().getButtonState() == unselectedButtonState) {
+					selectedButtonState.doAction(statefulClickEvent.getButton());
+				} else {
+					unselectedButtonState.doAction(statefulClickEvent.getButton());
+				}
 			});
 		}
 
@@ -280,9 +286,15 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			String timesDaily = "";
 			for (Button btn : dailyButtons) {
 				if (btn.getStyleName().equals("friendly")) {
-					timesDaily = btn.getCaption();
+					timesDaily += btn.getCaption() + ", ";
 				}
+
+
 			}
+			timesDaily = timesDaily.substring(0, timesDaily.length() - 1);
+
+			System.out.println(timesDaily);
+
 			if (timesDaily == null || timesDaily.isEmpty()) {
 				errorMessage += "- Anzahl 'täglich' fehlt\n";
 			}
@@ -290,11 +302,10 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			String daysInWeek = "";
 			for (Button btn : daysInWeekButtons) {
 				if (btn.getStyleName().equals("friendly")) {
-					daysInWeek += btn.getCaption() + ",";
+					daysInWeek += btn.getCaption() + ", ";
 				}
-				daysInWeek = daysInWeek.substring(0, daysInWeek.length());
 			}
-			System.out.println(daysInWeek);
+			daysInWeek = daysInWeek.substring(0, daysInWeek.length() - 1);
 
 			if (daysInWeek == null || daysInWeek.isEmpty()) {
 				errorMessage += "- Wochentage fehlen\n";
@@ -362,9 +373,6 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 		dailyButtons.add(btnDaily2);
 		dailyButtons.add(btnDaily3);
 		dailyButtons.add(btnDaily4);
-		dailyButtons.add(btnDaily6);
-		dailyButtons.add(btnDaily8);
-		dailyButtons.add(btnDaily12);
 
 		weeksButtons = new ArrayList<StatefulButton>();
 		weeksButtons.add(btnWeeks1);
