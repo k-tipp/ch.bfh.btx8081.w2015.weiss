@@ -23,7 +23,7 @@ public class TherapyPrescriptionViewImpl extends MedicationPrescriptionView impl
 	private static final long serialVersionUID = -2513599133421077982L;
 
 	/** The Constant VIEW_NAME contains the view name of this view. */
-	public static final String VIEW_NAME = "MedicationPrescriptionView";
+	public static final String VIEW_NAME = "TherapyPrescriptionView";
 
 	/** The navigator. */
 	private Navigator navigator = null;
@@ -215,9 +215,9 @@ public class TherapyPrescriptionViewImpl extends MedicationPrescriptionView impl
 		dailyButtons.add(btnDaily2);
 		dailyButtons.add(btnDaily3);
 		dailyButtons.add(btnDaily4);
-		dailyButtons.add(btnDaily6);
-		dailyButtons.add(btnDaily8);
-		dailyButtons.add(btnDaily12);
+//		dailyButtons.add(btnDaily6);
+//		dailyButtons.add(btnDaily8);
+//		dailyButtons.add(btnDaily12);
 		
 		weeksButtons = new ArrayList<StatefulButton>();
 		weeksButtons.add(btnWeeks1);
