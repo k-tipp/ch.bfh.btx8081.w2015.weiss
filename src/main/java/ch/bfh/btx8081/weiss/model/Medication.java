@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.weiss.model;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,18 +19,9 @@ public class Medication {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int medicationID = 0;
 
-	/** The picture. */
-	private String picture = null;
-
 	/** The patient. */
 	@ManyToOne
 	private Patient patient = null;
-
-	/** The from date is the start date for the medication period. */
-	private LocalDateTime fromDate = null;
-
-	/** The to date is the last date for the medication period. */
-	private LocalDateTime toDate = null;
 
 	/** The drug id for the prescriped drug. */
 	@OneToOne
@@ -40,9 +29,6 @@ public class Medication {
 
 	/** The dosage of the medication. */
 	private String dosage = null;
-
-	/** The status id for this medication. */
-	private int statusID = 0;
 
 	/** The times daily of the medication. */
 	private String timesDaily = null;
@@ -88,25 +74,6 @@ public class Medication {
 	}
 
 	/**
-	 * Gets the picture.
-	 *
-	 * @return the picture
-	 */
-	public String getPicture() {
-		return picture;
-	}
-
-	/**
-	 * Sets the picture.
-	 *
-	 * @param picture
-	 *            the new picture
-	 */
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
-
-	/**
 	 * Gets the patient.
 	 *
 	 * @return the patient
@@ -123,44 +90,6 @@ public class Medication {
 	 */
 	public void setPatient(Patient patient) {
 		this.patient = patient;
-	}
-
-	/**
-	 * Gets the from date.
-	 *
-	 * @return the from date
-	 */
-	public LocalDateTime getFromDate() {
-		return fromDate;
-	}
-
-	/**
-	 * Sets the from date.
-	 *
-	 * @param fromDate
-	 *            the new from date
-	 */
-	public void setFromDate(LocalDateTime fromDate) {
-		this.fromDate = fromDate;
-	}
-
-	/**
-	 * Gets the to date.
-	 *
-	 * @return the to date
-	 */
-	public LocalDateTime getToDate() {
-		return toDate;
-	}
-
-	/**
-	 * Sets the to date.
-	 *
-	 * @param toDate
-	 *            the new to date
-	 */
-	public void setToDate(LocalDateTime toDate) {
-		this.toDate = toDate;
 	}
 
 	/**
@@ -199,25 +128,6 @@ public class Medication {
 	 */
 	public void setDosage(String dosage) {
 		this.dosage = dosage;
-	}
-
-	/**
-	 * Gets the status id.
-	 *
-	 * @return the status id
-	 */
-	public int getStatusID() {
-		return statusID;
-	}
-
-	/**
-	 * Sets the status id.
-	 *
-	 * @param statusID
-	 *            the new status id
-	 */
-	public void setStatusID(int statusID) {
-		this.statusID = statusID;
 	}
 
 	public String getTimesDaily() {
