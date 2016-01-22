@@ -79,8 +79,7 @@ public class PatientViewImpl extends PatientView implements View {
 			patient.setDangerID(Integer.parseInt(valueChangeEvent.getProperty().getValue().toString()));
 			DatabaseHandler.patientService.update(patient);
 		});
-
-		patient_description.setValue(event.getParameters());
+		
 		// attach listeners to buttons
 		btn_view_medicationOverview.addClickListener(clickEvent -> {
 			this.navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
