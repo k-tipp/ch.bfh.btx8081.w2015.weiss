@@ -25,8 +25,8 @@ public class DrugTest {
 
 	@Test
 	public void testSetPicture() {
-		drug.setPicture("dsfhtr3445");
-		assertEquals(drug.getPicture(), "dsfhtr3445");
+		drug.setPicture("http://pictures.documed.ch/WV_GetPictures/2982_pif_f.jpg");
+		assertEquals(drug.getPicture(), "http://pictures.documed.ch/WV_GetPictures/2982_pif_f.jpg");
 	}
 
 	@Test
@@ -37,8 +37,8 @@ public class DrugTest {
 
 	@Test
 	public void testSetDosage_form() {
-		drug.setDosage_form("Tablette");
-		assertEquals(drug.getDosage_form(), "Tablette");
+		drug.setDosageForm("Tablette");
+		assertEquals(drug.getDosageForm(), "Tablette");
 	}
 
 }
