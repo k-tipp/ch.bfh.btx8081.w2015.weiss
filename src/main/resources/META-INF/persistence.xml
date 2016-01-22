@@ -10,7 +10,6 @@
 		<class>ch.bfh.btx8081.weiss.model.Patient</class>
 		<class>ch.bfh.btx8081.weiss.model.Medication</class>
 		<class>ch.bfh.btx8081.weiss.model.Drug</class>
-		<class>ch.bfh.btx8081.weiss.model.DangerToOthers</class>
 		<class>ch.bfh.btx8081.weiss.model.MedicalUser</class>
 		<class>ch.bfh.btx8081.weiss.model.Soap</class>
 
