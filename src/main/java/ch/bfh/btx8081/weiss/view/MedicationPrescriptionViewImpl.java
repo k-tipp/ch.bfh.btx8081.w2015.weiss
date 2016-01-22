@@ -206,9 +206,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			private static final long serialVersionUID = -3913643306964087559L;
 
 			public void valueChange(ValueChangeEvent event) {
-				selectedDrug = (Drug) event.getProperty().getValue();
-				lblDosageForm.setValue(selectedDrug.getDosageForm());
-				lblDosage.setValue("0.00");
+				if(event.getProperty().getValue() != null) {
+					selectedDrug = (Drug) event.getProperty().getValue();
+					lblDosageForm.setValue(selectedDrug.getDosageForm());
+					lblDosage.setValue("0.00");
+				}
 			}
 		});
 
@@ -291,7 +293,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 
 
 			}
-			timesDaily = timesDaily.substring(0, timesDaily.length() - 1);
+			timesDaily = timesDaily.substring(0, timesDaily.length() - 2);
 
 			System.out.println(timesDaily);
 
@@ -305,7 +307,7 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 					daysInWeek += btn.getCaption() + ", ";
 				}
 			}
-			daysInWeek = daysInWeek.substring(0, daysInWeek.length() - 1);
+			daysInWeek = daysInWeek.substring(0, daysInWeek.length() - 2);
 
 			if (daysInWeek == null || daysInWeek.isEmpty()) {
 				errorMessage += "- Wochentage fehlen\n";
