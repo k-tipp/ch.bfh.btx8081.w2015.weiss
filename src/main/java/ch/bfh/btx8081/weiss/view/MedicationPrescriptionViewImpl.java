@@ -86,9 +86,8 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			patient = DatabaseHandler.patientService.getPatientById(Integer.parseInt(patientid));
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
 			lblDosageForm.setValue("");
-			lblDosage.setValue("0.00");
 			drugList.select(null);
-
+			lblDosage.setValue("0.00");
 		} else if (viewParameters.startsWith("med")) {
 			setAllButtonsUnselected();
 			String medicationid = viewParameters.replace("med", "");
@@ -96,10 +95,9 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			patient = medication.getPatient();
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
 			lblDosageForm.setValue(medication.getDrug().getDosageForm());
+			drugList.select(medication.getDrug());  // Do not switch order with line 99, selecting a new medication resets the dosage value to 0.00
 			lblDosage.setValue(medication.getDosage());
-			drugList.select(medication.getDrug());
 			selectButtons(medication);
-
 		}
 	}
 
@@ -292,10 +290,11 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			String daysInWeek = "";
 			for (Button btn : daysInWeekButtons) {
 				if (btn.getStyleName().equals("friendly")) {
-					daysInWeek = btn.getCaption() + ",";
+					daysInWeek += btn.getCaption() + ",";
 				}
 				daysInWeek = daysInWeek.substring(0, daysInWeek.length());
 			}
+			System.out.println(daysInWeek);
 
 			if (daysInWeek == null || daysInWeek.isEmpty()) {
 				errorMessage += "- Wochentage fehlen\n";
