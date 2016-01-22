@@ -79,11 +79,6 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 	public void enter(ViewChangeEvent event) {
 		medication = null;
 		viewParameters = event.getParameters();
-		
-		// this.removeAllComponents();
-		btnBack.addClickListener(clickEvent -> {
-			navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
-		});
 
 		if (viewParameters.startsWith("pat")) {
 			setAllButtonsUnselected();
@@ -92,23 +87,107 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
 			lblDosageForm.setValue("");
 			lblDosage.setValue("0.00");
-			
+			drugList.select(null);
+
 		} else if (viewParameters.startsWith("med")) {
+			setAllButtonsUnselected();
 			String medicationid = viewParameters.replace("med", "");
 			medication = DatabaseHandler.medicationService.getMedicationById(Integer.parseInt(medicationid));
 			patient = medication.getPatient();
 			lblPatientName.setValue(patient.getFirstName() + " " + patient.getLastName());
 			lblDosageForm.setValue(medication.getDrug().getDosageForm());
 			lblDosage.setValue(medication.getDosage());
-			drugList.select(medication.getDrug().getDrugID());
+			drugList.select(medication.getDrug());
+			selectButtons(medication);
+
+		}
+	}
+
+	private void selectButtons(Medication medication) {
+		switch (medication.getTimesDaily()) {
+		case "1x":
+			selectedButtonState.doAction(btnDaily1);
+			break;
+		case "2x":
+			selectedButtonState.doAction(btnDaily2);
+			break;
+		case "3x":
+			selectedButtonState.doAction(btnDaily3);
+			break;
+		case "4x":
+			selectedButtonState.doAction(btnDaily4);
+			break;
+		case "6x":
+			selectedButtonState.doAction(btnDaily6);
+			break;
+		case "8x":
+			selectedButtonState.doAction(btnDaily8);
+			break;
+		case "12x":
+			selectedButtonState.doAction(btnDaily12);
+		}
+
+		String[] arrDaysInWeek = medication.getDaysInWeek().split(",");
+		for(String s : arrDaysInWeek) {
+			switch (s) {
+			case "Mo":
+				selectedButtonState.doAction(btnMon);
+				break;
+			case "Di":
+				selectedButtonState.doAction(btnTue);
+				break;
+			case "Mi":
+				selectedButtonState.doAction(btnWed);
+				break;
+			case "Do":
+				selectedButtonState.doAction(btnThu);
+				break;
+			case "Fr":
+				selectedButtonState.doAction(btnFri);
+				break;
+			case "Sa":
+				selectedButtonState.doAction(btnSat);
+				break;
+			case "So":
+				selectedButtonState.doAction(btnSun);
+			}
+		}
+		
+		switch (medication.getWeeks()) {
+		case "1":
+			selectedButtonState.doAction(btnWeeks1);
+			break;
+		case "2":
+			selectedButtonState.doAction(btnWeeks2);
+			break;
+		case "3":
+			selectedButtonState.doAction(btnWeeks3);
+			break;
+		case "4":
+			selectedButtonState.doAction(btnWeeks4);
+			break;
+		case "5":
+			selectedButtonState.doAction(btnWeeks5);
+			break;
+		case "6":
+			selectedButtonState.doAction(btnWeeks6);
+			break;
+		case "∞":
+			selectedButtonState.doAction(btnWeeksInfinitely);
 		}
 	}
 
 	private void addListenersToComponents() {
 
+		// this.removeAllComponents();
+		btnBack.addClickListener(clickEvent -> {
+			navigator.navigateTo(MedicationOverviewImpl.VIEW_NAME + "/" + patient.getPatientID());
+		});
+
 		btnCompendium.addClickListener(clickEvent -> {
 			if (drugList.getValue() == null) {
-				Notification notification = new Notification("- kein Medikament ausgewählt", Notification.Type.HUMANIZED_MESSAGE);
+				Notification notification = new Notification("- kein Medikament ausgewählt",
+						Notification.Type.HUMANIZED_MESSAGE);
 				notification.setDelayMsec(2000);
 				notification.show(Page.getCurrent());
 			} else {
