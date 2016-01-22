@@ -26,7 +26,6 @@ public class SOAPOverviewImpl extends SOAPOverview implements View {
 		this.navigator = navigator;
    
 		btnNewEntry.addClickListener(clickEvent -> {
-			System.out.println("clicked " + patient.getPatientID());
 			navigator.navigateTo(NewSOAPViewImpl.VIEW_NAME + "/" + patient.getPatientID());
 		 });
 	}

@@ -290,15 +290,13 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 				if (btn.getStyleName().equals("friendly")) {
 					timesDaily += btn.getCaption() + ", ";
 				}
-
-
 			}
-			timesDaily = timesDaily.substring(0, timesDaily.length() - 2);
-
-			System.out.println(timesDaily);
 
 			if (timesDaily == null || timesDaily.isEmpty()) {
 				errorMessage += "- Anzahl 'täglich' fehlt\n";
+			} else {
+				// remove last ', '
+				timesDaily = timesDaily.substring(0, timesDaily.length() - 2);
 			}
 
 			String daysInWeek = "";
@@ -307,10 +305,12 @@ public class MedicationPrescriptionViewImpl extends MedicationPrescriptionView i
 					daysInWeek += btn.getCaption() + ", ";
 				}
 			}
-			daysInWeek = daysInWeek.substring(0, daysInWeek.length() - 2);
 
 			if (daysInWeek == null || daysInWeek.isEmpty()) {
 				errorMessage += "- Wochentage fehlen\n";
+			} else {
+				// remove last ', '
+				daysInWeek = daysInWeek.substring(0, daysInWeek.length() - 2);
 			}
 
 			String weeks = "";
